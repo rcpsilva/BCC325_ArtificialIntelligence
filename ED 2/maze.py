@@ -14,7 +14,8 @@ class Maze():
 
         return {'position': self.start,
                 'available_neighbors':self.get_available_neighboors(self.start),
-                'goal':False}
+                'goal':False,
+                'goal_position':self.maze._goal}
 
     def get_available_neighboors(self,pos):
 
@@ -46,7 +47,8 @@ class Maze():
      
         return {'position': position,
                 'available_neighbors':self.get_available_neighboors(position),
-                'goal':goal}
+                'goal':goal,
+                'goal_position':self.maze._goal}
 
     def run(self):
         self.maze.run()
