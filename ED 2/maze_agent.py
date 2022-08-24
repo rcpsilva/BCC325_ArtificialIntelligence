@@ -1,5 +1,6 @@
 import numpy as np
 import heapq as hp
+from maze import Maze
 
 def heuristic(node, goal):
     return np.linalg.norm(np.array(node) - np.array(goal),1)
@@ -21,8 +22,7 @@ class MazeAgentAStar():
         self.env = env
         self.percepts = env.initial_percepts()
         self.F = []
-        hp.heappush(self.F,(heuristic(self.percepts['position'],self.percepts['goal_position']),[self.percepts['position']]))
-
+        hp.heappush(self.F,(cost([self.percepts['position']]) + heuristic(self.percepts['position'],self.percepts['goal_position']),[self.percepts['position']]))
 
     def act(self):
 
@@ -33,11 +33,10 @@ class MazeAgentAStar():
 
             if self.percepts['goal']:
                 break
-            else:
-                for n in self.percepts['available_neighbors']:
-                    if n not in path:
-                        hp.heappush(self.F,(cost(path + [n]) + heuristic(n, self.percepts['goal_position']), path + [n]))
-                        
+
+            for n in self.percepts['available_neighbors']:
+                if n not in path:
+                    hp.heappush(self.F,(cost(path + [n]) + heuristic(n, self.percepts['goal_position']),path + [n]))
 
         self.env.draw_best(path)
 
@@ -57,17 +56,53 @@ class MazeAgentDFS():
 
             if self.percepts['goal']:
                 break
-            else:
-                for n in self.percepts['available_neighbors']:
-                    if n not in path:
-                        self.F.insert(-1,path + [n])
+
+            for n in self.percepts['available_neighbors']:
+                if n not in path:
+                    self.F.insert(-1, path + [n])
 
         self.env.draw_best(path)
 
+class MazeAgentBB():
+
+    def __init__(self,env,bound):
+        self.env = env
+        self.percepts = env.initial_percepts()
+        self.F = [[self.percepts['position']]]
+        self.best_path = []
+        self.bound = bound
+
+    def act(self):
+
+        while self.F:
+            path = self.F.pop(-1)
+
+            self.percepts = self.env.change_state({'path':path.copy()})
+
+            if self.percepts['goal']:
+                if cost(path) < self.bound:
+                    self.bound = cost(path)
+                    self.best_path = path
+                
+            for n in self.percepts['available_neighbors']:
+                if n not in path:
+                    if (cost(path + [n]) + heuristic(n,self.percepts['goal']) < self.bound):
+                        self.F.insert(-1, path + [n])
+
+        self.env.draw_best(self.best_path)
+
+
 if __name__ == '__main__':
 
-    x = [10,10]
-    y = [0,0] 
+    env = Maze(5,5)
 
-    print(np.linalg.norm(np.array(x) - np.array(y)))
-    print(np.linalg.norm(np.array(x) - np.array(y),1))
+    percepts = env.initial_percepts()
+
+    print(percepts['position'])
+    print(percepts['goal'])
+    print(percepts['available_neighbors'])
+    print(percepts['goal_position'])
+    
+
+
+    
