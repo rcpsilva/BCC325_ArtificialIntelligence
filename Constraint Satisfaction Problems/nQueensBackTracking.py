@@ -1,40 +1,48 @@
-def check_nqueens(sol,value):
 
-    diagonal = False
-    for i in range(len(sol)):
-        delta1 = abs(len(sol) - i)
-        delta2 = abs(value - sol[i])
-        diagonal = diagonal or (delta1 == delta2)
+def r0e7(sol,val):
+    if len(sol) > 0:
+        return sol[0] == 7
 
-    return  not (value in sol) and not diagonal
+    return True
 
-def const(sol, value):
-    return True if len(sol) == 0 else (sol[0]==7)
+def different_column(sol,val):
+    return not (val in sol)
+
+def different_diagonal(sol,val):
     
-def check_constraints(sol,value,constraints):
-    flag = True
-    for c in constraints:
-        flag = flag & c(sol,value)
-    return flag
+    for i in range(len(sol)):
+        deltay = abs(sol[i]-val)
+        deltax = abs(i - len(sol))
+        if (deltay == deltax):
+            return False
 
-def search(domain, constraints, sol = []):
+    return True
+
+def check_constraints(sol,val,constraints):
+
+    for c in constraints:
+        if not c(sol,val):
+            return False
+
+    return True
+
+
+def search(domain, constraints, sol=[]):
 
     if len(sol) == len(domain):
         print(sol)
     else:
-        for value in domain[len(sol)]:
-            if (check_constraints(sol,value, constraints)):
-                sol.append(value)
-                search(domain, constraints,sol)
+        for d in domain[len(sol)]:
+            if check_constraints(sol, d, constraints):
+                sol.append(d)
+                search(domain,constraints,sol)
                 sol.pop(-1)
-    
+
 if __name__ == '__main__':
     
-    n = 4
+    n = 8
     domain = [[i for i in range(n)] for j in range(n)]
-    #constraints = [check_nqueens, const]
-    constraints = [check_nqueens]
-
+    constraints = [different_column, different_diagonal,r0e7]
+    
     print(domain)
     search(domain, constraints)
-
