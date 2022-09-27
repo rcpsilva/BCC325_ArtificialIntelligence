@@ -12,7 +12,7 @@ def botton_up(kb):
         new_consequence = False 
 
         for head in kb['rules']:
-            if head not in C: # Very innefient
+            if head not in C: # Very inneficent
                 for body in kb['rules'][head]:
                     if not set(body).difference(set(C)): # Very innefient
                         C.append(head)
