@@ -65,3 +65,12 @@ if __name__ == "__main__":
     print(top_down(['g'],kb))
 
     print(botton_up(kb))
+
+    kb2 = {  'rules':{  'bronchitis':[['influenza'],['smokes']],
+                        'coughing':[['bronchitis']],
+                        'wheezing':[['bronchitis']],
+                        'fever':[['influenza'],['infection']],
+                        'sore_throat':[['influenza']],
+                        'False':[['smokes','non-smoker']]
+                        },
+            'assumables':['smokes','influenza','infection'] }
