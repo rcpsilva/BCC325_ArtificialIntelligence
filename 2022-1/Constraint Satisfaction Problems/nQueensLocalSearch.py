@@ -1,5 +1,7 @@
 import numpy as np
+import math
 import copy
+import matplotlib.pyplot as plt
 
 def different_column_violations(sol):
 
@@ -52,26 +54,66 @@ def swap(sol):
 
 def local_search(sol, objective, get_neighbor, maxit = 50):
 
+    c_vals = []
     best_val = objective(sol)
     it = 0
     while it <= maxit:
         n = get_neighbor(sol)
         n_val = objective(n)
-        if  n_val < best_val:
-            sol = n
+        if  n_val <= best_val:
+            sol = copy.copy(n)
+            c_val = n_val
             best_val = n_val 
         
         print(f'{it} : {best_val}')
 
         it +=1
 
-    return sol, best_val
+        c_vals.append(c_val)
+
+    return sol, best_val, c_vals
+
+def simmulated_annealing(sol, objective, get_neighbor, maxit = 50):
+
+    c_vals = []
+
+    T = 100
+
+    best_sol = copy.copy(sol)
+    best_val = objective(sol)
+
+    c_val = objective(sol)
+    it = 0
+    while it <= maxit:
+        n = get_neighbor(sol)
+        n_val = objective(n)
+
+        if n_val <= best_val:
+            best_val = n_val
+            best_sol = copy.copy(n)
+
+        if n_val <= c_val or np.random.rand() < math.exp(-(n_val-c_val)/T):
+            sol = copy.copy(n)
+            c_val = n_val
+        
+        c_vals.append(c_val)
+        
+        print(f'{it} : {best_val}')
+
+        it +=1
+        T = 0.99*T
+
+    return best_sol, best_val , c_vals
 
 if __name__ == '__main__':
 
-    sol = [0,1,2,3,4,5,6,7]
+    sol = list(range(100))
 
-    sol, val = local_search(sol, obj, swap, maxit = 100)
+    sol1, val1, c_ls1 = local_search(sol, obj, swap, maxit = 10000)
 
-    print(sol)
-    print(val)
+    sol2, val2, c_ls2 = simmulated_annealing(sol, obj, swap, maxit = 10000)
+
+    plt.plot(c_ls1)
+    plt.plot(c_ls2)
+
+    plt.show()
