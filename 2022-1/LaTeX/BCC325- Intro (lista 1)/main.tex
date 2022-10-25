@@ -1,0 +1,138 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{hyperref}
+
+\usepackage{tikz}
+  \usetikzlibrary{shapes,arrows,fit,calc,positioning}
+  \tikzset{box/.style={draw, diamond, thick, text centered, minimum height=0.5cm, minimum width=1cm}}
+  \tikzset{line/.style={draw, thick, -latex'}}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\title{\vspace{-2 cm}Universidade Federal de Ouro Preto \\ BCC 325 - Inteligência Artificial \\ Introdução}
+\author{Prof. Rodrigo Silva}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+%\section*{Instruções}
+
+%Cada aluno deve submeter na Plataforma Moodle um arquivo PDF com o nome no formato, \textit{seu\_nome\_intropython.pdf}, contendo:
+%\begin{itemize}
+%    \item Nome;
+%    \item Número de Matrícula;
+%    \item Repostas das questões teóricas; e
+%    \item Link para o repositório do GitHub que contém o código da atividade prática. 
+%\end{itemize}
+
+\section{Leitura}
+
+\begin{itemize}
+    \item Introdução à Python - \url{http://antigo.scl.ifsp.edu.br/portal/arquivos/2016.05.04_Apostila\_Python\_-\_PET\_ADS\_S\%C3\%A3o_Carlos.pdf}
+    \item List comprehensions - \url{https://pythonacademy.com.br/blog/list-comprehensions-no-python}
+    \item Classes em Python - \url{http://pythonclub.com.br/introducao-classes-metodos-python-basico.html}
+    \item Capítulos 1 e 2 - Artificial Intelligence: Foundations of Computational Agents,  2nd Edition - \url{http://artint.info/2e/html/ArtInt2e.html}
+\end{itemize}
+
+
+\section{Questões teóricas}
+
+\begin{enumerate}
+\item O que é inteligência artificial?
+
+\item Dados dois agentes hipotéticos $A_1$ e $A_2$, naturais ou artificias, defina critérios para determinar qual dos agentes é mais inteligente. Explique também como você avaliaria estes critérios.
+
+\item Uma casa inteligente é uma casa que cuida de si e de seus habitantes. Ela precisa manter as condições ambientais agradáveis aos habitantes e garantir um estoque mínimo de suprimentos. Ela também precisa ser capaz de requisitar reparos a si própria, caso necessário, e controlar o seu próprio gasto tendo em visa os recursos dos habitantes. Defina qual ou quais conhecimentos prévios, habilidades, objetivos/preferências, estímulos (recebidos do ambiente) e experiências este agente deve ter.  
+
+\item No contexto da disciplina de inteligência artificial, defina o que são \textit{agentes}, descreva os seus componentes e suas principais funções.
+
+\item Sobre arquitetura de agentes e controladores hierárquicos, responda:
+    \begin{enumerate}
+        \item Por quê utilizamos controladores hierárquicos? Explique.
+        \item O que queremos dizer quando falamos que camadas mais altas trabalham em uma escala de tempo diferente das camadas mais baixas?
+        \item Explique, de forma geral, o que é uma função de transdução e uma função de transdução causal.
+        \item Por quê um agente possui um estado de crença?
+    \end{enumerate}
+
+\item Quais funções um agente deve implementar?
+
+\item Quais funções um agente hierárquico deve implementar?
+
+%\item Em que contexto utilizamos controladores hierárquicos? Liste vantagens e desvantagens dos controladores hierárquicos.
+\end{enumerate}
+
+
+\section{Atividades Práticas}
+
+\begin{enumerate}
+    \item Resolver todos os exercícios da apostila de Python, disponível em: \url{http://antigo.scl.ifsp.edu.br/portal/arquivos/2016.05.04_Apostila\_Python\_-\_PET\_ADS\_S\%C3\%A3o_Carlos.pdf}
+    \item Após ler o tutorial em \url{https://pythonacademy.com.br/blog/list-comprehensions-no-python}, considere as seguintes variáveis:
+    
+    \texttt{nums = [i for i in range(1,1001)]}\\
+    \texttt{sentence = "Practice Problems to Drill List Comprehension in Your Head."}
+    
+    Considerando as variáveis acima, programe a solução para os seguintes problemas:
+    
+    \begin{enumerate}
+    \item Encontre todos os números de 1 a 1000 que são divisíveis por 8
+    \item Encontre todos os número de 1 a 1000 que posuem o dígito 6
+    \item Conte o número de espaços na string \texttt{sentence}
+    \item Remova todas as vogais da string \texttt{sentence}
+    \item Encontre todas as palavras da string \texttt{sentence} que tenham menos do que 5 letras.
+    \end{enumerate}
+    
+    % https://towardsdatascience.com/beginner-to-advanced-list-comprehension-practice-problems-a89604851313
+    \item Siga o tutorial disponível em \url{http://pythonclub.com.br/introducao-classes-metodos-python-basico.html} para implementar as seguintes classes:
+    \begin{enumerate}
+        \item \texttt{Pessoa}
+        \item \texttt{Calculadora Simples}
+        \item \texttt{Calculadora}
+        \item \texttt{Pedido}
+    \end{enumerate}
+    
+    \item Implemente um sistema ambiente/agente em que o agente controle o estoque de papel higiênico de um prédio.
+
+\end{enumerate}
+
+%\bibliographystyle{plain}
+%\bibliography{references}
+\end{document}
+
