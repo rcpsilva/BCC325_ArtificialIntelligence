@@ -50,7 +50,7 @@ class Environment:
 
     def initial_percepts(self):
         return {'goal':self.goal,
-                'podsition':self.start,
+                'position':self.start,
                 'neighbors':self.get_neighbors(self.start)}
 
     def change_state(self,action):
