@@ -29,6 +29,14 @@ class Environment:
         plt.plot(self.start[1]+0.5,self.start[0]+0.5,'rs')
         plt.show()
 
+    def see_path(self,path):
+
+        plt.axes().invert_yaxis() 
+        plt.pcolormesh(self.map)
+        for p in path:
+            plt.plot(p[1]+0.5,p[0]+0.5,'rs')
+        plt.show()   
+
     def get_neighbors(self,position):
         neighbors = []
         n,m = self.map.shape
