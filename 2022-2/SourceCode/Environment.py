@@ -10,23 +10,23 @@ class Environment:
         # Add obstacles
         for i in range(rows):
             for j in range(cols):
-                if np.random.random() < .3:
+                if np.random.random() < .25:
                     self.map[i][j] = 1
        
         x,y = start
-        self.map[x][y] = 0
+        self.map[x][y] = 0.3
+
+        x,y = goal
+        self.map[x][y] = 0.8
 
         self.start = start
         self.goal = goal
 
     def see_map(self):
 
-        for i in range(len(self.map)):
-            for j in range(len(self.map[0])):
-                if self.map[i][j] == 1:
-                    plt.plot(i,j,'s')
-
-        plt.grid(True)
+        plt.axes().invert_yaxis() 
+        plt.pcolormesh(self.map)
+        plt.plot(self.start[1]+0.5,self.start[0]+0.5,'rs')
         plt.show()
 
     def get_neighbors(self,position):
@@ -34,16 +34,16 @@ class Environment:
         n,m = self.map.shape
         r,c = position
         if r+1 >= 0 and r+1 < n:
-            if self.map[r+1][c] == 0:
+            if self.map[r+1][c] != 1:
                 neighbors.append([r+1,c])
         if r-1 >= 0 and r-1 < n:
-            if self.map[r-1][c] == 0:
+            if self.map[r-1][c] != 1:
                 neighbors.append([r-1,c])
         if c+1 >= 0 and c+1 < m:
-            if self.map[r][c+1] == 0:
+            if self.map[r][c+1] != 1:
                 neighbors.append([r,c+1])
         if c-1 >= 0 and c-1 < m:
-            if self.map[r][c-1] == 0:
+            if self.map[r][c-1] != 1:
                 neighbors.append([r,c-1])
 
         return neighbors
@@ -60,9 +60,11 @@ class Environment:
 
 if __name__ == '__main__':
 
-    e1 = Environment(5,5,[2,2],[4,4])
+    e1 = Environment(10,10,[2,2],[9,9])
 
     print(e1.map)
+
+    e1.see_map()
 
     percepts = e1.initial_percepts()
     print(percepts)
