@@ -7,7 +7,7 @@ class Agent():
 
     def act(self):
         while self.F:
-            path = self.F.pop(-1)
+            path = self.F.pop(0)
 
             action = {'position':path[-1]}
             self.percepts = self.env.change_state(action)
