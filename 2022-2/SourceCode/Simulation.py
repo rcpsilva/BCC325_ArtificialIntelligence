@@ -1,11 +1,11 @@
 from Environment import Environment
-from Agent import Agent
+from Agent import Agent, GreedyAgent
 
-n = 12
-m = 12
+n = 10
+m = 10
 e1 = Environment(n,m,[0,0],[n-1,m-1])
 
-ag = Agent(e1)
+ag = GreedyAgent(e1)
 path = ag.act()
 
 print(path)
