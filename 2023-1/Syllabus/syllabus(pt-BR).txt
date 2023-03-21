@@ -1,0 +1,59 @@
+Metodologia:
+
+Aulas expositivas sobre o conteúdo programático
+
+Estudos Dirigidos: atividades individuais práticas contendo exercícios e implementações dos métodos estudados. Serão avaliados com entrevistas ou testes durante as aulas.
+
+Leituras recomendadas: leitura de textos técnicos com a finalidade de proporcionar ao discente aoportunidade de consulta e desenvolvimento de sua capacidade de análise, síntese e crítica de uma
+bibliografia específica.
+
+Observações: A principal linguagem de programação deste curso será a linguagem Python. O código fonte dos trabalhos práticos será submetido pelo GitHub. O aluno precisará ter acesso à internet e
+um computador (desktop ou laptop).
+
+
+Atividades avaliativas:
+
+6 estudos dirigidos (EDs) de 10 pontos - 1 para cada bloco de duas semanas definidos no
+cronograma.
+
+2 provas (P1 e P2)
+
+Nota Final = (1 x P1 + 2 x P2 + 5 x P3 + 2 x média(ED))/10,0
+
+Exame Especial: Os alunos que tiverem pelo menos 75% de frequência (mínimo para aprovação) e
+média inferior a seis pontos poderão fazer o Exame Especial ou o Exame Especial Parcial. Estes
+exames serão provas únicas, individuais.
+
+
+Cronograma:
+
+Semana & Conteúdo
+
+1 e 2 & O que é Inteligência Artificial? O que são agentes? Como simulamos um
+ambiente? (Estudo dirigido 1)
+
+3 e 4 & Busca em espaço de estados: Como um agente pode encontrar soluções para
+um problema? (Estudo dirigido 2)
+
+5 e 6 Problemas de statisfação de restrições: Como um agente resolve problemas com
+restrições? (Estudo dirigido 3)
+
+7  & Avaliação dos estudos dirigidos e Prova 1 (14/06)
+
+8, 9, 10 & Aprendizado de máquina: Como um agente aprende um modelo linear a partir
+dos dados? Como um agente aprende uma Árvore de Decisão ou uma Floresta a
+partir de dados (Estudo dirigido 4)
+
+11 e 12 & Redes Neurais Artificiais: Resolvendo problemas imitando (ou tentando imitar) o
+cérebro. (Estudo dirigido 5)
+
+13   & Avaliação dos estudos dirigidos e Prova 2 (02/08)
+
+14 e 15 & Representação do conhecimento e inferência: Como um agente pode representar
+conhecimento e inferir coisas a partir deste conhecimento? (Estudo dirigido 6)
+
+16  & Avaliação dos estudos dirigidos e Prova 3 (23/08)
+
+17 & Correção da prova e retorno das atividades
+
+18 & (30/08) EXAME ESPECIAL
