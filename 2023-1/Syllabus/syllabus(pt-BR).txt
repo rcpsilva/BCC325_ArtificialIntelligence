@@ -16,7 +16,7 @@ Atividades avaliativas:
 6 estudos dirigidos (EDs) de 10 pontos - 1 para cada bloco de duas semanas definidos no
 cronograma.
 
-2 provas (P1 e P2)
+3 provas (P1, P2, P3)
 
 Nota Final = (1 x P1 + 2 x P2 + 5 x P3 + 2 x média(ED))/10,0
 
@@ -38,7 +38,7 @@ um problema? (Estudo dirigido 2)
 5 e 6 Problemas de statisfação de restrições: Como um agente resolve problemas com
 restrições? (Estudo dirigido 3)
 
-7  & Avaliação dos estudos dirigidos e Prova 1 (14/06)
+7  & Entrevistas sobre os estudos dirigidos e Prova 1 (14/06)
 
 8, 9, 10 & Aprendizado de máquina: Como um agente aprende um modelo linear a partir
 dos dados? Como um agente aprende uma Árvore de Decisão ou uma Floresta a
@@ -47,12 +47,12 @@ partir de dados (Estudo dirigido 4)
 11 e 12 & Redes Neurais Artificiais: Resolvendo problemas imitando (ou tentando imitar) o
 cérebro. (Estudo dirigido 5)
 
-13   & Avaliação dos estudos dirigidos e Prova 2 (02/08)
+13   & Entrevistas sobre os estudos dirigidos e Prova 2 (02/08)
 
 14 e 15 & Representação do conhecimento e inferência: Como um agente pode representar
 conhecimento e inferir coisas a partir deste conhecimento? (Estudo dirigido 6)
 
-16  & Avaliação dos estudos dirigidos e Prova 3 (23/08)
+16  & Entrevistas sobre os estudos dirigidos e Prova 3 (23/08)
 
 17 & Correção da prova e retorno das atividades
 
