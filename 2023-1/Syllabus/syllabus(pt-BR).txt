@@ -28,11 +28,11 @@ Semana & Conteúdo
 
 3 e 4 & Busca em espaço de estados: Como um agente pode encontrar soluções para um problema? (Estudo dirigido 2)
 
-5 e 6 Problemas de statisfação de restrições: Como um agente resolve problemas com restrições? (Estudo dirigido 3)
+5 e 6 & Problemas de statisfação de restrições: Como um agente resolve problemas com restrições? (Estudo dirigido 3)
 
 7  & Entrevistas sobre os estudos dirigidos e Prova 1 (14/06)
 
-8, 9, 10 & Aprendizado de máquina: Como um agente aprende um modelo linear a partir dos dados? Como um agente aprende uma Árvore de Decisão ou uma Floresta a partir de dados (Estudo dirigido 4)
+8, 9 e 10 & Aprendizado de máquina: Como um agente aprende um modelo linear a partir dos dados? Como um agente aprende uma Árvore de Decisão ou uma Floresta a partir de dados (Estudo dirigido 4)
 
 11 e 12 & Redes Neurais Artificiais: Resolvendo problemas imitando (ou tentando imitar) o cérebro. (Estudo dirigido 5)
 
