@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 class Labirinto:
 
@@ -19,7 +20,25 @@ class Labirinto:
         self.map[saida[0]][saida[1]] = 0.3
     
     def vis_map(self):
+
+        plt.axes().invert_yaxis()
+        plt.pcolormesh(self.map)
+        plt.plot(self.entrada[1]+0.5, self.entrada[0]+0.5,'rs')
+        plt.show()
+        
         print(self.map)
+
+    def vis_caminho(self,caminho):
+
+        plt.axes().invert_yaxis()
+        plt.pcolormesh(self.map)
+
+        for i in range(len(caminho)-1):
+            plt.plot([caminho[i][1]+0.5,caminho[i+1][1]+0.5]
+                     [caminho[i][0]+0.5,caminho[i+1][0]+0.5],'-rs')
+        plt.show()
+
+
 
     def get_vizinhos(self,posicao):
 
@@ -57,8 +76,11 @@ class Labirinto:
 
 if __name__ == '__main__':
 
-    l1 = Labirinto(5,6,0.5,[0,0],[4,5]) 
+    nlin = 10
+    ncol = 10
 
-    l1.vis_map()
+    l1 = Labirinto(nlin,ncol,0.25,[0,0],[nlin-1,ncol-1]) 
+
+    l1.vis_caminho([[0,0],[0,1],[0,2],[1,2],[2,2]])
 
     print(l1.get_vizinhos([3,3]))
