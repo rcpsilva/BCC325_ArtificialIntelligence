@@ -34,8 +34,7 @@ class Labirinto:
         plt.pcolormesh(self.map)
 
         for i in range(len(caminho)-1):
-            plt.plot([caminho[i][1]+0.5,caminho[i+1][1]+0.5]
-                     [caminho[i][0]+0.5,caminho[i+1][0]+0.5],'-rs')
+            plt.plot([caminho[i][1]+0.5,caminho[i+1][1]+0.5],[caminho[i][0]+0.5,caminho[i+1][0]+0.5],'-rs')
         plt.show()
 
 
@@ -81,6 +80,6 @@ if __name__ == '__main__':
 
     l1 = Labirinto(nlin,ncol,0.25,[0,0],[nlin-1,ncol-1]) 
 
-    l1.vis_caminho([[0,0],[0,1],[0,2],[1,2],[2,2]])
+    l1.vis_caminho(np.array([[0,0],[0,1],[0,2],[1,2],[2,2]]))
 
     print(l1.get_vizinhos([3,3]))
