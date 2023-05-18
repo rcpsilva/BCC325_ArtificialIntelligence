@@ -69,9 +69,6 @@ class Labirinto:
         return {'posicao': posicao,
                 'saida':self.saida,
                 'vizinhos': self.get_vizinhos(posicao)}
- 
-
-
 
 if __name__ == '__main__':
 
