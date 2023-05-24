@@ -38,7 +38,6 @@ class Labirinto:
         plt.show()
 
 
-
     def get_vizinhos(self,posicao):
 
         n_lin, n_cols = self.map.shape
@@ -51,8 +50,8 @@ class Labirinto:
         v.append(posicao - np.array([0,1])) # oeste
         
         for vi in v:
-            if (0 <= vi[0] < n_lin) and (0 <= vi[1] < n_cols):
-                if self.map[vi[0]][vi[1]] == 0:
+            if (vi[0] >= 0) and (vi[0] < n_lin) and (vi[1] >= 0) and (vi[1] < n_cols):
+                if self.map[vi[0]][vi[1]] <= 0.3 :
                     vizinhos.append(vi) 
         
         return vizinhos
