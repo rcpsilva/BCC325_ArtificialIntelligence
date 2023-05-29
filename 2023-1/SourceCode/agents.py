@@ -29,7 +29,7 @@ class AgentDFS:
 
             if (self.percepcoes['posicao'] == self.percepcoes['saida']).all():
                 ################ VIS ###########
-                self.plotar_caminho(self.ambiente,path,3)
+                plotar_caminho(self.ambiente,path,3)
                 ################################
                 return path
             else:
@@ -74,7 +74,7 @@ class AgentGreedy:
 
             if (self.percepcoes['posicao'] == self.percepcoes['saida']).all():
                 ################ VIS ###########
-                self.plotar_caminho(self.ambiente,path,4)
+                plotar_caminho(self.ambiente,path,4)
                 ################################
                 return path
             else:
