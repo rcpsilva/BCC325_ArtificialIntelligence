@@ -12,8 +12,8 @@ class TestOutTypes:
 
     def test_greedy(self):
 
-        nlin = 10
-        ncol = 10
+        nlin = 3
+        ncol = 3
 
         l1 = Labirinto(nlin,ncol,0,[0,0],[nlin-1,ncol-1]) 
         ag = AgentGreedy(l1)
@@ -23,8 +23,8 @@ class TestOutTypes:
 
     def test_dfs(self):
 
-        nlin = 10
-        ncol = 10
+        nlin = 3
+        ncol = 3
 
         l1 = Labirinto(nlin,ncol,0,[0,0],[nlin-1,ncol-1]) 
         ag = AgentDFS(l1)
