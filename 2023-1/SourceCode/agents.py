@@ -17,7 +17,7 @@ class AgentDFS:
 
         plt.ion()
         while self.F:
-            path = self.F.pop(0)
+            path = self.F.pop(-1)
             
             action = {'mover_para':path[-1]}
 
@@ -42,14 +42,15 @@ class AgentDFS:
                     if not forma_ciclo:
                         self.F.append(path + [vi])
         
-class AgentGreedy:
-    def __init__(self, ambiente) -> None:
+class AgentEsperto:
+    def __init__(self, ambiente, type='Greedy') -> None:
         self.ambiente = ambiente
         self.percepcoes = ambiente.percepcoes_iniciais()
+        self.type = type
         self.F = [[self.percepcoes['posicao']]]
-        self.C = []
+        self.C = [cost([self.percepcoes['posicao']])]
         self.H = [heuristica(self.percepcoes['posicao'],self.percepcoes['saida'])]
-        self.C_H = []
+        self.C_H = [self.C[-1]+self.H[-1]]
 
     def act(self):
 
@@ -59,10 +60,17 @@ class AgentGreedy:
         plt.ion()
         while self.F:
             
-            posicao_min_h_na_fronteira = np.argmin(self.H)
-            
-            path = self.F.pop(posicao_min_h_na_fronteira)
-            self.H.pop(posicao_min_h_na_fronteira) 
+            if self.type == 'Greedy':
+                posicao_na_fronteira = np.argmin(self.H)
+            elif self.type == 'LowestCost':
+                posicao_na_fronteira = np.argmin(self.C)
+            elif self.type == 'AStar':
+                posicao_na_fronteira = np.argmin(self.C_H)
+
+            path = self.F.pop(posicao_na_fronteira)
+            self.H.pop(posicao_na_fronteira)
+            self.C.pop(posicao_na_fronteira)
+            self.C_H.pop(posicao_na_fronteira) 
             
             action = {'mover_para':path[-1]}
 
@@ -87,7 +95,11 @@ class AgentGreedy:
                     if not forma_ciclo:
                         self.F.append(path + [vi])
                         self.H.append(heuristica(vi,self.percepcoes['saida']))
+                        self.C.append(cost(path + [vi]))
+                        self.C_H.append(self.H[-1] + self.C[-1])
 
+def cost(path):
+    return len(path)-1
 
 def heuristica(no, objetivo):
     manhattan_distance = np.sum(np.abs(no-objetivo))
