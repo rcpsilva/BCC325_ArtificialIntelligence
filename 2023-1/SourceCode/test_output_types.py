@@ -8,7 +8,7 @@ def test_dummy():
     
 
 
-""" class TestOutTypes:
+class TestOutTypes:
 
     def test_greedy(self):
 
@@ -31,5 +31,4 @@ def test_dummy():
         caminho = ag.act()
 
         assert type(caminho)==list
- """
 
