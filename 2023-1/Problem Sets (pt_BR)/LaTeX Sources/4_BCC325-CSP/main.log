@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.20)  29 MAY 2023 13:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.20)  29 MAY 2023 14:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-1/Problem Sets (pt_BR)/LaTeX Sources/1_BCC325_Introdução/main.tex"
-(c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-1/Problem Sets (pt_BR)/LaTeX Sources/1_BCC325_Introdução/main.tex
+**"c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-1/Problem Sets (pt_BR)/LaTeX Sources/4_BCC325-CSP/main.tex"
+(c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-1/Problem Sets (pt_BR)/LaTeX Sources/4_BCC325-CSP/main.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22> (c:/texlive/2022/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -363,87 +363,14 @@ File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@expandcount=\count293
  (c:/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))) (c:/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.code.tex
-File: tikzlibraryshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (c:/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.geometric.code.tex
-File: tikzlibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (c:/texlive/2022/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.geometric.code.tex
-File: pgflibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)) (c:/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
-File: tikzlibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (c:/texlive/2022/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.misc.code.tex
-File: pgflibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)) (c:/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.symbols.code.tex
-File: tikzlibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (c:/texlive/2022/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.symbols.code.tex
-File: pgflibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)) (c:/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.arrows.code.tex
-File: tikzlibraryshapes.arrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (c:/texlive/2022/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.arrows.code.tex
-File: pgflibraryshapes.arrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)) (c:/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.callouts.code.tex (c:/texlive/2022/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.callouts.code.tex)) (c:/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.multipart.code.tex
-File: tikzlibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (c:/texlive/2022/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multipart.code.tex
-File: pgflibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodepartlowerbox=\box62
-\pgfnodeparttwobox=\box63
-\pgfnodepartthreebox=\box64
-\pgfnodepartfourbox=\box65
-\pgfnodeparttwentybox=\box66
-\pgfnodepartnineteenbox=\box67
-\pgfnodeparteighteenbox=\box68
-\pgfnodepartseventeenbox=\box69
-\pgfnodepartsixteenbox=\box70
-\pgfnodepartfifteenbox=\box71
-\pgfnodepartfourteenbox=\box72
-\pgfnodepartthirteenbox=\box73
-\pgfnodeparttwelvebox=\box74
-\pgfnodepartelevenbox=\box75
-\pgfnodeparttenbox=\box76
-\pgfnodepartninebox=\box77
-\pgfnodeparteightbox=\box78
-\pgfnodepartsevenbox=\box79
-\pgfnodepartsixbox=\box80
-\pgfnodepartfivebox=\box81
-))) (c:/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
-File: tikzlibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (c:/texlive/2022/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
-File: pgflibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\arrowsize=\dimen261
-)) (c:/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfit.code.tex
-File: tikzlibraryfit.code.tex 2023-01-15 v3.1.10 (3.1.10)
-) (c:/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
-File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
-) (c:/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
+))) (c:/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2023-01-15 v3.1.10 (3.1.10)
-) (c:/texlive/2022/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count294
-\lst@gtempboxa=\box82
-\lst@token=\toks32
-\lst@length=\count295
-\lst@currlwidth=\dimen262
-\lst@column=\count296
-\lst@pos=\count297
-\lst@lostspace=\dimen263
-\lst@width=\dimen264
-\lst@newlines=\count298
-\lst@lineno=\count299
-\lst@maxwidth=\dimen265
- (c:/texlive/2022/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\c@lstnumber=\count300
-\lst@skipnumbers=\count301
-\lst@framebox=\box83
-) (c:/texlive/2022/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2023/02/27 1.9 listings configuration
-))
-Package: listings 2023/02/27 1.9 (Carsten Heinz)
- (c:/texlive/2022/texmf-dist/tex/latex/natbib/natbib.sty
+) (c:/texlive/2022/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip51
 \bibsep=\skip52
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count302
+\c@NAT@ctr=\count294
 ) (c:/texlive/2022/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2022/04/08 v2.17n AMS math features
 \@mathmargin=\skip53
@@ -453,65 +380,87 @@ For additional information on amsmath, use the `?' option.
 Package: amstext 2021/08/26 v2.01 AMS text
  (c:/texlive/2022/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks33
-\ex@=\dimen266
+\@emptytoks=\toks32
+\ex@=\dimen261
 )) (c:/texlive/2022/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen267
+\pmbraise@=\dimen262
 ) (c:/texlive/2022/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count303
+\inf@bad=\count295
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count304
-\leftroot@=\count305
+\uproot@=\count296
+\leftroot@=\count297
 LaTeX Info: Redefining \overline on input line 399.
 LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count306
-\DOTSCASE@=\count307
+\classnum@=\count298
+\DOTSCASE@=\count299
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box84
-\strutbox@=\box85
+\Mathstrutbox@=\box62
+\strutbox@=\box63
 LaTeX Info: Redefining \big on input line 722.
 LaTeX Info: Redefining \Big on input line 723.
 LaTeX Info: Redefining \bigg on input line 724.
 LaTeX Info: Redefining \Bigg on input line 725.
-\big@size=\dimen268
+\big@size=\dimen263
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count308
+\macc@depth=\count300
 LaTeX Info: Redefining \bmod on input line 905.
 LaTeX Info: Redefining \pmod on input line 910.
 LaTeX Info: Redefining \smash on input line 940.
 LaTeX Info: Redefining \relbar on input line 970.
 LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count309
+\c@MaxMatrixCols=\count301
 \dotsspace@=\muskip17
-\c@parentequation=\count310
-\dspbrk@lvl=\count311
-\tag@help=\toks34
-\row@=\count312
-\column@=\count313
-\maxfields@=\count314
-\andhelp@=\toks35
-\eqnshift@=\dimen269
-\alignsep@=\dimen270
-\tagshift@=\dimen271
-\tagwidth@=\dimen272
-\totwidth@=\dimen273
-\lineht@=\dimen274
-\@envbody=\toks36
+\c@parentequation=\count302
+\dspbrk@lvl=\count303
+\tag@help=\toks33
+\row@=\count304
+\column@=\count305
+\maxfields@=\count306
+\andhelp@=\toks34
+\eqnshift@=\dimen264
+\alignsep@=\dimen265
+\tagshift@=\dimen266
+\tagwidth@=\dimen267
+\totwidth@=\dimen268
+\lineht@=\dimen269
+\@envbody=\toks35
 \multlinegap=\skip54
 \multlinetaggap=\skip55
-\mathdisplay@stack=\toks37
+\mathdisplay@stack=\toks36
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
-) (c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+) (c:/texlive/2022/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count307
+\lst@gtempboxa=\box64
+\lst@token=\toks37
+\lst@length=\count308
+\lst@currlwidth=\dimen270
+\lst@column=\count309
+\lst@pos=\count310
+\lst@lostspace=\dimen271
+\lst@width=\dimen272
+\lst@newlines=\count311
+\lst@lineno=\count312
+\lst@maxwidth=\dimen273
+ (c:/texlive/2022/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
+\c@lstnumber=\count313
+\lst@skipnumbers=\count314
+\lst@framebox=\box65
+) (c:/texlive/2022/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2023/02/27 1.9 listings configuration
+))
+Package: listings 2023/02/27 1.9 (Carsten Heinz)
+ (c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count315
-\l__pdf_internal_box=\box86
+\l__pdf_internal_box=\box66
 ) (./main.aux)
 \openout1 = `main.aux'.
 
@@ -576,73 +525,46 @@ Package hyperref Info: Link coloring OFF on input line 52.
  (c:/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count316
-\scratchdimen=\dimen275
-\scratchbox=\box87
+\scratchdimen=\dimen274
+\scratchbox=\box67
 \nofMPsegments=\count317
 \nofMParguments=\count318
 \everyMPshowfont=\toks38
 \MPscratchCnt=\count319
-\MPscratchDim=\dimen276
+\MPscratchDim=\dimen275
 \MPnumerator=\count320
 \makeMPintoPDFobject=\count321
 \everyMPtoPDFconversion=\toks39
 ) (c:/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
- (c:/texlive/2022/texmf-dist/tex/latex/grfext/grfext.sty
-Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
-)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 504.
  (c:/texlive/2022/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \c@lstlisting=\count322
+ (c:/texlive/2022/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 122.
+ (./agent.py) [1
 
-Overfull \hbox (27.48308pt too wide) in paragraph at lines 69--70
-[]\OT1/cmr/m/n/10 Introdu^^Xc~ao ^^Ra Python - []$\OT1/cmtt/m/n/10 http : / / antigo . scl . ifsp . edu . br / portal / arquivos / 2016 . 05 . 04 _ Apostila _
- []
-
-
-Overfull \hbox (11.73315pt too wide) in paragraph at lines 70--71
-[]\OT1/cmr/m/n/10 List com-pre-hen-sions - []$\OT1/cmtt/m/n/10 https : / / pythonacademy . com . br / blog / list-[]comprehensions-[]no-[]python$[] 
- []
-
-
-Overfull \hbox (21.01077pt too wide) in paragraph at lines 71--72
-[]\OT1/cmr/m/n/10 Classes em Python - []$\OT1/cmtt/m/n/10 http : / / pythonclub . com . br / introducao-[]classes-[]metodos-[]python-[]basico .
- []
-
-
-Overfull \hbox (14.01096pt too wide) in paragraph at lines 102--103
-[]\OT1/cmr/m/n/10 Ap^^Sos ler o tu-to-rial em []$\OT1/cmtt/m/n/10 https : / / pythonacademy . com . br / blog / list-[]comprehensions-[]no-[]python$[]\OT1/cmr/m/n/10 ,
- []
-
-[1
-
-{c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (56.34425pt too wide) in paragraph at lines 118--119
-[]\OT1/cmr/m/n/10 Siga o tu-to-rial dispon^^S^^Pvel em []$\OT1/cmtt/m/n/10 http : / / pythonclub . com . br / introducao-[]classes-[]metodos-[]python-[]basico .
- []
-
-[2] (./main.aux)
+{c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./pseudo_gac.py) [2] [3] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 9B1EFBDDC3411D5C766F83FDC823A98C;359.
+(rerunfilecheck)             Checksum: 773130DFDFD0EE99C375FA7A2C56E8DF;164.
  ) 
 Here is how much of TeX's memory you used:
- 24017 strings out of 476024
- 467732 string characters out of 5794016
- 1868382 words of memory out of 5000000
- 44054 multiletter control sequences out of 15000+600000
- 517904 words of font info for 52 fonts, out of 8000000 for 9000
+ 22123 strings out of 476024
+ 401723 string characters out of 5794016
+ 2104382 words of memory out of 5000000
+ 42158 multiletter control sequences out of 15000+600000
+ 518072 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,6n,104p,658b,618s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (2 pages, 111075 bytes).
+ 102i,8n,104p,526b,1608s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on main.pdf (3 pages, 133942 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
- 90 compressed objects within 1 object stream
- 25 named destinations out of 1000 (max. 500000)
- 37 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 169 PDF objects out of 1000 (max. 8388607)
+ 140 compressed objects within 2 object streams
+ 71 named destinations out of 1000 (max. 500000)
+ 29 words of extra memory for PDF output out of 10000 (max. 10000000)
 
