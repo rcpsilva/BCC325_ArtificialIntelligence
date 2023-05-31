@@ -6,9 +6,9 @@ def draw_chessboard(queen_positions):
     queen_positions = [(i,queen_positions[i]) for i in range(len(queen_positions))]
 
     # Set up colors
-    BLACK = (0, 0, 0)
-    WHITE = (255, 255, 255)
-    RED = (255, 0, 0)
+    BLACK = (107,142,35)
+    WHITE = (255,248,220)
+    RED = 	(0,0,0)
 
     # Set up the window size
     WIDTH = 480
