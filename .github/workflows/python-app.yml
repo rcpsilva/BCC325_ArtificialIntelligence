@@ -30,4 +30,4 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test output type
       run: |
-        pytest -q ${{ github.workspace }}/2023-1/SourceCode/test_output_types.py
+        pytest -q ${{ github.workspace }}/2023-1/SourceCode/Search/test_output_types.py
