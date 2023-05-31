@@ -77,43 +77,43 @@
     \end{algorithm}
 
 
-\section{N-Queen Problem}
+% \section{N-Queen Problem}
 
-\begin{algorithm}
-    \caption{N-Queens Backtracking Algorithm}
-    \begin{algorithmic}[1]
-    \Function{SolveNQueens}{$n$}
-        \State board $\gets$ empty $n \times n$ chessboard
-        \State queens $\gets$ empty list
+% \begin{algorithm}
+%     \caption{N-Queens Backtracking Algorithm}
+%     \begin{algorithmic}[1]
+%     \Function{SolveNQueens}{$n$}
+%         \State board $\gets$ empty $n \times n$ chessboard
+%         \State queens $\gets$ empty list
         
-        \State \Call{PlaceQueens}{board, queens, 0, $n$}
+%         \State \Call{PlaceQueens}{board, queens, 0, $n$}
         
-        \State \textbf{return} queens  \Comment{Found a solution or None if no solution}
-    \EndFunction
-    \\
-    \Function{PlaceQueens}{board, queens, row, $n$}
-        \If{row $\geq$ $n$}
-            \State \textbf{return} \textbf{true}  \Comment{All queens are placed}
-        \EndIf
+%         \State \textbf{return} queens  \Comment{Found a solution or None if no solution}
+%     \EndFunction
+%     \\
+%     \Function{PlaceQueens}{board, queens, row, $n$}
+%         \If{row $\geq$ $n$}
+%             \State \textbf{return} \textbf{true}  \Comment{All queens are placed}
+%         \EndIf
         
-        \For{$col$ \textbf{in} $0$ to $n-1$}
-            \If{\Call{IsSafe}{board, row, col}}
-                \State \Call{MarkQueen}{board, row, col}
-                \State queens.append((row, col))
+%         \For{$col$ \textbf{in} $0$ to $n-1$}
+%             \If{\Call{IsSafe}{board, row, col}}
+%                 \State \Call{MarkQueen}{board, row, col}
+%                 \State queens.append((row, col))
                 
-                \If{\Call{PlaceQueens}{board, queens, row+1, $n$}}
-                    \State \textbf{return} \textbf{true}  \Comment{Queens placed successfully}
-                \EndIf
+%                 \If{\Call{PlaceQueens}{board, queens, row+1, $n$}}
+%                     \State \textbf{return} \textbf{true}  \Comment{Queens placed successfully}
+%                 \EndIf
                 
-                \State \Call{UnmarkQueen}{board, row, col}
-                \State queens.pop()
-            \EndIf
-        \EndFor
+%                 \State \Call{UnmarkQueen}{board, row, col}
+%                 \State queens.pop()
+%             \EndIf
+%         \EndFor
         
-        \State \textbf{return} \textbf{false}  \Comment{Cannot place queens in this configuration}
-    \EndFunction
-    \end{algorithmic}
-    \end{algorithm}
+%         \State \textbf{return} \textbf{false}  \Comment{Cannot place queens in this configuration}
+%     \EndFunction
+%     \end{algorithmic}
+%     \end{algorithm}
 
 \section{Sudoku}
 
