@@ -17,7 +17,6 @@ def draw_chessboard(queen_positions):
     # Calculate cell width and height
     CELL_SIZE = WIDTH // len(queen_positions)
 
-
     # Initialize Pygame
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
