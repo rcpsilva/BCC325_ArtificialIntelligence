@@ -15,7 +15,7 @@ def draw_chessboard(queen_positions):
     HEIGHT = 480
 
     # Calculate cell width and height
-    CELL_SIZE = WIDTH // 8
+    CELL_SIZE = WIDTH // len(queen_positions)
 
 
     # Initialize Pygame
@@ -32,8 +32,8 @@ def draw_chessboard(queen_positions):
                 sys.exit()
 
         # Draw the chessboard
-        for row in range(8):
-            for col in range(8):
+        for row in range(len(queen_positions)):
+            for col in range(len(queen_positions)):
                 color = WHITE if (row + col) % 2 == 0 else BLACK
                 pygame.draw.rect(screen, color, (col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE))
                 if (row, col) in queen_positions:
@@ -97,9 +97,9 @@ def search(domain, constraints, sol=[]):
 
 if __name__ == '__main__':
     
-    n = 8
+    n = 4
     domain = [[i for i in range(n)] for j in range(n)]
-    constraints = [different_column, different_diagonal,r0e7]
+    constraints = [different_column, different_diagonal]
     
     print(domain)
     result = search(domain, constraints)
