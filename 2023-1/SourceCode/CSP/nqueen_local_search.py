@@ -77,11 +77,11 @@ def draw_chessboard(queen_positions):
         pygame.display.flip()
 
 
-def get_conflicts(sol,constraints):
+def get_conflicts(sol):
     conflicts = 0
 
     for i in range(len(sol)):
-        for j in range(i,len(sol)):
+        for j in range(i+1,len(sol)):
             delta_col = abs(sol[i]-sol[j]) 
             delta_row = abs(i-j)
 
@@ -104,6 +104,7 @@ def local_search(n,f,itermax=1000,sol=[]):
 
     iter = 0
     while iter < itermax:
+        print(f(sol))
         # Gerar vizinho
         i = np.random.randint(n)
         j = np.random.randint(n)
@@ -116,13 +117,16 @@ def local_search(n,f,itermax=1000,sol=[]):
 
         iter += 1
 
-    return sol    
+    print(f(sol))
+    return sol,conflicts
 
 if __name__ == '__main__':
 
-    n = 5
+    n = 10
 
-    res = local_search(n,get_conflicts)
-    print(res)
+    res, conflicts = local_search(n,get_conflicts)
+    #print(res)
 
     draw_chessboard(res)
+
+   
