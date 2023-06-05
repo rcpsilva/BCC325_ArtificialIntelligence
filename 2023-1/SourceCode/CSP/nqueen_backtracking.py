@@ -81,7 +81,7 @@ def backtracking(n,constraints,sol=[]):
 if __name__ == '__main__':
 
     constraints = [same_diagonal,same_column]
-    n = 15
+    n = 4
 
     res = backtracking(n,constraints)
     print(res)
