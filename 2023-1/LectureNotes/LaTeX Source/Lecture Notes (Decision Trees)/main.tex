@@ -1,0 +1,176 @@
+%%% Template para anotações de aula
+%%% Feito por Daniel Campos com base no template de Willian Chamma que fez com base no template de  Mikhail Klassen
+
+
+
+\documentclass[12pt,a4paper, brazil]{article}
+
+%%%%%%% INFORMAÇÕES DO CABEÇALHO
+\newcommand{\workingDate}{\textsc{\selectlanguage{portuguese}\today}}
+\newcommand{\userName}{BCC740}
+\newcommand{\institution}{UFOP}
+\usepackage{researchdiary_png}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\begin{document}
+\begin{center}
+{\textbf {\huge Árvores de Decisão}}\\[5mm]
+%{\large Autor: } \\[2mm]
+%{\large Orientador: } \\[5mm]
+\today\\[5mm] %% se quiser colocar data
+\end{center}
+
+
+%\section*{Resumo}
+
+\section{O que é uma árvore de decisão?}
+
+Uma árvore de decisão é um algoritmo de aprendizagem de máquina supervisionado utilizado para resolver problemas de classificação e regressão. Ela é chamada de "árvore" porque tem uma estrutura hierárquica semelhante a uma árvore invertida, com um único nó raiz, nós intermediários (também conhecidos como nós internos) e nós folha.
+
+A construção de uma árvore de decisão envolve a divisão recursiva do conjunto de dados de treinamento com base em características (ou atributos) relevantes. O objetivo é criar partições que sejam o mais puras possível em relação à classe alvo, ou seja, que tenham exemplos de uma única classe. Essa divisão é feita com base em critérios de divisão, como a entropia ou o índice Gini, que medem a impureza dos dados em uma determinada partição.
+
+Uma vez construída a árvore, ela pode ser utilizada para fazer previsões em dados de teste ou em novos exemplos. Cada exemplo percorre a árvore, seguindo os caminhos definidos pelas decisões tomadas nos nós intermediários, até chegar a um nó folha, que corresponde à classe prevista para aquele exemplo.
+
+As árvores de decisão possuem várias vantagens, como a capacidade de lidar com dados numéricos e categóricos, interpretabilidade e facilidade de visualização. No entanto, elas também podem ser suscetíveis a problemas como overfitting (ajuste excessivo aos dados de treinamento) e sensibilidade a pequenas variações nos dados de entrada. Diversas técnicas, como a poda da árvore e o uso de conjuntos de árvores, como o Random Forest, são empregadas para mitigar esses problemas e melhorar o desempenho das árvores de decisão.
+
+
+\section{Quais são os componentes de uma árvore de decisão?}
+
+Uma árvore de decisão é composta por três componentes principais: nós, arestas e rótulos.
+
+\begin{enumerate}
+    \item Nós:
+    \begin{enumerate}
+        \item Nó Raiz: É o ponto de partida da árvore e representa o conjunto completo de dados de treinamento. Ele é dividido em nós intermediários (nós internos) com base num critérios de divisão que deve ser determinado pelo algoritmo de treinamento.
+        \item Nós Intermediários: Representam as decisões tomadas durante a construção da árvore. Cada nó intermediário também é associado a um critérios de divisão.
+        \item Nós Folha: Representam as classes ou valores previstos pela árvore de decisão. São as folhas da árvore, onde não há mais subdivisões. Cada nó folha é rotulado com a classe ou valor de destino correspondente.
+    \end{enumerate}
+       
+    \item Critérios de divisão:
+        \begin{enumerate}
+            \item Atributo de divisão: É o atributo escolhido para realizar a divisão no nó atual da árvore. O critério de divisão seleciona o atributo que melhor separa os dados com base em alguma medida de impureza ou ganho de informação.
+
+            \item Valor de divisão: É o valor ou limiar do atributo escolhido que define a condição de divisão. Os exemplos cujo valor do atributo é maior ou igual ao valor de divisão são direcionados para um ramo, enquanto aqueles cujo valor do atributo é menor são direcionados para o outro ramo.
+            
+            \item Regra de divisão: É a regra ou condição definida pela combinação do atributo de divisão e valor de divisão. Essa regra especifica como os exemplos são divididos em ramos filhos. Por exemplo, "atributo idade >= 30" é uma regra de divisão que divide os exemplos em dois ramos com base no valor do atributo idade.    
+        \end{enumerate}
+    
+    \item Arestas:
+     
+       - As arestas conectam os nós e representam as decisões tomadas com base nos valores dos atributos. 
+    
+    \item Rótulos:
+    
+       - Os rótulos são atribuídos aos nós folha e representam as classes ou valores previstos pela árvore de decisão para um exemplo de entrada específico. Eles indicam a decisão final tomada pela árvore com base nos atributos do exemplo.
+    
+\end{enumerate}
+
+Durante a construção da árvore, o algoritmo de aprendizagem de máquina divide recursivamente o conjunto de dados com base em critérios de divisão, como a entropia ou o índice Gini. Essa divisão é feita nos nós intermediários, de modo a criar partições puras em relação à classe alvo. A estrutura hierárquica da árvore permite que ela seja facilmente interpretada e seguida para fazer previsões em novos exemplos, percorrendo os caminhos definidos pelos nós intermediários até chegar a um nó folha com a classe prevista.
+
+\section{Treinamento de Árvore de Decisão}
+
+\subsection{Função CalcularImpureza}
+\begin{enumerate}
+  \item Calcular a impureza ou a métrica de qualidade usando os rótulos/classes dos exemplos
+  \item Retornar o valor da impureza ou métrica de qualidade
+\end{enumerate}
+
+Medidas comuns de impureza são:
+
+\begin{itemize}
+    \item Gini
+    
+        \begin{equation}
+            Gini(p_1, p_2, ..., p_k) = 1 - \sum_{i=1}^{k} p_i^2
+        \end{equation}
+            
+        onde $p_1, p_2, ..., p_k$ são as probabilidades de pertence à cada classe e $k$ é o número de classes. A fórmula do índice de Gini é utilizada para medir a impureza ou heterogeneidade de um conjunto de dados. Quanto menor o valor do índice de Gini, mais puro e homogêneo é o conjunto, indicando uma separação mais clara entre as classes. Um valor próximo de 0 indica uma divisão perfeitamente pura, enquanto um valor próximo de 1 indica uma divisão impura ou heterogênea.
+
+        \item Entropia 
+    
+        \[
+        Entropia(p_1, p_2, ..., p_k) = - \sum_{i=1}^{k} p_i \log_2(p_i)
+        \]
+            
+        Essa fórmula calcula a entropia com base nas probabilidades $p_1, p_2, ..., p_k$, que representam a proporção de exemplos pertencentes a cada classe em relação ao total de exemplos.
+
+        Quanto maior for a entropia, maior é a incerteza ou impureza do conjunto de dados, indicando uma distribuição mais equilibrada entre as classes. Por outro lado, uma entropia próxima de zero indica um conjunto de dados puro, onde todos os exemplos pertencem à mesma classe.
+    
+\end{itemize}
+
+
+
+\subsection{Função EncontrarMelhorDivisao}
+\begin{enumerate}
+  \item Inicializar a melhor impureza/métrica de qualidade como um valor alto (ou baixo, dependendo do critério)
+  \item Para cada atributo:
+  \begin{enumerate}
+    \item Para cada valor único do atributo:
+    \begin{enumerate}
+      \item Dividir os exemplos em dois conjuntos (exemplos da esquerda e exemplos da direita) com base no valor do atributo
+      \item Calcular a impureza/métrica de qualidade dessa divisão
+      \item Se a impureza/métrica de qualidade for melhor do que a melhor impureza/métrica de qualidade atual:
+      \begin{enumerate}
+        \item Atualizar a melhor impureza/métrica de qualidade
+        \item Armazenar o atributo e valor do atributo que resultaram na melhor divisão
+        \item Armazenar os exemplos da esquerda e da direita resultantes na melhor divisão
+      \end{enumerate}
+    \end{enumerate}
+  \end{enumerate}
+  \item Retornar o atributo e valor do atributo que resultaram na melhor divisão, juntamente com os exemplos da esquerda e da direita
+\end{enumerate}
+
+\subsection{Função ConstruirArvore}
+\begin{enumerate}
+  \item Se todos os exemplos pertencerem a uma única classe:
+  \begin{enumerate}
+    \item Retornar um nó folha rotulado com a classe
+  \end{enumerate}
+  \item Se não houver atributos restantes para divisão:
+  \begin{enumerate}
+    \item Retornar um nó folha rotulado com a classe mais frequente nos exemplos
+  \end{enumerate}
+  \item Encontrar a melhor divisão dos exemplos usando a função EncontrarMelhorDivisao
+  \item Criar um nó intermediário com o atributo e valor do atributo da melhor divisão
+  \item Dividir os exemplos em dois conjuntos com base na melhor divisão
+  \item Recursivamente construir a subárvore da esquerda chamando ConstruirArvore(exemplosEsquerda)
+  \item Recursivamente construir a subárvore da direita chamando ConstruirArvore(exemplosDireita)
+  \item Adicionar as subárvores como filhos do nó intermediário
+  \item Retornar o nó intermediário
+\end{enumerate}
+
+\subsection{Chamada da função principal para construir a árvore de decisão}
+\begin{enumerate}
+  \item exemplos = conjunto de exemplos de treinamento
+  \item arvore = ConstruirArvore(exemplos)
+\end{enumerate}
+
+\section{Exemplo}
+
+Considere a base de dados a seguir.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    Exemplo & Pelo & Som & Classe \\
+    \hline
+    1 & Curto & Latido & Cachorro \\
+    2 & Curto & Miado & Gato \\
+    3 & Curto & Latido & Cachorro \\
+    4 & Longo & Miado & Gato \\
+    5 & Longo & Latido & Cachorro \\
+    6 & Curto & Latido & Cachorro \\
+    7 & Longo & Miado & Gato \\
+    \hline
+    \end{tabular}
+    \caption{Base de dados fictícia para a classificação de animais}
+    \label{tab:base-de-dados}
+\end{table}
+
+
+%%% as referências devem estar em formato bibTeX no arquivo referencias.bib
+\printbibliography
+
+\end{document}
