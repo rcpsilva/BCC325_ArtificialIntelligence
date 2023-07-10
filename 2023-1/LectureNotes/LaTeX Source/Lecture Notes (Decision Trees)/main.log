@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.20)  10 JUL 2023 15:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.20)  10 JUL 2023 16:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -999,24 +999,24 @@ Package csquotes Info: Redefining alias 'default' -> 'portuguese'.
  (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
  (c:/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count494
@@ -1083,7 +1083,7 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 16.
+Package hyperref Info: Link coloring OFF on input line 18.
 (./main.out) (./main.out)
 \@outlinefile=\write7
 \openout7 = `main.out'.
@@ -1262,12 +1262,12 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 16.
-Package biblatex Info: Reference segment=0 on input line 16.
-<decom-logo.png, id=43, 255.95625pt x 197.73875pt>
+Package biblatex Info: Reference section=0 on input line 18.
+Package biblatex Info: Reference segment=0 on input line 18.
+<decom-logo.png, id=47, 255.95625pt x 197.73875pt>
 File: decom-logo.png Graphic file (type png)
 <use decom-logo.png>
-Package pdftex.def Info: decom-logo.png  used on input line 55.
+Package pdftex.def Info: decom-logo.png  used on input line 57.
 (pdftex.def)             Requested size: 58.04126pt x 44.8393pt.
 
 
@@ -1298,21 +1298,21 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 <special> ps:0.8 setlinewidth 0 setgray
  <./decom-logo.png>]
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 84.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 86.
  (c:/texlive/2022/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 84.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 86.
  (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 84.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 86.
  (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 File: decom-logo.png Graphic file (type png)
 <use decom-logo.png>
-Package pdftex.def Info: decom-logo.png  used on input line 94.
+Package pdftex.def Info: decom-logo.png  used on input line 96.
 (pdftex.def)             Requested size: 58.04126pt x 44.8393pt.
 
 
@@ -1323,23 +1323,23 @@ Package fancyhdr Warning: \headheight is too small (28.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-21.18933pt}.
 
 [2]
-Overfull \hbox (4.32312pt too wide) in paragraph at lines 113--114
+Overfull \hbox (4.32312pt too wide) in paragraph at lines 115--116
 []\T1/cmr/m/n/12 Se a im-pu-reza/métrica de qua-li-dade for me-lhor do que a me-lhor im-pu-reza/métrica
  []
 
 
-Overfull \hbox (42.11624pt too wide) in paragraph at lines 137--138
+Overfull \hbox (42.11624pt too wide) in paragraph at lines 139--140
 []\T1/cmr/m/n/12 Recursivamente cons-truir a su-bár-vore da es-querda cha-mando Cons-trui-rAr-vore(exemplosEsquerda) 
  []
 
 
-Overfull \hbox (18.81775pt too wide) in paragraph at lines 138--139
+Overfull \hbox (18.81775pt too wide) in paragraph at lines 140--141
 []\T1/cmr/m/n/12 Recursivamente cons-truir a su-bár-vore da di-reita cha-mando Cons-trui-rAr-vore(exemplosDireita) 
  []
 
 File: decom-logo.png Graphic file (type png)
 <use decom-logo.png>
-Package pdftex.def Info: decom-logo.png  used on input line 140.
+Package pdftex.def Info: decom-logo.png  used on input line 142.
 (pdftex.def)             Requested size: 58.04126pt x 44.8393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.0pt): 
@@ -1349,12 +1349,26 @@ Package fancyhdr Warning: \headheight is too small (28.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-21.18933pt}.
 
 [3]
+File: decom-logo.png Graphic file (type png)
+<use decom-logo.png>
+Package pdftex.def Info: decom-logo.png  used on input line 205.
+(pdftex.def)             Requested size: 58.04126pt x 44.8393pt.
 
-LaTeX Warning: Empty bibliography on input line 196.
+
+Package fancyhdr Warning: \headheight is too small (28.0pt): 
+(fancyhdr)                Make it at least 49.18933pt, for example:
+(fancyhdr)                \setlength{\headheight}{49.18933pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-21.18933pt}.
+
+[4]
+Overfull \hbox (17.99474pt too wide) detected at line 237
+\OML/cmm/m/it/12 Gini\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 p\OT1/cmr/m/n/12 ) = 1 \OMS/cmsy/m/n/12 ^^@ \OT1/cmr/m/n/12 (0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 5625[] + 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 4375[]) = 1 \OMS/cmsy/m/n/12 ^^@ \OT1/cmr/m/n/12 (0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 31640625 + 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 19140625) = 1 \OMS/cmsy/m/n/12 ^^@ \OT1/cmr/m/n/12 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 5078125 = 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 4921875
+ []
 
 File: decom-logo.png Graphic file (type png)
 <use decom-logo.png>
-Package pdftex.def Info: decom-logo.png  used on input line 198.
+Package pdftex.def Info: decom-logo.png  used on input line 253.
 (pdftex.def)             Requested size: 58.04126pt x 44.8393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.0pt): 
@@ -1363,30 +1377,62 @@ Package fancyhdr Warning: \headheight is too small (28.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-21.18933pt}.
 
-[4] (./main.aux)
+[5]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 288.
+ (c:/texlive/2022/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+File: decom-logo.png Graphic file (type png)
+<use decom-logo.png>
+Package pdftex.def Info: decom-logo.png  used on input line 315.
+(pdftex.def)             Requested size: 58.04126pt x 44.8393pt.
+
+
+Package fancyhdr Warning: \headheight is too small (28.0pt): 
+(fancyhdr)                Make it at least 49.18933pt, for example:
+(fancyhdr)                \setlength{\headheight}{49.18933pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-21.18933pt}.
+
+[6]
+
+LaTeX Warning: Empty bibliography on input line 367.
+
+File: decom-logo.png Graphic file (type png)
+<use decom-logo.png>
+Package pdftex.def Info: decom-logo.png  used on input line 369.
+(pdftex.def)             Requested size: 58.04126pt x 44.8393pt.
+
+Package fancyhdr Warning: \headheight is too small (28.0pt): 
+(fancyhdr)                Make it at least 49.18933pt, for example:
+(fancyhdr)                \setlength{\headheight}{49.18933pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-21.18933pt}.
+
+[7] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 4AA583C7BEA31EB8A9891769B549D485;1915.
+(rerunfilecheck)             Checksum: 8BEEADC2856EFCCC33DBCE39D209E632;2005.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  )
 (\end occurred inside a group at level 1)
 
-### semi simple group (level 1) entered at line 16 (\begingroup)
+### semi simple group (level 1) entered at line 18 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 45673 strings out of 476024
- 1013895 string characters out of 5794016
- 2037519 words of memory out of 5000000
- 65268 multiletter control sequences out of 15000+600000
- 524524 words of font info for 63 fonts, out of 8000000 for 9000
+ 45708 strings out of 476024
+ 1014651 string characters out of 5794016
+ 2037479 words of memory out of 5000000
+ 65290 multiletter control sequences out of 15000+600000
+ 524837 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  114i,16n,152p,857b,7446s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on main.pdf (4 pages, 183844 bytes).
+{c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on main.pdf (7 pages, 226517 bytes).
 PDF statistics:
- 187 PDF objects out of 1000 (max. 8388607)
- 152 compressed objects within 2 object streams
- 56 named destinations out of 1000 (max. 500000)
- 90 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 216 PDF objects out of 1000 (max. 8388607)
+ 176 compressed objects within 2 object streams
+ 65 named destinations out of 1000 (max. 500000)
+ 98 words of extra memory for PDF output out of 10000 (max. 10000000)
 

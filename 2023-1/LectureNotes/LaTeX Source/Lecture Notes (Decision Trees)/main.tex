@@ -12,6 +12,8 @@
 \usepackage{researchdiary_png}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
+\usepackage{verbatim}
+\newenvironment{metaverbatim}{\verbatim}{\endverbatim}
 
 \begin{document}
 \begin{center}
@@ -183,13 +185,182 @@ Considere a base de dados a seguir.
    Suponha que um conjunto de dados seja dividido em dois subconjuntos, onde o subconjunto A contém 30 exemplos, dos quais 20 pertencem à classe P e 10 pertencem à classe Q, e o subconjunto B contém 70 exemplos, dos quais 40 pertencem à classe P e 30 pertencem à classe Q. Calcule o ganho de Gini para essa divisão com base no índice de Gini inicial do conjunto de dados.
 
    \item Exercício de Construção de Árvore de Decisão:
-   Considere um conjunto de dados com duas características, "Altura" (com valores "Alto" e "Baixo") e "Idade" (com valores "Jovem" e "Adulto"), e uma classe "Classe" (com valores "A" e "B"). Construa uma árvore de decisão para classificar os exemplos com base nessas características, usando o critério de Gini.
+   Considere um conjunto de dados com duas características, "Altura" (com valores "Alto" e "Baixo") e "Idade" (com valores "Jovem" e "Adulto"), e uma classe "Classe" (com valores "A" e "B"). 
+   
+   Considere a seguinte tabela de dados:
+
+    \begin{center}
+    \begin{tabular}{ |c|c|c| }
+    \hline
+    Altura & Idade & Classe \\
+    \hline
+    Alto & Jovem & A \\
+    Alto & Adulto & A \\
+    Baixo & Jovem & B \\
+    Baixo & Adulto & B \\
+    Alto & Jovem & B \\
+    Baixo & Adulto & A \\
+    \hline
+    \end{tabular}
+    \end{center}
+   
+   Construa uma árvore de decisão para classificar os exemplos com base nessas características, usando o critério de Gini.
 
    \item Exercício de Avaliação de Divisões:
    Dado um conjunto de dados com 100 exemplos, onde 70 pertencem à classe X e 30 pertencem à classe Y, avalie duas divisões possíveis com base no índice de Gini, e determine qual delas é mais preferível em termos de impureza.
 
 \end{enumerate}
 
+\section{Soluções}
+
+\begin{enumerate}
+\item Resposta para o exercício de Gini:
+
+O índice de Gini para um conjunto de dados pode ser calculado usando a fórmula: 
+
+$$
+Gini(p) = 1 - \sum_{i=1}^{n} p_i^2
+$$
+
+onde $p_i$ é a proporção da classe $i$ no conjunto de dados, e $n$ é o número de classes. 
+
+Para o primeiro conjunto de dados, a proporção da classe A é $0.6$ e da classe B é $0.4$. Portanto, o índice de Gini é:
+
+$$
+Gini(p) = 1 - (0.6^2 + 0.4^2) = 1 - (0.36 + 0.16) = 1 - 0.52 = 0.48
+$$
+
+Para o segundo conjunto de dados, a proporção da classe X é $0.5625$ e da classe Y é $0.4375$. Portanto, o índice de Gini é:
+
+$$
+Gini(p) = 1 - (0.5625^2 + 0.4375^2) = 1 - (0.31640625 + 0.19140625) = 1 - 0.5078125 = 0.4921875
+$$
+
+\item Resposta para o exercício de Critério de Divisão:
+
+Para calcular o ganho do índice de Gini para a divisão, primeiro precisamos calcular o índice de Gini para cada subconjunto.
+
+Para o subconjunto A, a proporção da classe P é $\frac{2}{3}$ e da classe Q é $\frac{1}{3}$. Portanto, o índice de Gini para A é:
+
+$$
+Gini(A) = 1 - \left(\left(\frac{2}{3}\right)^2 + \left(\frac{1}{3}\right)^2\right) = 1 - \left(\frac{4}{9} + \frac{1}{9}\right) = 1 - \frac{5}{9} = \frac{4}{9} \approx 0.44444
+$$
+
+Para o subconjunto B, a proporção da classe P é $\frac{4}{7}$ e da classe Q é $\frac{3}{7}$. Portanto, o índice de Gini para B é:
+
+$$
+Gini(B) = 1 - \left(\left(\frac{4}{7}\right)^2 + \left(\frac{3}{7}\right)^2\right) = 1 - \left(\frac{16}{49} + \frac{9}{49}\right) = 1 - \frac{25}{49} = \frac{24}{49} \approx 0.4898
+$$
+
+O ganho do índice de Gini para a divisão é a diferença entre o índice de Gini inicial do conjunto de dados e a soma ponderada dos índices de Gini dos subconjuntos. Se assumirmos que o índice de Gini inicial é $Gini(p)$, então o ganho é:
+
+$$
+Gini(p) - \left(\frac{30}{100} Gini(A) + \frac{70}{100} Gini(B)\right)
+$$
+
+\item Resposta para o exercício de Construção de Árvore de Decisão:
+
+Claro! Vamos considerar um conjunto de dados pequeno para os dois últimos exercícios.
+
+\item Exercício de Construção de Árvore de Decisão:
+
+Considere a seguinte tabela de dados:
+
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ Altura & Idade & Classe \\ 
+ \hline
+ Alto & Jovem & A \\ 
+ Alto & Adulto & A \\ 
+ Baixo & Jovem & B \\ 
+ Baixo & Adulto & B \\ 
+ Alto & Jovem & B \\ 
+ Baixo & Adulto & A \\ 
+ \hline
+\end{tabular}
+\end{center}
+
+A árvore de decisão seria:
+
+1. Primeiro, dividiríamos os dados com base na característica "Altura". Isso porque a altura é capaz de separar as classes A e B mais do que a característica "Idade".
+
+\begin{verbatim}
+Raiz
+  |--> [Altura = Alto]: A (2), B (1)
+  |--> [Altura = Baixo]: A (1), B (2)
+\end{verbatim}
+
+2. Como ainda há impureza em ambas as divisões, precisaríamos continuar dividindo. Para a divisão [Altura = Alto], a característica "Idade" pode ser usada para uma separação perfeita.
+
+\begin{verbatim}
+[Altura = Alto]
+  |--> [Idade = Jovem]: A (1), B (1)
+  |--> [Idade = Adulto]: A (1)
+\end{verbatim}
+
+3. Para a divisão [Altura = Baixo], a característica "Idade" também pode ser usada para uma separação perfeita.
+
+\begin{verbatim}
+[Altura = Baixo]
+  |--> [Idade = Jovem]: B (1)
+  |--> [Idade = Adulto]: A (1), B (1)
+\end{verbatim}
+
+4. No final, a árvore de decisão completa seria:
+
+\begin{verbatim}
+Raiz
+  |--> [Altura = Alto]
+  |     |--> [Idade = Jovem]: A (1), B (1)
+  |     |--> [Idade = Adulto]: A (1)
+  |--> [Altura = Baixo]
+        |--> [Idade = Jovem]: B (1)
+        |--> [Idade = Adulto]: A (1), B (1)
+\end{verbatim}
+
+\item Resposta para o exercício de Avaliação de Divisões:
+
+Para o conjunto de dados com 100 exemplos, onde 70 pertencem à classe X e 30 pertencem à classe Y, vamos considerar duas possíveis divisões.
+
+1. Divisão 1: 50 exemplos em cada subconjunto, com subconjunto 1 contendo 35 exemplos da classe X e 15 da classe Y, e subconjunto 2 contendo 35 exemplos da classe X e 15 da classe Y.
+
+2. Divisão 2: 70 exemplos no subconjunto 1, com 50 exemplos da classe X e 20 da classe Y, e 30 exemplos no subconjunto 2, todos pertencentes à classe X.
+
+Agora, vamos calcular o índice de Gini para cada divisão.
+
+- Para a Divisão 1, os índices de Gini dos dois subconjuntos são iguais (como eles têm a mesma distribuição de classes):
+
+\[
+Gini_1 = 1 - \left(\left(\frac{35}{50}\right)^2 + \left(\frac{15}{50}\right)^2\right) = 1 - \left(0.49 + 0.09\right) = 0.42
+\]
+
+- Para a Divisão 2, o índice de Gini para o primeiro subconjunto é:
+
+\[
+Gini_{21} = 1 - \left(\left(\frac{50}{70}\right)^2 + \left(\frac{20}{70}\right)^2\right) = 1 - \left(\frac{25}{49} + \frac{4}{49}\right) = \frac{20}{49} \approx 0.4082
+\]
+
+E o índice de Gini para o segundo subconjunto é zero (já que todos os exemplos pertencem à mesma classe).
+
+O Gini médio ponderado para cada divisão é:
+
+- Para a Divisão 1:
+
+\[
+Gini_{M1} = \frac{1}{2} Gini_1 + \frac{1}{2} Gini_1 = Gini_1 = 0.42
+\]
+
+- Para a Divisão 2:
+
+\[
+Gini_{M2} = \frac{70}{100} Gini_{21} + \frac{30}{100} \cdot 0 = Gini_{21} = 0.4082
+\]
+
+Portanto, a Divisão 2 é preferível, pois resulta em um índice de Gini médio ponderado mais baixo.
+
+
+\end{enumerate}
 
 
 %%% as referências devem estar em formato bibTeX no arquivo referencias.bib
