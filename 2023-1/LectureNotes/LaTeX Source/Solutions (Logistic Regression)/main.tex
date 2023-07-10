@@ -1,0 +1,148 @@
+%%% Template para anotações de aula
+%%% Feito por Daniel Campos com base no template de Willian Chamma que fez com base no template de  Mikhail Klassen
+
+
+
+\documentclass[12pt,a4paper, brazil]{article}
+
+%%%%%%% INFORMAÇÕES DO CABEÇALHO
+\newcommand{\workingDate}{\textsc{\selectlanguage{portuguese}\today}}
+\newcommand{\userName}{BCC740}
+\newcommand{\institution}{UFOP}
+\usepackage{researchdiary_png}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{amsmath}
+%\usepackage{algorithmic} 
+
+\begin{document}
+\begin{center}
+{\textbf {\huge Regressão Logística}}\\[5mm]
+%{\large Autor: } \\[2mm]
+%{\large Orientador: } \\[5mm]
+\today\\[5mm] %% se quiser colocar data
+\end{center}
+
+
+%\section*{Resumo}
+
+\section{Exercícios}
+
+\begin{enumerate}
+
+\item Considere um único ponto de dados com um único recurso. Seu objetivo é prever se um email é spam (1) ou não (0) com base na frequência de uma palavra. Se a frequência da palavra for 0.3 e o email não for spam, qual é o valor da função log-verossimilhança se $\beta = [0, 0]$? Use a fórmula para a função log-verossimilhança dada anteriormente.
+
+\item  Usando o mesmo ponto de dados do Exercício 1, qual é o gradiente da função log-verossimilhança se $\beta = [0, 0]$? Use as fórmulas para as derivadas parciais dadas anteriormente.
+
+\item  Ainda referindo-se ao ponto de dados do Exercício 1, se você usar a subida do gradiente com uma taxa de aprendizado de 0.1 para atualizar $\beta$, qual será o novo valor de $\beta$?
+
+\item Agora considere um segundo ponto de dados com frequência de palavra 0.7 e o email é spam. Calcule o valor da função log-verossimilhança e seu gradiente para esses dois pontos de dados se $\beta = [0, 0]$.
+
+\item Ainda usando os dois pontos de dados do Exercício 4, se você usar a subida do gradiente com uma taxa de aprendizado de 0.1 para atualizar $\beta$, qual será o novo valor de $\beta$?
+
+\item Considere agora três pontos de dados: (0.3, 0), (0.7, 1), (0.1, 0), onde o primeiro número de cada par é a frequência da palavra e o segundo número indica se o email é spam. Calcule o valor da função log-verossimilhança e seu gradiente para esses três pontos de dados se $\beta = [0, 0]$. Em seguida, use a subida do gradiente com uma taxa de aprendizado de 0.1 para atualizar $\beta$. Qual é o novo valor de $\beta$?
+
+\end{enumerate}
+
+
+\section{Soluções}
+
+\begin{enumerate}
+
+  \item **Exercício 1:** 
+   
+Para calcular a função log-verossimilhança, primeiro precisamos calcular a probabilidade prevista $p = \frac{1}{1+e^{-(\beta_0 + \beta_1x)}} = \frac{1}{1+e^{-(0 + 0*0.3)}} = 0.5$. 
+
+Então a log-verossimilhança é $y \log(p) + (1 - y) \log(1 - p) = 0 \log(0.5) + (1 - 0) \log(1 - 0.5) = -\log(2)$.
+
+
+
+\begin{equation*}
+\begin{split}
+p &= \frac{1}{1+e^{-(\beta_0 + \beta_1x)}} = \frac{1}{1+e^{-(0 + 0 \cdot 0.3)}} = 0.5 \\
+L(\beta) &= y \log(p) + (1 - y) \log(1 - p) = 0 \log(0.5) + (1 - 0) \log(1 - 0.5) = -\log(2)
+\end{split}
+\end{equation*}
+
+
+\item  **Exercício 2:**
+
+Para calcular o gradiente da função log-verossimilhança, precisamos calcular suas derivadas parciais em relação a $\beta_0$ e $\beta_1$. 
+
+Usando as fórmulas fornecidas, temos $\frac{\partial \log L(\beta)}{\partial \beta_0} = y - p = 0 - 0.5 = -0.5$ e $\frac{\partial \log L(\beta)}{\partial \beta_1} = (y - p)x = (0 - 0.5)0.3 = -0.15$. Portanto, o gradiente é $[-0.5, -0.15]$.
+
+
+\begin{equation*}
+\begin{split}
+\frac{\partial \log L(\beta)}{\partial \beta_0} &= y - p = 0 - 0.5 = -0.5 \\
+\frac{\partial \log L(\beta)}{\partial \beta_1} &= (y - p)x = (0 - 0.5)0.3 = -0.15
+\end{split}
+\end{equation*}
+
+
+\item  **Exercício 3:**
+
+Para atualizar $\beta$, subtraímos a taxa de aprendizado vezes o gradiente de $\beta$. Portanto, $\beta \leftarrow \beta - \eta \nabla \log L(\beta) = [0, 0] - 0.1 * [-0.5, -0.15] = [0.05, 0.015]$.
+
+
+\begin{equation*}
+\beta \leftarrow \beta - \eta \nabla \log L(\beta) = [0, 0] - 0.1 \cdot [-0.5, -0.15] = [0.05, 0.015]
+\end{equation*}
+
+\item  **Exercício 4:**
+
+Para dois pontos de dados, calculamos a probabilidade prevista e a log-verossimilhança para cada ponto e somamos os resultados.
+
+Para o primeiro ponto de dados (0.3, 0), temos $p = 0.5$ e a log-verossimilhança é $-\log(2)$, como calculamos no Exercício 1.
+
+Para o segundo ponto de dados (0.7, 1), também temos $p = 0.5$ e a log-verossimilhança é $\log(0.5) = -\log(2)$.
+
+Portanto, a log-verossimilhança para os dois pontos de dados é $-\log(2) - \log(2) = -2\log(2)$.
+
+O gradiente também é a soma dos gradientes para cada ponto de dados. Portanto, o gradiente para $\beta_0$ é $-0.5 - 0.5 = -1$ e o gradiente para $\beta_1$ é $-0.15 - 0.35 = -0.5$. O gradiente total é $[-1, -0.5]$.
+
+
+\begin{equation*}
+\begin{split}
+L(\beta) &= -\log(2) - \log(2) = -2\log(2) \\
+\frac{\partial \log L(\beta)}{\partial \beta_0} &= -0.5 - 0.5 = -1 \\
+\frac{\partial \log L(\beta)}{\partial \beta_1} &= -0.15 - 0.35 = -0.5
+\end{split}
+\end{equation*}
+
+
+\item  **Exercício 5:**
+
+Para atualizar $\beta$, subtraímos a taxa de aprendizado vezes o gradiente de $\beta$. Portanto, $\beta \leftarrow \beta - \eta \nabla \log L(\beta) = [0, 0] - 0.1 * [-1, -0.5] = [0.1, 0.05]$.
+
+
+\begin{equation*}
+\beta \leftarrow \beta - \eta \nabla \log L(\beta) = [0, 0] - 0.1 \cdot [-1, -0.5] = [0.1, 0.05]
+\end{equation*}
+
+
+\item  **Exercício 6:**
+
+Para três pontos de dados, procedemos da mesma forma que no Exercício 4, somando as log-verossimilhanças e gradientes para cada ponto de dados.
+
+A log-verossimilhança para os três pontos de dados é $-\log(2) - \log(2) - \log(2) = -3\log(2)$.
+
+O gradiente para $\beta_0$ é $-0.5 - 0.5 - 0.5 = -1.5$ e o gradiente para $\beta_1$ é $-0.15 - 0.35 - 0.05 = -0.55$. O gradiente total é $[-1.5, -0.55]$.
+
+Para atualizar $\beta$, temos $\beta \leftarrow \beta - \eta \nabla \log L(\beta) = [0, 0] - 0.1 * [-1.5, -0.55] = [0.15, 0.055]$.
+
+\begin{equation*}
+\begin{split}
+L(\beta) &= -\log(2) - \log(2) - \log(2) = -3\log(2) \\
+\frac{\partial \log L(\beta)}{\partial \beta_0} &= -0.5 - 0.5 - 0.5 = -1.5 \\
+\frac{\partial \log L(\beta)}{\partial \beta_1} &= -0.15 - 0.35 - 0.05 = -0.55 \\
+\beta \leftarrow \beta - \eta \nabla \log L(\beta) &= [0, 0] - 0.1 \cdot [-1.5, -0.55] = [0.15, 0.055]
+\end{split}
+\end{equation*}
+
+\end{enumerate}
+
+%%% as referências devem estar em formato bibTeX no arquivo referencias.bib
+\printbibliography
+
+\end{document}

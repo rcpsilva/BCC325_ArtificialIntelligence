@@ -1,0 +1,253 @@
+%%% Template para anotações de aula
+%%% Feito por Daniel Campos com base no template de Willian Chamma que fez com base no template de  Mikhail Klassen
+
+
+
+\documentclass[12pt,a4paper, brazil]{article}
+
+%%%%%%% INFORMAÇÕES DO CABEÇALHO
+\newcommand{\workingDate}{\textsc{\selectlanguage{portuguese}\today}}
+\newcommand{\userName}{BCC740}
+\newcommand{\institution}{UFOP}
+\usepackage{researchdiary_png}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{amsmath}
+%\usepackage{algorithmic} 
+
+\begin{document}
+\begin{center}
+{\textbf {\huge Regressão Logística}}\\[5mm]
+%{\large Autor: } \\[2mm]
+%{\large Orientador: } \\[5mm]
+\today\\[5mm] %% se quiser colocar data
+\end{center}
+
+
+%\section*{Resumo}
+
+\section{O que é regressão Logística?}
+
+A regressão logística é um método estatístico usado para prever uma variável dependente binária, ou seja, uma variável que tem apenas duas possíveis categorias de saída, com base em uma ou mais variáveis independentes.
+
+Por exemplo, suponha que você esteja tentando prever se um e-mail é spam (1) ou não-spam (0), com base na frequência de certas palavras. Nesse caso, a variável dependente é binária (spam ou não-spam) e as variáveis independentes são as frequências das palavras.
+
+Vamos começar com a regressão linear. Em regressão linear, você pode fazer uma previsão simplesmente tomando uma combinação linear das características. Em notação matemática, isso pode ser escrito como:
+
+\begin{equation}
+  y = \beta_0 + \beta_1  x_1 + \beta_2  x_2 + ... + \beta_n  x_n
+\end{equation}
+
+\noindent Onde:
+
+\begin{itemize}
+  \item $y$ é a variável dependente (a saída que você está tentando prever),
+  \item $x_1, x_2, ..., x_n$ são as variáveis independentes,
+  \item $\beta_0, \beta_1, ..., \beta_n$ são os parâmetros do modelo que você precisa estimar
+\end{itemize}
+
+
+No entanto, para a regressão logística, queremos prever uma probabilidade que deve estar entre 0 e 1. Para garantir que isso aconteça, passamos a combinação linear das características através da função logística (ou função sigmóide), que mapeia qualquer número real para o intervalo (0, 1). A equação de regressão logística, portanto, se torna:
+
+\begin{equation}
+  p(Y=1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_nx_n)}}
+\end{equation}
+
+Isso nos dá a probabilidade de Y ser igual a 1, dadas as variáveis independentes. Onde $e$ é a base dos logaritmos naturais.
+
+Para treinar o modelo (ou seja, estimar os parâmetros $\beta$), usamos o método da máxima verossimilhança. A função de verossimilhança, neste caso, é:
+
+\begin{equation}
+  L(\beta) = \prod_{i=1}^{n} [p(y_i=1)]^{y_i}[1-p(y_i=1)]^{1-y_i}
+\end{equation}
+
+Contudo, esta função objetivo pode sobre com problemas numéricos (\textit{underflow}). Assim, é mais comum utilizar a log-verossimilhança:
+
+\begin{equation}
+  \log L(\beta) = \sum_{i=1}^{n} y_i \log [p(y_i=1)] + (1-y_i) \log [1-p(y_i=1)]
+\end{equation}
+
+No caso da regressão logística podemos escrever a log-verossimilhança, assim:
+
+\begin{equation}
+  \log L(\beta) = \sum_{i=1}^{n} y_i \log \left( \frac{1}{1+e^{-(\beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + ... + \beta_nx_{in})}} \right) + (1-y_i) \log \left(1- \frac{1}{1+e^{-(\beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + ... + \beta_nx_{in})}} \right)
+  \end{equation}
+  
+\section{Por quê utilizamos a verossimilhança e não o erro quadrado médio?}
+
+Ótima pergunta! Em muitos modelos estatísticos, usamos a minimização do erro quadrado médio (MSE, do inglês "Mean Squared Error") como critério de aprendizado. No entanto, na regressão logística, usamos a maximização da verossimilhança. Aqui estão algumas razões para isso:
+
+
+\begin{enumerate}
+
+  \item A natureza da variável dependente: Na regressão logística, a variável dependente é binária, e a função sigmoide garante que a saída do modelo está entre 0 e 1, que podemos tratar como a probabilidade de a classe ser 1. O método de máxima verossimilhança é apropriado quando estamos modelando probabilidades.
+
+  \item A não-normalidade dos resíduos: Uma das suposições da regressão linear (que usa o MSE) é que os erros (ou resíduos) são normalmente distribuídos. No entanto, na regressão logística, essa suposição não é válida, pois estamos modelando probabilidades e a saída é binária.
+
+  \item Robustez a outliers: O uso do MSE pode ser muito sensível a outliers, pois os erros são elevados ao quadrado. Isso pode distorcer o modelo se houver outliers. A maximização da verossimilhança é menos sensível a outliers.
+
+  \item Interpretação probabilística: A maximização da verossimilhança tem uma interpretação probabilística clara: estamos escolhendo os parâmetros que maximizam a probabilidade dos dados observados.
+\end{enumerate}
+
+Assim, embora o MSE seja muito útil em muitos cenários, especialmente na regressão linear, não é o critério de aprendizado mais apropriado para a regressão logística.
+
+\section{Por quê utilizamos a log-verossimilhança no lugar da verossimilhança?}
+  
+Usar a log-verossimilhança em vez da verossimilhança diretamente tem várias vantagens:
+
+\begin{enumerate}
+  \item Operação de soma em vez de produto: A log-verossimilhança transforma a operação de produto da verossimilhança em uma soma, pois o logaritmo do produto é a soma dos logaritmos. Isto é matematicamente mais conveniente para manipulação e simplifica os cálculos.
+
+  \item Estabilidade numérica: Quando trabalhamos com uma grande quantidade de dados, a verossimilhança pode se tornar extremamente pequena, ao ponto de que pode haver underflow (quando números muito pequenos são arredondados para zero). Tirar o logaritmo de uma pequena probabilidade dá um número negativo, o que evita esse problema de underflow.
+
+\end{enumerate}
+
+\section{Como encontramos os parâmetros?}
+
+A regressão logística é comumente formulada como um problema de otimização, onde buscamos maximizar a função de log-verossimilhança.
+
+\begin{equation}
+  \hat{\beta} = \underset{\beta}{\operatorname{argmax}} \left\{ \log L(\beta) \right\}
+\end{equation}
+
+Aqui, $\hat{\beta}$ é a estimativa dos parâmetros do modelo que maximizam a função de log-verossimilhança, $\log L(\beta)$. Lembrando que nossa função de log-verossimilhança é:
+
+\begin{equation}
+  \log L(\beta) = \sum_{i=1}^{n} y_i \log \left( \frac{1}{1+e^{-(\beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + ... + \beta_nx_{in})}} \right) + (1-y_i) \log \left(1- \frac{1}{1+e^{-(\beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + ... + \beta_nx_{in})}} \right)
+\end{equation}
+
+Na prática, os parâmetros são frequentemente encontrados através de um algoritmo iterativo, como o gradiente ascendente. Neste caso, precisamos calcular as derivadas parciais da log-verossimilhança em relação aos pesos. 
+
+\subsection{Cálculo da derivadas parciais}
+
+Por conveniência, vamos definir $p_i = \frac{1}{1+e^{-(\beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + ... + \beta_nx_{in})}}$. A derivada de $\log p_i$ em relação a $\beta_j$ é dada por:
+
+\begin{equation}
+  \frac{\partial \log p_i}{\partial \beta_j} = \frac{1}{p_i} \frac{\partial p_i}{\partial \beta_j} = \frac{1}{p_i} p_i (1 - p_i) x_{ij} = (1 - p_i) x_{ij}
+\end{equation}
+ 
+\noindent onde usamos o fato de que a derivada de $p_i$ em relação a $\beta_j$ é $p_i (1 - p_i) x_{ij}$. Agora, vamos calcular a derivada de $\log (1 - p_i)$ em relação a $\beta_j$:
+
+\begin{equation}
+  \frac{\partial \log (1 - p_i)}{\partial \beta_j} = \frac{1}{1 - p_i} \frac{\partial (1 - p_i)}{\partial \beta_j} = \frac{1}{1 - p_i} (-p_i) p_i x_{ij} = - p_i x_{ij}
+\end{equation}
+
+\noindent Combinando essas duas partes, podemos calcular a derivada parcial da log-verossimilhança em relação a $\beta_j$:
+
+\begin{equation}
+  \frac{\partial \log L(\beta)}{\partial \beta_j} = \sum_{i=1}^{n} y_i \frac{\partial \log p_i}{\partial \beta_j} + (1 - y_i) \frac{\partial \log (1 - p_i)}{\partial \beta_j} = \sum_{i=1}^{n} y_i (1 - p_i) x_{ij} - (1 - y_i) p_i x_{ij} = \sum_{i=1}^{n} (y_i - p_i) x_{ij}
+  \end{equation}
+
+\noindent Isto é:
+
+\begin{equation}
+  \frac{\partial \log L(\beta)}{\partial \beta_j} = \sum_{i=1}^{n} \left(y_i - \frac{1}{1+e^{-(\beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + ... + \beta_nx_{in})}}\right)x_{ij}
+\end{equation}
+
+\pagebreak
+
+\subsection{Algoritmo do gradiente ascendente}
+
+  \begin{algorithm} [!ht]
+  \caption{Algoritmo de Subida do Gradiente}
+  \begin{algorithmic}[1]
+  \State Inicialize os parâmetros $\beta$ com algum valor inicial.
+  \State Fixe a taxa de aprendizado $\eta$ e o critério de parada $\epsilon$.
+  \Repeat
+      \State Calcule o gradiente da função objetivo:
+          \begin{equation*}
+          \nabla \log L(\beta) = \sum_{i=1}^{n} (y_i - p_i) \mathbf{x}_i
+          \end{equation*}
+      \State Atualize os parâmetros:
+          \begin{equation*}
+          \beta \leftarrow \beta + \eta \nabla \log L(\beta)
+          \end{equation*}
+  \Until{$||\nabla \log L(\beta)|| < \epsilon$}
+  \State \Return{$\beta$}
+  \end{algorithmic}
+  \end{algorithm}
+
+  
+\section{Exemplo}
+
+Vamos criar um exemplo numérico simples com três observações e um recurso, além do termo de interceptação. Nosso objetivo é prever se um email é spam (1) ou não (0) com base na frequência de uma determinada palavra no email.
+
+Aqui estão os dados:
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|}
+  \hline
+  Frequência da palavra ($x_1$) & Spam ($y$) \\ 
+  \hline
+  0.1 & 0 \\ 
+  0.8 & 1 \\ 
+  0.3 & 0 \\ 
+  \hline
+  \end{tabular}
+  \caption{Dados de exemplo}
+  \end{table}
+  
+
+Vamos inicializar nosso vetor de parâmetros $\beta$ com [0, 0]. A primeira entrada é o termo de interceptação e a segunda entrada corresponde ao recurso "Frequência da palavra". Além disso, definimos a taxa de aprendizado $\eta = 0.1$.
+
+Então, em cada etapa do algoritmo de subida do gradiente, calculamos o gradiente e atualizamos $\beta$ de acordo com as fórmulas que fornecemos anteriormente.
+
+Por exemplo, na primeira etapa, temos que calcular $p_i$ para cada observação, usando a fórmula $p_i = \frac{1}{1+e^{-(\beta_0 + \beta_1x_{i1})}}$. Como $\beta = [0, 0]$, temos que $p_i = 0.5$ para todas as observações.
+
+Em seguida, calculamos o gradiente. Para a interceptação, temos:
+
+\begin{equation}
+  p_i = \frac{1}{1+e^{-(\beta_0 + \beta_1x_{i1})}}
+  \end{equation}
+
+  \begin{equation}
+    \frac{\partial \log L(\beta)}{\partial \beta_0} = \sum_{i=1}^{n} (y_i - p_i)
+    \end{equation}
+
+Para a frequência da palavra, temos:
+
+\begin{equation}
+  \frac{\partial \log L(\beta)}{\partial \beta_1} = \sum_{i=1}^{n} (y_i - p_i)x_{i1}
+  \end{equation}
+  
+
+Portanto, o gradiente é [-1, 0.15].
+
+Atualizamos $\beta$ subtraindo a taxa de aprendizado vezes o gradiente de $\beta$:
+
+\begin{equation}
+  \beta \leftarrow \beta + \eta \nabla \log L(\beta)
+\end{equation}
+
+E repetimos esse processo até atingir o critério de parada. 
+
+Esse é um exemplo muito simplificado, e na prática você teria muitos mais dados e recursos, e provavelmente usaria uma versão estocástica ou em mini-lotes do gradiente ascendente, mas espero que isso dê uma ideia geral do processo.
+
+\section{Exercícios}
+
+\begin{enumerate}
+
+\item Considere um único ponto de dados com um único recurso. Seu objetivo é prever se um email é spam (1) ou não (0) com base na frequência de uma palavra. Se a frequência da palavra for 0.3 e o email não for spam, qual é o valor da função log-verossimilhança se $\beta = [0, 0]$? Use a fórmula para a função log-verossimilhança dada anteriormente.
+
+\item  Usando o mesmo ponto de dados do Exercício 1, qual é o gradiente da função log-verossimilhança se $\beta = [0, 0]$? Use as fórmulas para as derivadas parciais dadas anteriormente.
+
+\item  Ainda referindo-se ao ponto de dados do Exercício 1, se você usar a subida do gradiente com uma taxa de aprendizado de 0.1 para atualizar $\beta$, qual será o novo valor de $\beta$?
+
+\item Agora considere um segundo ponto de dados com frequência de palavra 0.7 e o email é spam. Calcule o valor da função log-verossimilhança e seu gradiente para esses dois pontos de dados se $\beta = [0, 0]$.
+
+\item Ainda usando os dois pontos de dados do Exercício 4, se você usar a subida do gradiente com uma taxa de aprendizado de 0.1 para atualizar $\beta$, qual será o novo valor de $\beta$?
+
+\item Considere agora três pontos de dados: (0.3, 0), (0.7, 1), (0.1, 0), onde o primeiro número de cada par é a frequência da palavra e o segundo número indica se o email é spam. Calcule o valor da função log-verossimilhança e seu gradiente para esses três pontos de dados se $\beta = [0, 0]$. Em seguida, use a subida do gradiente com uma taxa de aprendizado de 0.1 para atualizar $\beta$. Qual é o novo valor de $\beta$?
+
+\end{enumerate}
+
+
+
+
+
+
+%%% as referências devem estar em formato bibTeX no arquivo referencias.bib
+\printbibliography
+
+\end{document}
