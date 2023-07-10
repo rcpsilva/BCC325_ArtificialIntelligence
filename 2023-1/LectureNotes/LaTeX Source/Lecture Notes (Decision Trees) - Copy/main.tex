@@ -47,13 +47,13 @@ Uma árvore de decisão é composta por três componentes principais: nós, ares
         \item Nós Folha: Representam as classes ou valores previstos pela árvore de decisão. São as folhas da árvore, onde não há mais subdivisões. Cada nó folha é rotulado com a classe ou valor de destino correspondente.
     \end{enumerate}
        
-    \item Critérios de decisão:
+    \item Critérios de divisão:
         \begin{enumerate}
-            \item Atributo de decisão: É o atributo escolhido para realizar a decisão no nó atual da árvore. O critério de decisão seleciona o atributo que melhor separa os dados com base em alguma medida de impureza ou ganho de informação.
+            \item Atributo de divisão: É o atributo escolhido para realizar a divisão no nó atual da árvore. O critério de divisão seleciona o atributo que melhor separa os dados com base em alguma medida de impureza ou ganho de informação.
 
-            \item Valor de decisão: É o valor ou limiar do atributo escolhido que define a condição de decisão. Os exemplos cujo valor do atributo é maior ou igual ao valor de decisão são direcionados para um ramo, enquanto aqueles cujo valor do atributo é menor são direcionados para o outro ramo.
+            \item Valor de divisão: É o valor ou limiar do atributo escolhido que define a condição de divisão. Os exemplos cujo valor do atributo é maior ou igual ao valor de divisão são direcionados para um ramo, enquanto aqueles cujo valor do atributo é menor são direcionados para o outro ramo.
             
-            \item Regra de decisão: É a regra ou condição definida pela combinação do atributo de decisão e valor de decisão. Essa regra especifica como os exemplos são divididos em ramos filhos. Por exemplo, "atributo idade >= 30" é uma regra de decisão que divide os exemplos em dois ramos com base no valor do atributo idade.    
+            \item Regra de divisão: É a regra ou condição definida pela combinação do atributo de divisão e valor de divisão. Essa regra especifica como os exemplos são divididos em ramos filhos. Por exemplo, "atributo idade >= 30" é uma regra de divisão que divide os exemplos em dois ramos com base no valor do atributo idade.    
         \end{enumerate}
     
     \item Arestas:
@@ -66,7 +66,7 @@ Uma árvore de decisão é composta por três componentes principais: nós, ares
     
 \end{enumerate}
 
-Durante a construção da árvore, o algoritmo de aprendizagem de máquina divide recursivamente o conjunto de dados com base em critérios de decisão, como a entropia ou o índice Gini. Essa divisão é feita nos nós intermediários, de modo a criar partições puras em relação à classe alvo. A estrutura hierárquica da árvore permite que ela seja facilmente interpretada e seguida para fazer previsões em novos exemplos, percorrendo os caminhos definidos pelos nós intermediários até chegar a um nó folha com a classe prevista.
+Durante a construção da árvore, o algoritmo de aprendizagem de máquina divide recursivamente o conjunto de dados com base em critérios de divisão, como a entropia ou o índice Gini. Essa divisão é feita nos nós intermediários, de modo a criar partições puras em relação à classe alvo. A estrutura hierárquica da árvore permite que ela seja facilmente interpretada e seguida para fazer previsões em novos exemplos, percorrendo os caminhos definidos pelos nós intermediários até chegar a um nó folha com a classe prevista.
 
 \section{Treinamento de Árvore de Decisão}
 
