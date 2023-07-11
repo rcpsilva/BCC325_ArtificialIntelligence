@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber main"] 1689013949 "main.bcf" "main.bbl" "main" 1689014105 0
+["biber main"] 1689013949 "main.bcf" "main.bbl" "main" 1689023945 0
   "./referencias.bib" 1683654181 750 38e35a24a6f7c36933992e01978c2d32 ""
-  "main.bcf" 1689014104 112668 87994e73a30234a166e514529103e64d "pdflatex"
+  "main.bcf" 1689023944 112668 87994e73a30234a166e514529103e64d "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1689014100 "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-1/LectureNotes/LaTeX Source/Lecture Notes (Logistic Regression)/main.tex" "main.pdf" "main" 1689014105 0
-  "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-1/LectureNotes/LaTeX Source/Lecture Notes (Logistic Regression)/main.tex" 1689014098 12985 9ddb0f5e46a7d9ff06b30be691920393 ""
+["pdflatex"] 1689023940 "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-1/LectureNotes/LaTeX Source/Lecture Notes (Logistic Regression)/main.tex" "main.pdf" "main" 1689023945 0
+  "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-1/LectureNotes/LaTeX Source/Lecture Notes (Logistic Regression)/main.tex" 1689023933 16907 6412c8f75e8c836a371a0608204df151 ""
   "c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1679353348 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1679353348 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1679354266 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -300,11 +300,11 @@
   "c:/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1679360027 7883451 1906458788776f148e040852b775af01 ""
   "c:/texlive/2022/texmf.cnf" 1679359856 713 e69b156964470283e0530f5060668171 ""
   "decom-logo.png" 1683654181 7790 67fe339de739ef24fe899c5d246b306f ""
-  "main.aux" 1689014104 2143 ec04b8d03b935c43a1b12f9fd28e01ab "pdflatex"
+  "main.aux" 1689023944 2250 dac3803af729b085c203b773370fbbdf "pdflatex"
   "main.bbl" 1689013951 486 ee04f40f768daeed26442158e95aba61 "biber main"
-  "main.out" 1689014104 1864 89b674f3253cad6a45d44f4e9b44ecf4 "pdflatex"
-  "main.run.xml" 1689014104 2483 2d8f64f6e944ba7291da572943d6fd0c "pdflatex"
-  "main.tex" 1689014098 12985 9ddb0f5e46a7d9ff06b30be691920393 ""
+  "main.out" 1689023944 1953 5d2c4382d26412a1c5ba14c83e932453 "pdflatex"
+  "main.run.xml" 1689023944 2483 2d8f64f6e944ba7291da572943d6fd0c "pdflatex"
+  "main.tex" 1689023933 16907 6412c8f75e8c836a371a0608204df151 ""
   "researchdiary_png.sty" 1686089091 3080 fde4a7a4ff31f1107dd69296fc10690b ""
   (generated)
   "main.aux"
