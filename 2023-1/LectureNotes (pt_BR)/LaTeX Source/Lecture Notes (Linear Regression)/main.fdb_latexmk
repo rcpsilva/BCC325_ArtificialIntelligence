@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber main"] 1689038098 "main.bcf" "main.bbl" "main" 1689038635 0
+["biber main"] 1690221845 "main.bcf" "main.bbl" "main" 1690222394 0
   "./referencias.bib" 1683654181 750 38e35a24a6f7c36933992e01978c2d32 ""
-  "main.bcf" 1689038634 112668 87994e73a30234a166e514529103e64d "pdflatex"
+  "main.bcf" 1690222392 112668 87994e73a30234a166e514529103e64d "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1689038630 "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-1/LectureNotes/LaTeX Source/Lecture Notes (Linear Regression)/main.tex" "main.pdf" "main" 1689038635 0
-  "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-1/LectureNotes/LaTeX Source/Lecture Notes (Linear Regression)/main.tex" 1689038629 18097 f3c2e0823e3328fe2d73ec1a59a9b4f3 ""
+["pdflatex"] 1690222388 "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-1/LectureNotes (pt_BR)/LaTeX Source/Lecture Notes (Linear Regression)/main.tex" "main.pdf" "main" 1690222394 0
+  "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-1/LectureNotes (pt_BR)/LaTeX Source/Lecture Notes (Linear Regression)/main.tex" 1690222385 20488 440b88a1683a47478c27e68ff85f0700 ""
   "c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1679353348 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1679354266 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1679353891 3584 402da0b29eafbad07963b1224b222f18 ""
@@ -301,11 +301,11 @@
   "c:/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1679360027 7883451 1906458788776f148e040852b775af01 ""
   "c:/texlive/2022/texmf.cnf" 1679359856 713 e69b156964470283e0530f5060668171 ""
   "decom-logo.png" 1683654181 7790 67fe339de739ef24fe899c5d246b306f ""
-  "main.aux" 1689038634 1773 1da67779e4889197946ed4b2b511212d "pdflatex"
-  "main.bbl" 1689038100 486 ee04f40f768daeed26442158e95aba61 "biber main"
-  "main.out" 1689038634 1475 74979b6d92b98fdde7685fbd17565d5a "pdflatex"
-  "main.run.xml" 1689038634 2483 2d8f64f6e944ba7291da572943d6fd0c "pdflatex"
-  "main.tex" 1689038629 18097 f3c2e0823e3328fe2d73ec1a59a9b4f3 ""
+  "main.aux" 1690222392 1889 a4d704c518d635e41b4573df9e554592 "pdflatex"
+  "main.bbl" 1690221884 486 ee04f40f768daeed26442158e95aba61 "biber main"
+  "main.out" 1690222392 1616 4eeeac0c4d521fd5610b2d9b61eee483 "pdflatex"
+  "main.run.xml" 1690222392 2483 2d8f64f6e944ba7291da572943d6fd0c "pdflatex"
+  "main.tex" 1690222385 20488 440b88a1683a47478c27e68ff85f0700 ""
   "researchdiary_png.sty" 1686089091 3080 fde4a7a4ff31f1107dd69296fc10690b ""
   (generated)
   "main.aux"

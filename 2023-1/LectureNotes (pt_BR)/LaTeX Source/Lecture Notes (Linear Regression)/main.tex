@@ -283,6 +283,110 @@ onde $\bar{x}$ e $\bar{y}$ são as médias de $x$ e $y$, respectivamente.
 \end{enumerate}
 
 
+\section{Complete derivation}
+
+The equation of the simple linear regression is
+
+$$
+y_i = \beta_0 + \beta_1 x_i 
+$$
+
+
+The least squares method minimizes the sum of squared residuals:
+
+$$
+L(\beta_0, \beta_1) = \sum_{i=1}^{n} (y_i - \beta_0 - \beta_1 x_i)^2
+$$
+
+The first order conditions are obtained by taking the derivative of L with respect to $\beta_0$ and $\beta_1$ and setting them equal to zero. 
+
+For $\beta_0$:
+
+$$
+\frac{\partial L}{\partial \beta_0} = -2 \sum_{i=1}^{n} (y_i - \beta_0 - \beta_1 x_i) = 0
+$$
+
+Rearranging gives:
+
+$$
+n\beta_0 + \beta_1 \sum_{i=1}^{n} x_i = \sum_{i=1}^{n} y_i
+$$
+
+Dividing through by $n$, we have
+
+$$
+\beta_0 = \bar{y} - \beta_1 \bar{x}
+$$
+
+For $\beta_1$:
+
+$$
+\frac{\partial L}{\partial \beta_1} = -2 \sum_{i=1}^{n} x_i (y_i - \beta_0 - \beta_1 x_i) = 0
+$$
+
+
+Rearranging and substituting $\beta_0$ from the previous equation, we obtain:
+
+$$
+\beta_1 = \frac{n \sum_{i=1}^{n} x_i y_i - \sum_{i=1}^{n} x_i \sum_{i=1}^{n} y_i}{n \sum_{i=1}^{n} x_i^2 - (\sum_{i=1}^{n} x_i)^2}
+$$
+
+So, the least squares solution is:
+
+$$
+\beta_0 = \bar{y} - \beta_1 \bar{x}
+$$
+
+$$
+\beta_1 = \frac{n \sum_{i=1}^{n} x_i y_i - \sum_{i=1}^{n} x_i \sum_{i=1}^{n} y_i}{n \sum_{i=1}^{n} x_i^2 - (\sum_{i=1}^{n} x_i)^2}
+$$
+
+I apologize for the oversight. Here are the derivations in LaTeX:
+
+We have the following expression for \(\beta_1\):
+
+\[
+\beta_1 = \frac{n \sum_{i=1}^{n} x_i y_i - \sum_{i=1}^{n} x_i \sum_{i=1}^{n} y_i}{n \sum_{i=1}^{n} x_i^2 - (\sum_{i=1}^{n} x_i)^2}
+\]
+
+This can be rewritten in terms of deviations from the mean. 
+
+The numerator is:
+
+\[
+n \sum_{i=1}^{n} x_i y_i - \sum_{i=1}^{n} x_i \sum_{i=1}^{n} y_i
+\]
+
+This can be rewritten as:
+
+\[
+n \sum_{i=1}^{n} (x_i - \bar{x} + \bar{x})(y_i - \bar{y} + \bar{y}) - n \bar{x}\bar{y}
+= n \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) + n \bar{x}\bar{y} - n \bar{x}\bar{y}
+= n \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})
+\]
+
+Similarly, the denominator can be rewritten. We have:
+
+\[
+n \sum_{i=1}^{n} x_i^2 - (\sum_{i=1}^{n} x_i)^2
+\]
+
+which can be rewritten as:
+
+\[
+n \sum_{i=1}^{n} (x_i - \bar{x} + \bar{x})^2 - n \bar{x}^2
+= n \sum_{i=1}^{n} (x_i - \bar{x})^2 + n \bar{x}^2 - n \bar{x}^2
+= n \sum_{i=1}^{n} (x_i - \bar{x})^2
+\]
+
+So, the expression for \(\beta_1\) becomes:
+
+\[
+\beta_1 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n} (x_i - \bar{x})^2}
+\]
+
+which is the formula you asked for.
+
 %%% as referências devem estar em formato bibTeX no arquivo referencias.bib
 \printbibliography
 
