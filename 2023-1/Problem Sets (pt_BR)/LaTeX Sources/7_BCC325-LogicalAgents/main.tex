@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{hyperref}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\title{\vspace{-2 cm}Universidade Federal de Ouro Preto \\ BCC 325 - Inteligência Artificial \\ Agentes Lógicos}
+\author{Prof. Rodrigo Silva}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+
+
+\section{Leitura}
+
+\begin{itemize}
+    \item Ler o capítulo 5 do Livro\textit{ Artificial Intelligence: Foundations of Computational Agents,  2nd Edition} disponível em \textit{https://artint.info/}
+\end{itemize}
+
+\section{Questões teóricas}
+
+\begin{enumerate}
+    \item Considere a seguinte base de conhecimento (KB):
+    
+    \begin{center}
+        \begin{align*}
+         a & \leftarrow b \wedge c. \\ 
+         b & \leftarrow e. \\ 
+         b & \leftarrow d. \\ 
+         c &. \\ 
+         d & \leftarrow h. \\ 
+         e &. \\
+         g & \leftarrow a \wedge b  \wedge e. \\
+         f & \leftarrow h \wedge b. \\  
+        \end{align*}
+    \end{center}
+    
+
+    \begin{enumerate}
+        \item Apresente um modelo da base de conhecimento apresentada.
+        \item Apresente uma interpretação que não é um modelo da base de conhecimento apresentada.
+        \item Mostre como uma prova bottom-up funcionaria para esta base de conhecimento. Apresente todas as consequências lógicas desta KB.
+        \item Apresente uma prova top-down para a pergunta $ask$ $g$.
+    \end{enumerate}
+    
+    \item Em IA utilizamos cláusulas definidas para representar algum conhecimento sobre uma determinada aplicação. Por quê é interessante limitar a linguagem de representação à cláusulas definidas?
+    
+    \item Por quê não é interessante permitir o operador $\vee$ (``ou") quando modelamos um sistema lógico?
+    
+    \item Se uma proposição $g$ é consequência lógica de uma $KB$, o que podemos dizer sobre $g$?
+    
+    \item Dada uma base de conhecimento, $KB$, e um conjunto de observações, $\mathcal{O}$, descreva um procedimento de abdução?
+    
+    \item O que é uma explicação mínima? 
+    
+    \item Uma derivação utilizando o algoritmo top-down pode entrar em loop infinito? Explique e apresente um exemplo. 
+    
+\end{enumerate}
+   
+
+% O objetivo desta atividade é implementar um agente que, dada uma base de conhecimento, consiga inferir sobre ela. Como de costume, visite o repositório \url{https://github.com/rcpsilva/BCC325_PLE}, que contém o código base para esta atividade e leia atentamente o README.
+
+% No arquivo \textit{knowledge\_base.py} você vai encontrar uma implementação para uma base de conhecimento. Uma base de conhecimento pode conter 3 tipos de declarações (\textit{statements}). Eles são:
+
+% \begin{itemize}
+%     \item Clauses: Cláusulas definidas
+%     \item Askables: São átomos transientes (cujo valor muda ao longo do tempo) e devem ser consultados periodicamente.
+%     \item Assumables: Atómos utilizados no procedimento de abdução.
+% \end{itemize}
+
+% Dadas estas informação você deve:
+% \begin{enumerate}
+%     \item Implementar o método \texttt{botton\_up()} da classe \texttt{LogicalAgent}.
+%     \item Implementar o método \texttt{top\_down(query)} da classe \texttt{LogicalAgent}.
+%     \item Implementar o método \texttt{explain(atoms)} da classe \texttt{LogicalAgent}.
+% \end{enumerate}
+
+% Observações:
+% \begin{itemize}
+%     \item Todos os métodos devem ser capazes de lidar com \textit{Askables}. 
+%     \item Ao tentar provar um \texttt{Askable} o agente deve perguntar ao usuário se ele é verdadeiro.
+%     \item Utilize o \textit{script} no arquivo \textit{logical\_agents\_simulation.py} para testar os algoritmos de prova \textit{top\_down} e \textit{botton\_up}
+%     \item Utilize o script do arquivo \textit{logical\_abduction\_simulation.py} para testar o método \texttt{explain(atoms)}.
+% \end{itemize}
+
+
+%\bibliographystyle{plain}
+%\bibliography{references}
+\end{document}
+
