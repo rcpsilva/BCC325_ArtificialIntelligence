@@ -1,0 +1,92 @@
+%%% Template para anotações de aula
+%%% Feito por Daniel Campos com base no template de Willian Chamma que fez com base no template de  Mikhail Klassen
+
+
+
+\documentclass[12pt,a4paper, brazil]{article}
+
+%%%%%%% INFORMAÇÕES DO CABEÇALHO
+\newcommand{\workingDate}{\textsc{\selectlanguage{portuguese}\today}}
+\newcommand{\userName}{BCC740}
+\newcommand{\institution}{UFOP}
+\usepackage{researchdiary_png}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{verbatim}
+\newenvironment{metaverbatim}{\verbatim}{\endverbatim}
+
+\begin{document}
+\begin{center}
+{\textbf {\huge Árvores de Decisão}}\\[5mm]
+%{\large Autor: } \\[2mm]
+%{\large Orientador: } \\[5mm]
+\today\\[5mm] %% se quiser colocar data
+\end{center}
+
+
+%\section*{Resumo}
+
+\section{Fuzzy Controller Example}
+
+
+Imagine you have a basic heating system in a room, and you want to control the temperature to keep it comfortable. A fuzzy controller can be designed to adjust the heater's intensity based on the current room temperature and desired setpoint temperature.
+
+Here are the key components of this fuzzy controller:
+
+\begin{enumerate}
+  
+  \item  Inputs:
+
+  \begin{enumerate}
+    \item Error ($e$): Difference between the desired setpoint temperature and the current room temperature.
+    \item Rate of Change of Error ($\Delta e$): How quickly the temperature is changing.
+  \end{enumerate}
+
+  \item Outputs:
+
+  \begin{enumerate}
+    \item Heater Intensity: A value representing how strong the heater should be, ranging from low to high.
+  \end{enumerate}
+
+  \item Fuzzy Sets:
+
+  \begin{enumerate}
+    \item   Error has fuzzy sets: Negative Big (NB), Negative Medium (NM), Zero (ZE), Positive Medium (PM), Positive Big (PB).
+    \item Rate of Change of Error has fuzzy sets: Negative (N), Zero (Z), Positive (P).
+    \item Heater Intensity has fuzzy sets: Low (L), Medium (M), High (H).
+  \end{enumerate}
+
+  \item Fuzzy Rules:
+
+\begin{enumerate}
+\item IF Error is NB AND $\Delta e$ is N, THEN Heater Intensity is H.
+\item IF Error is NM AND $\Delta e$ is N, THEN Heater Intensity is M.
+\item IF Error is ZE AND $\Delta e$ is N, THEN Heater Intensity is M.
+\item IF Error is PM AND $\Delta e$ is N, THEN Heater Intensity is L.
+\item IF Error is PB AND $\Delta e$ is N, THEN Heater Intensity is L.
+\item IF Error is NB AND $\Delta e$ is Z, THEN Heater Intensity is H.
+\item IF Error is NM AND $\Delta e$ is Z, THEN Heater Intensity is M.
+\item IF Error is ZE AND $\Delta e$ is Z, THEN Heater Intensity is M.
+\item IF Error is PM AND $\Delta e$ is Z, THEN Heater Intensity is M.
+\item IF Error is PB AND $\Delta e$ is Z, THEN Heater Intensity is L.
+\item IF Error is NB AND $\Delta e$ is P, THEN Heater Intensity is M.
+\item IF Error is NM AND $\Delta e$ is P, THEN Heater Intensity is M.
+\item IF Error is ZE AND $\Delta e$ is P, THEN Heater Intensity is L.
+\item IF Error is PM AND $\Delta e$ is P, THEN Heater Intensity is L.
+\item IF Error is PB AND $\Delta e$ is P, THEN Heater Intensity is L.
+\end{enumerate}
+
+\item Fuzzy Inference and Defuzzification:
+
+\begin{enumerate}
+  \item Use fuzzy logic to determine the degree to which each rule's conclusion applies based on the input variables.
+  \item Combine the rule conclusions to obtain a fuzzy output distribution.
+  \item Defuzzify the fuzzy output distribution to obtain a crisp value for Heater Intensity.
+\end{enumerate}
+
+
+\end{enumerate}
+
+\printbibliography
+
+\end{document}
