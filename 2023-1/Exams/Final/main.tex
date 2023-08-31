@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{hyperref}
+
+\PassOptionsToPackage{usenames,dvipsnames,svgnames}{xcolor}  
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning,automata}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{white},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{deepblue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{deepgreen},
+    emph={Agent,__init__,act,self,union,exists, scope},
+    emphstyle=\color{deepred},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=3
+}
+
+\lstset{style=mystyle}
+
+\title{\vspace{-2 cm} BCC 325 - Inteligência Artificial \\ Exame Especial}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+\vspace{-1 cm}
+
+\textbf{Parcial 1 ----------------------------------------------}
+
+\begin{enumerate}
+
+    \item Apresente o pseudo código do algoritmo A*.  
+    
+    \item Considere o seguinte problema:
+    
+    \textit{Considere um labirinto tridimensional onde cada célula possui um custo de movimentação associado e pode ser atravessada nas seis direções ortogonais. Além disso, certas células contêm portais que levam a outras partes do labirinto. O objetivo é encontrar o caminho de menor custo entre dois pontos dados, levando em consideração tanto o custo de movimentação quanto a utilização eficiente dos portais. Como você adaptaria o algoritmo A* para lidar com essa situação complexa e como garantiria que o algoritmo encontre a solução ótima considerando todas as dimensões do problema?}
+
+    \begin{enumerate}
+        \item Como um estado pode ser representado neste problema?
+        \item Apresente o pseudo código de uma função de custo para este problema. 
+        \item Apresente o pseudo código de uma heurística admissível para este problema e explique por quê a heurística é admissível.
+    \end{enumerate}
+    
+    \item Apresente um pseudo código do algoritmo GAC.   
+
+\textbf{Parcial 2 ----------------------------------------------}
+
+    \item  Considero o algoritmo de regressão linear. 
+    \begin{enumerate}
+        \item Escreva uma função de custo que ajude a regularizar o modelo.
+        \item Apresente as derivadas parciais da função de custo apresentada em relação aos pesos do modelo. Considere que o modelo é um polinômio de orden 2 com termos cruzados.
+    \end{enumerate}
+
+    \item Suponha que você tenha uma rede neural feed-forward com 2 camadas ocultas. Cada camada oculta tem 2 neurônios e a camada de saída tem um único neurônio. A função de ativação é a função sigmóide e a função de custo é o erro quadrado. O vetor de entrada é (1,0), os pesos da camada de entrada para a primeira camada são (1.0,1.0), o vetor de pesos da primeira camada para a segunda é ((0.5, 0.3),(0.1,0.2)), o vetor de bias da primeira camada para a segunda é (0.3,0.2), o vetor de pesos da segunda camada para a saída é (0.4,0.6) e o bias da segunda camada para a saída é 0.1. A saída desejada é 1. Calcule a saída da rede e em seguida, calcule a atualização dos pesos e bias por meio de backpropagation com uma taxa de aprendizado de 0.1. 
+    
+\textbf{Parcial 3 ----------------------------------------------}
+
+\item Considere o seguinte cenário: Um paciente apresenta sintomas incomuns que podem ser associados a várias doenças raras. Explique como o algoritmo de abdução pode ser aplicado para inferir possíveis diagnósticos para esse paciente. Descreva o processo passo a passo, incluindo como o sistema utiliza a base de conhecimento, gera hipóteses abdutivas, avalia sua plausibilidade e refina as hipóteses à medida que novas informações são fornecidas. Além disso, discuta os desafios que podem surgir ao lidar com doenças raras e sintomas pouco comuns, e como o sistema pode lidar com incertezas durante o processo de abdução.
+
+\item Apresente os pseudo-códigos dos algoritmos abaixo:
+    \begin{enumerate}
+        \item Prova top-down
+        \item Prova botton-up
+        \item Abdução
+    \end{enumerate}
+
+\end{enumerate}
+
+\pagebreak
+
+\section*{Formulas}
+
+\begin{itemize}
+    \item Erro quadrado
+
+    \[ E(w) = \frac{1}{2n} \sum_{i=1}^{n} (y_i - h_w(x_i))^2 \]
+
+    \item A derivada da função do erro quadrado em relação aos parâmetros \( w \) é:
+
+    \[ \frac{\partial E(w)}{\partial w_j} = -\frac{1}{n} \sum_{i=1}^{n} (y_i - h_w(x_i))x_{ij} \]
+
+\end{itemize}
+
+
+
+
+
+\end{document}
+
