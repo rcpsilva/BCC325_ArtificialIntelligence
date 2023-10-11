@@ -16,10 +16,9 @@ class Maze():
                 if np.random.rand() < pobs and ([i,j]!=self.start).any() and ([i,j]!=self.exit).any():
                     self.map[i][j] = 1
 
+        ################## visualization ###################
         self.map[start[0]][start[1]] = 0.8 
         self.map[exit[0]][exit[1]] = 0.3
-
-        ################## visualization ###################
         self.pause = pause
         plt.ion()
         self.vis_map()
@@ -55,7 +54,7 @@ class Maze():
                 'neighbors':self.get_neighbors(action['move_to']),
                 'path':action['path']}
     
-    # Visualization functions
+    # Visualization functions ###############################
     def plot_path(self, path, pause_time):
         plt.axes().invert_yaxis()
         plt.pcolormesh(self.map)
@@ -70,6 +69,7 @@ class Maze():
         plt.pcolormesh(self.map)
         plt.plot(self.start[1]+0.5, self.start[0]+0.5,'rs')
         plt.show()
+    ##########################################################
 
 
 
