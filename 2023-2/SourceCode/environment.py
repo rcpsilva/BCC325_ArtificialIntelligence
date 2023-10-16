@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 class Maze():
 
-    def __init__(self,nrow,ncol,start,exit,pobs=.3,pause=1):
+    def __init__(self,nrow,ncol,start,exit,pobs=.3,pause=0.05):
 
         self.map = np.zeros((nrow,ncol))
         self.start = np.array(start)
@@ -38,7 +38,7 @@ class Maze():
 
         directions = np.array([[1,0],[-1,0],[0,1],[0,-1]])
         candidates = [pos + dir for dir in directions]
-        neighbors = [c for c in candidates if (c[0]>=0 and c[0]<=self.map.shape[0]) and (c[1]>=0 and c[1]<=self.map.shape[1]) and (self.map[c[0]][c[1]] !=1)]
+        neighbors = [c for c in candidates if (c[0]>=0 and c[0]<self.map.shape[0]) and (c[1]>=0 and c[1]<self.map.shape[1]) and (self.map[c[0]][c[1]] !=1)]
 
         return neighbors
     
