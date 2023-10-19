@@ -5,7 +5,7 @@ class Maze():
 
     def __init__(self,nrow,ncol,start,exit,pobs=.3,pause=0.05):
 
-        self.map = np.zeros((nrow,ncol))
+        self.map = np.random.rand(nrow,ncol)
         self.start = np.array(start)
         self.exit = np.array(exit)
 
@@ -14,11 +14,11 @@ class Maze():
         for i in range(self.map.shape[0]):
             for j in range(self.map.shape[1]):
                 if np.random.rand() < pobs and ([i,j]!=self.start).any() and ([i,j]!=self.exit).any():
-                    self.map[i][j] = 1
+                    self.map[i][j] = 2
 
         ################## visualization ###################
-        self.map[start[0]][start[1]] = 0.8 
-        self.map[exit[0]][exit[1]] = 0.3
+        self.map[start[0]][start[1]] = 0 
+        self.map[exit[0]][exit[1]] = 0
         self.pause = pause
         plt.ion()
         self.vis_map()
@@ -28,17 +28,18 @@ class Maze():
         ###################################################
                    
     def initial_percepts(self):
-
+        neighbors = self.get_neighbors(self.start)
         return {'pos':self.start,
                 'exit':self.exit,
-                'neighbors':self.get_neighbors(self.start),
+                'neighbors':neighbors,
+                'neighbors_cost':[self.map[n[0]][n[1]] for n in neighbors],
                 'path':[]}
     
     def get_neighbors(self,pos):
 
         directions = np.array([[1,0],[-1,0],[0,1],[0,-1]])
         candidates = [pos + dir for dir in directions]
-        neighbors = [c for c in candidates if (c[0]>=0 and c[0]<self.map.shape[0]) and (c[1]>=0 and c[1]<self.map.shape[1]) and (self.map[c[0]][c[1]] !=1)]
+        neighbors = [c for c in candidates if (c[0]>=0 and c[0]<self.map.shape[0]) and (c[1]>=0 and c[1]<self.map.shape[1]) and (self.map[c[0]][c[1]] !=2)]
 
         return neighbors
     
@@ -48,10 +49,11 @@ class Maze():
         plt.ion()
         self.plot_path(action['path'],self.pause)
         ####################################################
-
+        neighbors = self.get_neighbors(action['move_to'])
         return {'pos': action['move_to'],
                 'exit':self.exit,
-                'neighbors':self.get_neighbors(action['move_to']),
+                'neighbors':neighbors,
+                'neighbors_cost':[self.map[n[0]][n[1]] for n in neighbors],
                 'path':action['path']}
     
     # Visualization functions ###############################
