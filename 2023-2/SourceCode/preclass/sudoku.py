@@ -73,4 +73,4 @@ if __name__ == '__main__':
              [0,7,3,9,0,0,0,0,5],
              [0,0,6,0,0,0,0,0,0]]
 
-    backtrack_sudoku(easy_game)
+    backtrack_sudoku(evil_game)
