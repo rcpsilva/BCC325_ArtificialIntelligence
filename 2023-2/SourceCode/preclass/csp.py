@@ -25,11 +25,9 @@ class Constrait():
         return self.bool_func(vals)
 
 def create_sudoku_constraint(pos1, pos2):
-
     c = Constrait()
     c.scope = [pos1,pos2]
     c.bool_func = lambda x, y: x!=y
-
     return c
 
 def generate_constraint_graph(sudoku):
