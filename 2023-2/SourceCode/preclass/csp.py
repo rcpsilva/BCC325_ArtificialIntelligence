@@ -1,13 +1,107 @@
 import os
 import time
+from copy import copy, deepcopy
+import json
 
-class constrait():
-    def __init__(self,scope,bool_func):
+def print_graph(d, indent=0):
+   for key, value in d.items():
+      print('\t' * indent + str(key))
+      if isinstance(value, dict):
+        print_graph(value, indent+1)
+      else:
+        v = value[0]
+        if isinstance(v,Constrait):
+            for c in value:
+                print('\t' * (indent+1) + f'{c.scope}:{c.bool_func}')
+        else:
+            print('\t' * (indent+1) + f'{value}')
+
+class Constrait():
+    def __init__(self,scope=None,bool_func=None):
         self.scope = scope
         self.bool_func = bool_func
     
     def eval(self,vals):
         return self.bool_func(vals)
+
+def create_sudoku_constraint(pos1, pos2):
+
+    c = Constrait()
+    c.scope = [pos1,pos2]
+    c.bool_func = lambda x, y: x!=y
+
+    return c
+
+def generate_constraint_graph(sudoku):
+
+    domains = {}
+    graph = {}
+
+    for i in range(len(sudoku)):
+        for j in range(len(sudoku)):
+
+            domains[(i,j)] = [sudoku[i][j]] if sudoku[i][j]!=0 else [i for i in range(1,10)]
+
+            if sudoku[i][j]==0:
+
+
+                # Row constraints
+                graph[(i,j)] = []
+                
+
+                for k in range(len(sudoku)):
+                    if k != j:
+                        graph[(i,j)].append(create_sudoku_constraint((i,j), (i,k)))
+
+                # Column constraints
+                for k in range(len(sudoku)):
+                    if k != i:
+                        graph[(i,j)].append(create_sudoku_constraint((i,j), (k,j)))
+
+                # group constraints
+                iquad = (i//3)*3
+                jquad = (j//3)*3
+
+                for k in range(iquad,iquad+3):
+                    for l in range(jquad,jquad+3):
+                        if (i,j)!=(k,l):
+                            graph[(i,j)].append(create_sudoku_constraint((i,j), (k,l)))
+    return graph,domains
+
+def GAC(graph,domains):
+
+    to_do = []
+
+    for key in graph:
+        for c in graph[key]:
+            to_do.append((key,c))
+
+    while to_do:
+        edge = to_do.pop(0)
+        X = edge[0]
+        const = edge[1]
+        Y = const.scope[1]
+        domx = domains[edge[0]]
+        domy = domains[Y]
+
+        new_dom = []
+
+        for x in domx:
+            for y in domy:
+                if const.bool_func(x,y):
+                    new_dom.append(x)
+                    break 
+        
+        if len(domx)!= len(new_dom):
+            domains[X] = new_dom
+
+            for key in graph:
+                if key!=X:
+                    for c in graph[key]:
+                        if c.scope[1] == X:
+                            to_do.append((key,c))
+
+    return domains
     
 def backtrack_return(sol,solution_func,get_var_position,domain_func,atach_func,detach_func,is_valid):
     if solution_func(sol):
@@ -150,32 +244,11 @@ if __name__ == '__main__':
              [0,7,3,9,0,0,0,0,5],
              [0,0,6,0,0,0,0,0,0]]
 
-    sdk = sudoku_problem(evil_game)
+    graph,domains = generate_constraint_graph(evil_game)
 
-    backtrack(sdk.game,
-              sdk.is_solution_sudoku,
-              sdk.get_var_position_sudoku,
-              sdk.domain_sudoku,
-              sdk.atach_sudoku,
-              sdk.detach_sudoku,
-              sdk.is_valid_sudoku,
-              sdk.print_game)
-    
-    #print()
-    #for row in sdk.game:
-    #    print(row)
+    #print_graph(graph)
+    #print_graph(domains)
 
-    sol = []
-    abc = abc_problem(sol)
+    domains = GAC(graph,domains)
 
-    backtrack(abc.sol,
-              abc.solution_func,
-              abc.get_var_position,
-              abc.domain_func,
-              abc.atach_func,
-              abc.detach_func,
-              abc.is_valid,
-              print)
-    
-
-   
+    print_graph(domains)
