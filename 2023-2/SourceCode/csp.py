@@ -1,6 +1,92 @@
 import os
 import time
 
+def print_graph(d, indent=0):
+   for key, value in d.items():
+      print('\t' * indent + str(key))
+      if isinstance(value, dict):
+        print_graph(value, indent+1)
+      else:
+        v = value[0]
+        if isinstance(v,Constraint):
+            for c in value:
+                print('\t' * (indent+1) + f'{c.scope}:{c.bool_func}')
+        else:
+            print('\t' * (indent+1) + f'{value}')
+
+class Constraint():
+    def __init__(self,scope,bool_func):
+        self.scope = scope
+        self.bool_func = bool_func
+
+def generate_graph_sudoku(sudoku):
+
+    domains = {}
+    graph = {}
+
+    for i in range(len(sudoku)):
+        for j in range(len(sudoku[0])):
+            
+            domains[(i,j)] = [sudoku[i][j]]  if sudoku[i][j]!=0 else [k for k in range(1,10)]
+
+            if sudoku[i][j] == 0:
+                graph[(i,j)] = []
+                #row constraints
+                for k in range(len(sudoku)):
+                    if k != j:
+                        graph[(i,j)].append(Constraint([(i,j),(i,k)],lambda v1,v2 : v1!=v2))
+
+                # column constrainst
+                for k in range(len(sudoku)):
+                    if k != i:
+                        graph[(i,j)].append(Constraint([(i,j),(k,j)],lambda v1,v2 : v1!=v2))
+
+                # Quadrant constraints
+                iquad = (i//3)*3
+                jquad = (j//3)*3
+
+                for k in range(iquad,iquad+3):
+                    for l in range(jquad,jquad+3):
+                        if (i,j)!=(k,l):
+                            graph[(i,j)].append(Constraint([(i,j),(k,l)],lambda v1,v2 : v1!=v2))
+
+    return graph,domains
+
+def GAC(graph,domains):
+    to_do = []
+
+    for var in graph:
+        for c in graph[var]:
+            to_do.append((var,c))
+
+    while to_do:
+        edge = to_do.pop(0)
+        X = edge[0]
+        c = edge[1]
+        Y = c.scope[1]
+
+        domX = domains[X]
+        domY = domains[Y]
+
+        ND = []
+
+        for x in domX:
+            for y in domY:
+                if c.bool_func(x,y):
+                    ND.append(x)
+                    break
+        
+        if len(ND)!=len(domX):
+            domains[X] = ND
+
+            for var in graph:
+                if var != X:
+                    for c in graph[var]:
+                        if c.scope[1] == X:
+                            to_do.append((var,c))
+
+    return domains
+
 def print_game(game):
     os.system('cls')
     print()
@@ -109,21 +195,9 @@ class sudoku:
         print()
         for row in sol:
             print(row)
-
-
-    
+   
 if __name__ == '__main__':
 
-    abc = abc_problem(6)
-    sol = []
-    backtrack(sol,
-              abc.is_solution,
-              abc.get_var,
-              abc.domain_func,
-              abc.is_valid,
-              abc.attach_func,
-              abc.detach_func)
-    
     easy_game = [[0,0,0,7,5,0,4,9,0],
              [0,4,5,6,9,0,0,1,8],
              [0,0,6,0,0,0,7,0,0],
@@ -133,17 +207,46 @@ if __name__ == '__main__':
              [4,2,0,0,6,7,1,8,0],
              [5,0,0,0,2,0,0,7,4],
              [3,0,0,5,1,0,9,0,2]]
+    
+    medium = [[0,0,0,0,5,1,0,0,0],
+             [5,6,1,9,0,0,0,0,0],
+             [4,0,0,7,0,0,0,0,0],
+             [0,0,2,0,0,5,4,0,0],
+             [0,4,5,0,0,0,0,0,8],
+             [1,9,0,0,4,0,0,0,3],
+             [0,8,0,0,2,7,0,3,1],
+             [6,0,0,0,0,0,0,2,0],
+             [0,5,0,8,0,0,6,4,9]]
+
+    evil_game = [[1,0,0,0,0,9,0,0,0],
+             [0,0,0,0,2,0,4,0,0],
+             [0,5,9,8,0,0,0,0,3],
+             [6,0,0,7,0,0,0,0,0],
+             [0,1,7,0,0,4,3,0,0],
+             [8,0,0,0,0,0,0,0,1],
+             [0,0,0,0,0,8,0,9,0],
+             [0,7,3,9,0,0,0,0,5],
+             [0,0,6,0,0,0,0,0,0]]
+
+    graph,domains = generate_graph_sudoku(evil_game)
+
+    #print_graph(graph)
+    print_graph(domains)
+
+    domains = GAC(graph,domains)
+    print('------------GAC-------------------')
+    print_graph(domains)
 
 
-    sdk = sudoku()
+    #sdk = sudoku()
 
-    backtrack(easy_game,
-              sdk.is_solution,
-              sdk.get_var,
-              sdk.domain_func,
-              sdk.is_valid,
-              sdk.attach_func,
-              sdk.detach_func,
-              sdk.print_func)
+    #backtrack(easy_game,
+    #          sdk.is_solution,
+    #          sdk.get_var,
+    #          sdk.domain_func,
+    #          sdk.is_valid,
+    #          sdk.attach_func,
+    #          sdk.detach_func,
+    #          sdk.print_func)
 
 
