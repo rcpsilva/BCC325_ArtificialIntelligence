@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{white},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{deepblue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{deepgreen},
+    emph={Agent,__init__,act,self,union,exists, scope},
+    emphstyle=\color{deepred},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=3
+}
+
+\lstset{style=mystyle}
+
+\title{\vspace{-2 cm}Universidade Federal de Ouro Preto \\ BCC 325 - Inteligência Artificial \\ Aprendizado de Máquina}
+\author{Prof. Rodrigo Silva}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Leitura}
+
+\begin{itemize}
+    \item Capítulo 7 do Livro\textit{ Artificial Intelligence: Foundations of Computational Agents,  3rd Edition} disponível em \textit{https://artint.info/}
+    \item Aquele que tudo sabe, tudo vê e nada teme.
+\end{itemize}
+
+\section{Questões}
+
+\begin{enumerate}
+    \item No contexto da disciplina de aprendizado de máquina, o que significa ``aprender''?
+    
+    \item Quais componentes fazem parte de qualquer problema de aprendizado de máquina? (Ver. Seção 7.1 de \url{https://artint.info/})
+    
+    \item Para cada tipo de aprendizado abaixo, (i) Apresente uma descrição, (ii) Explique o funcionamento (Quais são as entreadas? Quais são as saídas? Como as saídas são obtidas da entrada) (iii) Apresente DUAS aplicações. (Obs: Não descrever nenhum algoritmo específico. Apresentar cada tipo de aprendizado como um estrutura básica que os algoritmos específicos devem seguir.)
+    
+    \begin{enumerate}
+        \item Aprendizado não-supervisionado.
+        \item Aprendizado supervisionado.
+        \item Aprendizado por reforço.
+        \item Aprendizado online.
+        \item Aprendizado offline.
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
+
