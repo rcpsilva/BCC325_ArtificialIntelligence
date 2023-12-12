@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1702177329 "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-2/Problem Sets (pt-BR)/LaTeX Sources/4_BCC325_Supervised_Learning/main.tex" "main.pdf" "main" 1702177332 0
+["pdflatex"] 1702406050 "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-2/Problem Sets (pt-BR)/LaTeX Sources/4_BCC325_Supervised_Learning/main.tex" "main.pdf" "main" 1702406053 0
   "abc.jpg" 1701283141 112469 c306324525b219c6cf98c4bbccc7173d ""
-  "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-2/Problem Sets (pt-BR)/LaTeX Sources/4_BCC325_Supervised_Learning/main.tex" 1702177326 5729 fae56642288c872209125131ef53411d ""
+  "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-2/Problem Sets (pt-BR)/LaTeX Sources/4_BCC325_Supervised_Learning/main.tex" 1702406047 7390 6be15273b0a4555862d377f5aced650b ""
   "c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1679353348 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1679354266 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1679353891 3584 2d666ecf6d466d8b007246bc2f94d9da ""
@@ -185,9 +185,9 @@
   "c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1679359898 4662804 131178ccc9b2f4741a821427ce79dce1 ""
   "c:/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1679360027 7883451 1906458788776f148e040852b775af01 ""
   "c:/texlive/2022/texmf.cnf" 1679359856 713 e69b156964470283e0530f5060668171 ""
-  "main.aux" 1702177331 1251 2230f580084788be8d33f9019c717440 "pdflatex"
-  "main.out" 1702177331 215 17ecbe2c6a65a294ee0d875d75a00a20 "pdflatex"
-  "main.tex" 1702177326 5729 fae56642288c872209125131ef53411d ""
+  "main.aux" 1702406052 1251 4c78c9a26fac5068ca5c6cbdfc6283b3 "pdflatex"
+  "main.out" 1702406052 215 17ecbe2c6a65a294ee0d875d75a00a20 "pdflatex"
+  "main.tex" 1702406047 7390 6be15273b0a4555862d377f5aced650b ""
   (generated)
   "main.aux"
   "main.log"

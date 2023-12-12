@@ -99,22 +99,52 @@
     \item Qual é a diferença entre os algoritmos de construção de árvore de decisão para classificação e para regressão?
 
     \item O que podemos fazer para evitar o \textit{overfitting} em árvores de decisão?
+
+    \item Considere um conjunto de dados com 100 exemplos, dos quais 60 pertencem à classe A e 40 pertencem à classe B. Calcule o índice de Gini desse conjunto de dados.
+
+    \item Em um conjunto de dados com 80 exemplos, dos quais 45 pertencem à classe X e 35 pertencem à classe Y. Calcule o índice de Gini desse conjunto de dados.
+
+    \item Suponha que um conjunto de dados seja dividido em dois subconjuntos, onde o subconjunto A contém 30 exemplos, dos quais 20 pertencem à classe P e 10 pertencem à classe Q, e o subconjunto B contém 70 exemplos, dos quais 40 pertencem à classe P e 30 pertencem à classe Q. Calcule o ganho de Gini para essa divisão com base no índice de Gini inicial do conjunto de dados.
+
+   \item Considere um conjunto de dados com duas características, "Altura" (com valores "Alto" e "Baixo") e "Idade" (com valores "Jovem" e "Adulto"), e uma classe "Classe" (com valores "A" e "B"). 
+   
+   Considere a seguinte tabela de dados:
+
+    \begin{center}
+    \begin{tabular}{ |c|c|c| }
+    \hline
+    Altura & Idade & Classe \\
+    \hline
+    Alto & Jovem & A \\
+    Alto & Adulto & A \\
+    Baixo & Jovem & B \\
+    Baixo & Adulto & B \\
+    Alto & Jovem & B \\
+    Baixo & Adulto & A \\
+    \hline
+    \end{tabular}
+    \end{center}
+   
+   Construa uma árvore de decisão para classificar os exemplos com base nessas características, usando o critério de Gini.
+
+   \item Dado um conjunto de dados com 100 exemplos, onde 70 pertencem à classe X e 30 pertencem à classe Y, avalie duas divisões possíveis com base no índice de Gini, e determine qual delas é mais preferível em termos de impureza.
+
+   \item Considere a seguinte base de dados:
     
-    \item Considere a seguinte base de dados:
-    
-    \begin{figure}[!ht]
-         \centering
-         \includegraphics[width=0.55\textwidth]{abc.jpg}
-    \end{figure}
+   \begin{figure}[!ht]
+        \centering
+        \includegraphics[width=0.55\textwidth]{abc.jpg}
+   \end{figure}
 
 
+       \begin{enumerate}
+       
+       \item Apresente uma árvore de decisão para a classificação das \textit{User-actions} e calcule o grau de impureza ($I_G$) médio do nó raiz da sua árvore. (Obs: $I_G(p) = 1 - \sum_{i=1}^{J}p_i^2$)
+           
+       \item De acordo com a árvore apresentada, qual a classificação dos exemplos $e_{19}$ e $e_{20}$?  
+       
+       \end{enumerate}
 
-    \begin{enumerate}
-    
-    \item Apresente uma árvore de decisão para a classificação das \textit{User-actions} e calcule o grau de impureza ($I_G$) médio do nó raiz da sua árvore. (Obs: $I_G(p) = 1 - \sum_{i=1}^{J}p_i^2$)
-        
-    \item De acordo com a árvore apresentada, qual a classificação dos exemplos $e_{19}$ e $e_{20}$?  
-    \end{enumerate}
     \end{enumerate}
 
     
