@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.2in]{geometry}
+\usepackage[T1]{fontenc}                
+\usepackage[utf8]{inputenc}             
+\usepackage[english,portuguese]{babel}
+\usepackage{tikz}
+  \usetikzlibrary{shapes,arrows,fit,calc,positioning}
+  \tikzset{box/.style={draw, diamond, thick, text centered, minimum height=0.5cm, minimum width=1cm}}
+  \tikzset{line/.style={draw, thick, -latex'}}
+
+
+\title{Redes Neurais e Cláusulas Definidas}
+\author{Prof. Rodrigo Pedrosa}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\begin{document}
+
+\maketitle
+
+\vspace{-1.2cm}
+
+\section{Questões teóricas}
+
+\paragraph{Redes Neurais}
+
+\begin{enumerate}
+
+
+
+    \item Cálculo de Rede Neural Simples
+
+\textbf{Objetivo}: Calcular manualmente a saída de uma rede neural simples.
+
+\textbf{Configuração}: Considere uma rede neural com uma única camada oculta. A camada de entrada tem dois nós, a camada oculta tem dois nós, e há um único nó de saída. Inicialize a rede com pesos e vieses predefinidos.
+
+\textbf{Tarefa}: Calcule a saída para um vetor de entrada dado (por exemplo, [0,5, 0,8]) usando a função de ativação sigmoide. Mostre cada etapa da propagação direta.
+
+\item Cálculo de Erro e Descida do Gradiente
+
+\textbf{Objetivo}: Computar o erro e realizar um passo básico de descida do gradiente.
+
+\textbf{Configuração}: Use a saída do Exercício 1 e um valor de saída real dado.
+
+\textbf{Tarefa}: Calcule o erro usando o erro quadrático médio (MSE). Em seguida, compute o gradiente do erro com relação a cada peso na rede. Realize um passo de descida do gradiente para atualizar os pesos, assumindo uma taxa de aprendizado (por exemplo, 0,1).
+
+\item Retropropagação através das Camadas
+
+\textbf{Objetivo}: Entender o processo de retropropagação através de múltiplas camadas.
+
+\textbf{Configuração}: Considere uma rede neural com dois nós de entrada, uma camada oculta com dois nós e um nó de saída. Atribua pesos e vieses aleatórios.
+
+\textbf{Tarefa}: Dado um vetor de entrada e uma saída real, realize manualmente o algoritmo de retropropagação. Compute os gradientes para cada peso e viés na rede. Mostre cada etapa em detalhe, incluindo a aplicação da regra da cadeia.
+
+\item Descida do Gradiente Iterativa
+
+\textbf{Objetivo}: Praticar múltiplas iterações de descida do gradiente.
+
+\textbf{Configuração}: Use um modelo de rede neural simples com pesos e vieses predefinidos.
+
+\textbf{Tarefa}: Dado um pequeno conjunto de dados (por exemplo, 4-5 pontos de dados), realize várias iterações de descida do gradiente. Para cada iteração, calcule a saída, o erro e os gradientes, e atualize os pesos. Observe como o erro muda ao longo das iterações.
+
+\end{enumerate}
+
+\pagebreak
+
+
+\paragraph{Cláusulas definidas e bases de conhecimento}
+
+
+\begin{enumerate}
+    \item Considere a seguinte base de conhecimento (KB):
+    
+    \begin{center}
+        \begin{align*}
+         a & \leftarrow b \wedge c. \\ 
+         b & \leftarrow e. \\ 
+         b & \leftarrow d. \\ 
+         c &. \\ 
+         d & \leftarrow h. \\ 
+         e &. \\
+         g & \leftarrow a \wedge b  \wedge e. \\
+         f & \leftarrow h \wedge b. \\  
+        \end{align*}
+    \end{center}
+    
+
+    \begin{enumerate}
+        \item Apresente um modelo da base de conhecimento apresentada.
+        \item Apresente uma interpretação que não é um modelo da base de conhecimento apresentada.
+        \item Mostre como uma prova bottom-up funcionaria para esta base de conhecimento. Apresente todas as consequências lógicas desta KB.
+        \item Apresente uma prova top-down para a pergunta $ask$ $g$.
+    \end{enumerate}
+
+\end{enumerate}
+    
+
+
+\end{document}
