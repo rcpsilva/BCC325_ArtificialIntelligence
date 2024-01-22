@@ -1,0 +1,143 @@
+%%% Template para anotações de aula
+%%% Feito por Daniel Campos com base no template de Willian Chamma que fez com base no template de  Mikhail Klassen
+
+
+
+\documentclass[12pt,a4paper, brazil]{article}
+
+%%%%%%% INFORMAÇÕES DO CABEÇALHO
+\newcommand{\workingDate}{\textsc{\selectlanguage{portuguese}\today}}
+\newcommand{\userName}{BCC740}
+\newcommand{\institution}{UFOP}
+\usepackage{researchdiary_png}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{verbatim}
+\newenvironment{metaverbatim}{\verbatim}{\endverbatim}
+
+\begin{document}
+\begin{center}
+{\textbf {\huge Proposições e Inferência}}\\[5mm]
+%{\large Autor: } \\[2mm]
+%{\large Orientador: } \\[5mm]
+\today\\[5mm] %% se quiser colocar data
+\end{center}
+
+
+\section*{Source}
+
+Chapter 5 - \url{https://artint.info/index.html}
+
+%\section*{Resumo}
+
+\section{Propositional Definite Clauses}
+
+The language of propositional definite clauses is a subset of propositional calculus that does not allow uncertainty or ambiguity. In this language, propositions have the same meaning as in propositional calculus, but not all compound propositions are allowed in a knowledge base.
+
+The syntax of propositional definite clauses is defined as follows:
+
+\begin{itemize}
+    \item An atomic proposition or atom is the same as in propositional calculus.
+    \item A definite clause is of the form
+    \[ h \leftarrow a_1 \land \ldots \land a_n. \]
+    where \( h \) is an atom, the head of the clause, and each \( a_i \) is an atom. It can be read “\( h \) if \( a_1 \) and \(\ldots\) and \( a_n \)”.
+    If \( n > 0 \), the clause is called a rule, where \( a_1 \land \ldots \land a_n \) is the body of the clause.
+    \item If \( n = 0 \), the arrow can be omitted and the clause is called an atomic clause or fact. The clause has an empty body.
+\end{itemize}
+
+A knowledge base is a set of definite clauses.
+
+
+\section{Queries and Answers}
+
+\begin{enumerate}
+  \item One reason to build a description of a real or imaginary world is to be able to determine what else must be true in that world. 
+
+  \item After the computer is given a knowledge base about a particular domain, a user might like to ask the computer questions about that domain. 
+  
+  \item The computer can answer whether or not a proposition is a logical consequence of the knowledge base. A user that knows the meaning of the atoms, for example when is \( p \land q \land r_3 \) true, can interpret the answer in terms of the domain.
+  
+  \item A query is a way of asking whether a proposition is a logical consequence of a knowledge base. Once the system has been provided with a knowledge base, a query is used to ask whether a proposition is a logical consequence of the knowledge base. Queries have the form
+  
+  \[ \text{ask} \quad p. \]
+  
+  where \( p \) is an atom or a conjunction of atoms (analogous to the body of a rule).
+  
+  \item  A query is a question that has the answer yes if the body is a logical consequence of the knowledge base, or the answer no if the body is not a consequence of the knowledge base. The latter does not mean that \( p \land q \land r \) is false in the intended interpretation but rather that it is impossible to determine whether it is true or false based on the knowledge provided.
+  
+\end{enumerate}
+
+\section{Proofs}
+
+\begin{enumerate}
+  \item So far, we have specified what an answer is, but not how it can be computed. The definition of \(\models\) specifies which propositions should be logical consequences of a knowledge base but not how to compute them. 
+  
+  \item The problem of deduction is to determine if some proposition is a logical consequence of a knowledge base. Deduction is a specific form of inference.
+
+  \item A proof is a mechanically derivable demonstration that a proposition logically follows from a knowledge base. 
+  
+  \item A theorem is a provable proposition. A proof procedure is a -- possibly non-deterministic -- algorithm for deriving consequences of a knowledge base. 
+  
+  \item Given a proof procedure, \( KB \vdash p \) means \( p \) can be proved or derived from knowledge base \( KB \).
+  
+  \item A proof procedure's quality can be judged by whether it computes what it is meant to compute.
+  
+  \item A proof procedure is \textbf{sound} with respect to the semantics if everything that can be derived from a knowledge base is a logical consequence of the knowledge base. That is, if \( KB \vdash p \), then \( KB \models p \).
+  
+  \item A proof procedure is \textbf{complete} with respect to the semantics if there is a proof of each logical consequence of the knowledge base. That is, if \( KB \models p \), then \( KB \vdash p \).
+  
+\end{enumerate}
+
+\pagebreak
+
+\subsection{Botton-up}
+
+\begin{algorithm}[!ht]
+  \caption{Bottom-up proof procedure for computing consequences of \( KB \)}
+  \begin{algorithmic}[1]
+  \STATE \textbf{procedure} Prove\_DC\_BU(\( KB \))
+  \STATE \textbf{Inputs}
+  \STATE \quad \( KB \): a set of definite clauses
+  \STATE \textbf{Output}
+  \STATE \quad Set of all atoms that are logical consequences of \( KB \)
+  \STATE \textbf{Local}
+  \STATE \quad \( C \) is a set of atoms
+  \STATE \quad \( C := \{\} \)
+  \STATE \textbf{repeat}
+  \STATE \quad select “\( h \leftarrow p_1 \land \ldots \land p_n \)” in \( KB \) where \( p_i \in C \) for all \( i \), and \( h \notin C \)
+  \STATE \quad \( C := C \cup \{h\} \)
+  \STATE \textbf{until} no more definite clauses can be selected
+  \STATE \textbf{return} \( C \)
+  \end{algorithmic}
+  \end{algorithm}
+
+\subsection{Top-down}
+
+\begin{algorithm}[!ht]
+
+\caption{Bottom-up proof procedure for computing consequences of \( KB \)}
+\label{alg:prove-dc-bu}
+\begin{algorithmic}[1]
+\STATE \textbf{procedure} Prove\_DC\_BU(\( KB \))
+\STATE \textbf{Inputs}
+\STATE \quad \( KB \): a set of definite clauses
+\STATE \textbf{Output}
+\STATE \quad Set of all atoms that are logical consequences of \( KB \)
+\STATE \textbf{Local}
+\STATE \quad \( C \) is a set of atoms
+\STATE \quad \( C := \{\} \)
+\STATE \textbf{repeat}
+\STATE \quad select “\( h \leftarrow (p_1 \land \ldots \land p_n) \)” in \( KB \) where \( p_i \in C \) for all \( i \), and \( h \notin C \)
+\STATE \quad \( C := C \cup \{h\} \)
+\STATE \textbf{until} no more definite clauses can be selected
+\STATE \textbf{return} \( C \)
+\end{algorithmic}
+\end{algorithm}
+
+
+
+
+%%% as referências devem estar em formato bibTeX no arquivo referencias.bib
+\printbibliography
+
+\end{document}
