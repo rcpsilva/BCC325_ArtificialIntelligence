@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber main"] 1705890081 "main.bcf" "main.bbl" "main" 1705892152 0
+["biber main"] 1705890081 "main.bcf" "main.bbl" "main" 1705947105 0
   "./referencias.bib" 1683654181 750 38e35a24a6f7c36933992e01978c2d32 ""
-  "main.bcf" 1705892150 112668 87994e73a30234a166e514529103e64d "pdflatex"
+  "main.bcf" 1705947104 112668 87994e73a30234a166e514529103e64d "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1705892140 "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-2/LectureNotes/Latex Sources/Lecture Notes (Basics of Expert Systems)/main.tex" "main.pdf" "main" 1705892152 0
-  "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-2/LectureNotes/Latex Sources/Lecture Notes (Basics of Expert Systems)/main.tex" 1705892131 6425 b3cca1402ddeffa2d620ee6cbe5800df ""
+["pdflatex"] 1705947100 "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-2/LectureNotes/Latex Sources/Lecture Notes (Basics of Expert Systems)/main.tex" "main.pdf" "main" 1705947105 0
+  "c:/Users/rcpsi/source/repos/BCC325_2022_01/2023-2/LectureNotes/Latex Sources/Lecture Notes (Basics of Expert Systems)/main.tex" 1705947096 6534 d7ab23cd70bf490287ef179752424888 ""
   "c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1679353348 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1679353348 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1679354266 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -294,11 +294,11 @@
   "c:/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1679360027 7883451 1906458788776f148e040852b775af01 ""
   "c:/texlive/2022/texmf.cnf" 1679359856 713 e69b156964470283e0530f5060668171 ""
   "decom-logo.png" 1683654181 7790 67fe339de739ef24fe899c5d246b306f ""
-  "main.aux" 1705892150 1906 1798cdfd278e76ffa0b419e5bfa717c0 "pdflatex"
+  "main.aux" 1705947104 1858 6fef9a7e871388d70559e0718cc99f62 "pdflatex"
   "main.bbl" 1705890085 486 ee04f40f768daeed26442158e95aba61 "biber main"
-  "main.out" 1705892150 615 d3e87beb85fde80b2cdd0a9978c4153f "pdflatex"
-  "main.run.xml" 1705892150 2483 2d8f64f6e944ba7291da572943d6fd0c "pdflatex"
-  "main.tex" 1705892131 6425 b3cca1402ddeffa2d620ee6cbe5800df ""
+  "main.out" 1705947104 615 d3e87beb85fde80b2cdd0a9978c4153f "pdflatex"
+  "main.run.xml" 1705947104 2483 2d8f64f6e944ba7291da572943d6fd0c "pdflatex"
+  "main.tex" 1705947096 6534 d7ab23cd70bf490287ef179752424888 ""
   "researchdiary_png.sty" 1686089091 3080 fde4a7a4ff31f1107dd69296fc10690b ""
   (generated)
   "main.aux"

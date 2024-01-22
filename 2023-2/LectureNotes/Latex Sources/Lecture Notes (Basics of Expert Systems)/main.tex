@@ -113,27 +113,27 @@ A knowledge base is a set of definite clauses.
 
 \subsection{Top-down}
 
-\begin{algorithm}[!ht]
-
-\caption{Bottom-up proof procedure for computing consequences of \( KB \)}
-\label{alg:prove-dc-bu}
-\begin{algorithmic}[1]
-\STATE \textbf{procedure} Prove\_DC\_BU(\( KB \))
-\STATE \textbf{Inputs}
-\STATE \quad \( KB \): a set of definite clauses
-\STATE \textbf{Output}
-\STATE \quad Set of all atoms that are logical consequences of \( KB \)
-\STATE \textbf{Local}
-\STATE \quad \( C \) is a set of atoms
-\STATE \quad \( C := \{\} \)
-\STATE \textbf{repeat}
-\STATE \quad select “\( h \leftarrow (p_1 \land \ldots \land p_n) \)” in \( KB \) where \( p_i \in C \) for all \( i \), and \( h \notin C \)
-\STATE \quad \( C := C \cup \{h\} \)
-\STATE \textbf{until} no more definite clauses can be selected
-\STATE \textbf{return} \( C \)
-\end{algorithmic}
-\end{algorithm}
-
+  \begin{algorithm}
+    \caption{Top-down definite clause proof procedure}
+    \label{alg:prove-dc-td}
+    \begin{algorithmic}[1]
+    \STATE \textbf{non-deterministic procedure} Prove\_DC\_TD(\( KB, Q \))
+    \STATE \textbf{Inputs}
+    \STATE \quad \( KB \): a set of definite clauses
+    \STATE \quad \( Q \): a set of atoms to prove
+    \STATE \textbf{Output}
+    \STATE \quad \( YES \) if \( KB \models Q \) and the procedure fails otherwise
+    \STATE \textbf{Local}
+    \STATE \quad \( C \) is a set of atoms
+    \STATE \quad \( C := Q \)
+    \STATE \textbf{repeat}
+    \STATE \quad select an atom \( p \) in \( C \)
+    \STATE \quad choose definite clause “\( p \leftarrow B \)” in \( KB \) with \( p \) as head
+    \STATE \quad \( C := C \cup (B \setminus \{p\}) \)
+    \STATE \textbf{until} \( C = \{\} \)
+    \STATE \textbf{return} \( YES \)
+    \end{algorithmic}
+    \end{algorithm}
 
 
 
