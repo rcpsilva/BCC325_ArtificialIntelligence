@@ -14,7 +14,7 @@ class RandomAgent():
 
             path = self.F.pop(np.random.randint(0,len(self.F)))
 
-            action = {'to_visit':[path[-1]]}
+            action = {'to_visit':path[-1]}
 
             self.percepts = self.env.react(action)
 
