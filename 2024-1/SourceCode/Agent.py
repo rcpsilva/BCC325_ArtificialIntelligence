@@ -14,11 +14,17 @@ class RandomAgent():
 
             path = self.F.pop(np.random.randint(0,len(self.F)))
 
-            action = {'to_visit':path[-1]}
+            action = {'to_visit':path[-1],
+                      'path':path,
+                      'freeze':False}
 
             self.percepts = self.env.react(action)
 
             if all(path[-1] == self.percepts['finish']):
+                action = {'to_visit':path[-1],
+                      'path':path,
+                      'freeze':True}
+                self.percepts = self.env.react(action)
                 return path
             
             for n in self.percepts['neighbors']:
