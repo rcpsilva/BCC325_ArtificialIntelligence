@@ -21,4 +21,32 @@ class Maze():
 
         neighbors = []
         costs = []
+        for d in self.directions:
+            candidate = pos+d
+            if (self.map[candidate[0]][candidate[1]] != 1) and (0 <= candidate[0] < self.nrows) and (0 <= candidate[1] < self.ncols): 
+                neighbors.append(candidate)
+                costs.append(self.map[candidate[0]][candidate[1]])
+
+        return neighbors,costs
+
+
+    def initial_stimuli(self):
+
+        neighbors, costs = self.get_neighbors(self.start)
+
+        return {'pos':self.start,
+                'finish':self.finish,
+                'neighbors': neighbors,
+                'neighbors_costs': costs}
+
+    def react(self,action):
+
+        pos = action['to_visit']
+
+        neighbors, costs = self.get_neighbors(pos)
+
+        return {'pos':pos,
+                'finish':self.finish,
+                'neighbors': neighbors,
+                'neighbors_costs': costs}
         
