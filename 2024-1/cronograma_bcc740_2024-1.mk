@@ -1,24 +1,23 @@
 ## Cronograma
 
 Semana                  & Conteúdo 
------------------------ & -------------------------------------------- 
-25/03/2024 à 27/03/2024 & O que é Inteligência Artificial?             
-01/04/2024 à 03/04/2024 & O que é Inteligência Artificial?             
-08/04/2024 à 10/04/2024 & Busca em espaço de estados                   
+----------------------- & ------------- 
+25/03/2024 à 27/03/2024 & O que é Inteligência Artificial? 
+01/04/2024 à 03/04/2024 & O que é Inteligência Artificial? 
+08/04/2024 à 10/04/2024 & Busca em espaço de estados              
 08/07/2024 à 17/07/2024 & Busca em espaço de estados
-22/07/2024 à 24/07/2024 & Problemas de satisfação de restrições
-29/07/2024 & Problemas de satisfação de restrições
-05/08/2024 à 07/08/2024 & Prova 1 (05/08) e Correção
-12/08/2024 à 14/08/2024 & Aprendizado de máquina
-19/08/2024 à 21/08/2024 & Aprendizado de máquina
-26/08/2024 à 28/08/2024 & Aprendizado de máquina
-02/09/2024 à 04/09/2024 & Aprendizado de máquina
-09/09/2024 à 11/09/2024 & Prova 2 (09/09) e Correção
-16/09/2024 à 18/09/2024 & Representação do conhecimento e inferência
-23/09/2024 à 25/09/2024 & Representação do conhecimento e inferência
-30/09/2024 à 02/10/2024 & Representação do conhecimento e inferência
-07/10/2024 e 14/10/2024 & Prova 3 (07/10) e Correção
-21/10/2024 & Exame Especial
+22/07/2024 à 24/07/2024 & Problemas de satisfação de restrições 
+29/07/2024 à 31/07/2024 & Problemas de satisfação de restrições 
+05/08/2024 à 07/08/2024 & Prova 1 (05/08) e Correção 
+12/08/2024 à 14/08/2024 & Aprendizado de máquina 
+19/08/2024 à 21/08/2024 & Aprendizado de máquina 
+26/08/2024 à 28/08/2024 & Aprendizado de máquina 
+02/09/2024 à 04/09/2024 & Aprendizado de máquina 
+09/09/2024 à 11/09/2024 & Prova 2 (09/09) e Correção 
+16/09/2024 à 18/09/2024 & Representação do conhecimento e inferência 
+23/09/2024 à 25/09/2024 & Representação do conhecimento e inferência 
+30/09/2024 à 02/10/2024 & Prova 3 (07/10) e Correção 
+14/10/2024 ------------ & Exame Especial 
 
 Metodologia:
 
