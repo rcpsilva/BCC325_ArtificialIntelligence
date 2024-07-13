@@ -1,24 +1,24 @@
 ## Cronograma
 
-| Semana                  | Conteúdo                                     |
-| ----------------------- | -------------------------------------------- |
-| 25/03/2024 à 27/03/2024 | O que é Inteligência Artificial?             |
-| 01/04/2024 à 03/04/2024 | O que é Inteligência Artificial?             |
-| 08/04/2024 à 10/04/2024 | Busca em espaço de estados                   |
-| 15/04/2024 à 17/04/2024 | Busca em espaço de estados                   |
-| 22/04/2024 à 24/04/2024 | Problemas de statisfação de restrições       |
-| 29/04/2024              | Problemas de statisfação de restrições       |
-| 06/05/2024 à 08/05/2024 | Prova 1 (06/05) e Correção                   |
-| 13/05/2024 à 15/05/2024 | Aprendizado de máquina                       |
-| 20/05/2024 à 22/05/2024 | Aprendizado de máquina                       |
-| 27/05/2024 à 29/05/2024 | Aprendizado de máquina                       |
-| 03/06/2024 à 05/06/2024 | Aprendizado de máquina                       |
-| 10/06/2024 à 12/06/2024 | Prova 2 (10/06) e Correção                   |
-| 17/06/2024 à 19/06/2024 | Representação do conhecimento e inferência   |
-| 24/06/2024 à 26/06/2024 | Representação do conhecimento e inferência   |
-| 01/07/2024 à 03/07/2024 | Representação do conhecimento e inferência   |
-| 10/07/2024 e 15/07/2024 | Prova 3 (10/07) e Correção                   |
-| 22/07/2024              | Exame Especial                               |
+Semana                  & Conteúdo 
+----------------------- & -------------------------------------------- 
+25/03/2024 à 27/03/2024 & O que é Inteligência Artificial?             
+01/04/2024 à 03/04/2024 & O que é Inteligência Artificial?             
+08/04/2024 à 10/04/2024 & Busca em espaço de estados                   
+08/07/2024 à 17/07/2024 & Busca em espaço de estados
+22/07/2024 à 24/07/2024 & Problemas de satisfação de restrições
+29/07/2024 & Problemas de satisfação de restrições
+05/08/2024 à 07/08/2024 & Prova 1 (05/08) e Correção
+12/08/2024 à 14/08/2024 & Aprendizado de máquina
+19/08/2024 à 21/08/2024 & Aprendizado de máquina
+26/08/2024 à 28/08/2024 & Aprendizado de máquina
+02/09/2024 à 04/09/2024 & Aprendizado de máquina
+09/09/2024 à 11/09/2024 & Prova 2 (09/09) e Correção
+16/09/2024 à 18/09/2024 & Representação do conhecimento e inferência
+23/09/2024 à 25/09/2024 & Representação do conhecimento e inferência
+30/09/2024 à 02/10/2024 & Representação do conhecimento e inferência
+07/10/2024 e 14/10/2024 & Prova 3 (07/10) e Correção
+21/10/2024 & Exame Especial
 
 Metodologia:
 
