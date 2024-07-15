@@ -28,7 +28,7 @@
 \section{Questões}
 
 \begin{enumerate}
-    \item (Seção 3.1) O que significa busca no contexto dos métodos que iremos estudar?
+    \item (Seção 3.1) O que significa busca no contexto dos métodos da leitura proposta?
     \item (Seção 3.2) Quais são as premissas de um problem de busca em espaços de estados?
     \item (Seção 3.2) Quais são os componentes de um problema de busca em espaços de estados?
     \item (Seção 3.3) Qual a relação entre espaços de estados e grafos?
@@ -36,6 +36,46 @@
     \item (Seção 3.4) Apresente o algoritmo genérico de busca?
     \item (Seção 3.5.1) Apresente um exemplo de execução do algoritmo de busca em profundidade. (Apresente o estado da fronteira a cada interação.)
     \item (Seção 3.5.2) Apresente um exemplo de execução do algoritmo de busca em largura.(Apresente o estado da fronteira a cada interação.)
+ 
+
+        \item Considere o problema de encontrar um caminho no labirinto abaixo. O objetivo é ir da posição \textbf{s} até a posição \textbf{g}. O agente pode se mover horizontalmente e verticalmente. 
+            
+        \begin{enumerate}
+            
+            \item No labirinto abaixo, numere os nós expandidos (visitados) por um agente que implementa o algoritmo de busca e profundidade. A ordem das ações é para cima, para a esquerda, para a direita, e para baixo. Assuma poda de ciclos.
+            \begin{figure}[!ht]
+                \centering
+                \includegraphics[width=0.35\textwidth]{grid.png}
+            \end{figure}
+        
+            \item No labirinto abaixo, numere os nós expandidos (visitados) por um agente que implementa um algoritmo de busca de Menor custo primeiro.
+            \begin{figure}[!ht]
+                \centering
+                \includegraphics[width=0.35\textwidth]{grid.png}
+            \end{figure}
+        
+            \item No labirinto abaixo, escreva em cada nó o valor da heurística do nó, considerando a distância de Manhattan. Considere que cada quadrado tem lado 1 u.m.
+            \begin{figure}[!ht]
+                \centering
+                \includegraphics[width=0.35\textwidth]{grid.png}
+            \end{figure}
+            
+            \item No labirinto abaixo, numere os nós expandidos (visitados) por um agente que implementa um algoritmo guloso pela heurística calculada acima. Assuma poda de ciclos.
+            \begin{figure}[!ht]
+                \centering
+                \includegraphics[width=0.35\textwidth]{grid.png}
+            \end{figure}
+            
+            \vspace{2cm}
+            
+            \item (1pt) No labirinto abaixo, numere os nós expandidos (visitados) por um agente que implementa o algoritmo $A^*$ considerando a distância de Manhattan como custo e heurística.
+            \begin{figure}[!ht]
+                \centering
+                \includegraphics[width=0.35\textwidth]{grid.png}
+            \end{figure}
+            
+        \end{enumerate}
+
 \end{enumerate}
 
 
@@ -126,7 +166,7 @@
 
 % \begin{figure}[!ht]
 %     \centering
-%     \includegraphics[width=0.4\textwidth]{room.PNG}
+%     \includegraphics[width=0.35\textwidth]{room.PNG}
 %     \caption{Ilustração da classe \texttt{Room}}
 %     \label{fig:room}
 % \end{figure}
