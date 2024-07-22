@@ -8,7 +8,7 @@ ncols = 10
 prob = 0.3
 
 maze = Maze(start,finish,nrows,ncols,prob,update_rate=0.05)
-ag = BFSAgent(maze)
+ag = DFSAgent(maze)
 
 ag.act()
 
