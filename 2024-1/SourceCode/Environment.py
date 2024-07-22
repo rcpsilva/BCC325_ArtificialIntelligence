@@ -7,7 +7,7 @@ class Maze():
         
         self.start = np.array(start)
         self.finish = np.array(finish)
-        self.map = np.random.random((nrows,ncols))*0.7
+        self.map = 0.3 + np.random.random((nrows,ncols))*0.4
         self.directions = np.array([[0,1],[0,-1],[1,0],[-1,0]])
         self.nrows = nrows
         self.ncols = ncols
