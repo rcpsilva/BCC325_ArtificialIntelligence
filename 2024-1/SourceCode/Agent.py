@@ -119,16 +119,15 @@ class LCFAgent():
 
         self.percepts = env.initial_stimuli()
         self.F = []
-        heapq.heappush(self.F,(0,[self.percepts['pos']]))
+        heapq.heappush(self.F,(0,np.random.rand(),[self.percepts['pos']]))
         self.env = env
 
     def act(self):
         
         while self.F:
 
-            element = heapq.heappop(self.F)
-            path = element[1]
-
+            path = heapq.heappop(self.F)[2]
+            
             action = {'to_visit':path[-1],
                       'path':path,
                       'freeze':False}
@@ -149,8 +148,45 @@ class LCFAgent():
                         cycle = True
                 if not cycle:
                     c = cost(path+[n],self.env.map)
-                    heapq.heappush(self.F,(c , path + [n]))
+                    heapq.heappush(self.F,(c,np.random.rand(),path + [n]))
 
+class AStarAgent():
+
+    def __init__(self,env):
+
+        self.percepts = env.initial_stimuli()
+        self.F = []
+        heapq.heappush(self.F,(0+h(self.percepts['pos'],self.percepts['finish']),np.random.rand(),[self.percepts['pos']]))
+        self.env = env
+
+    def act(self):
+        
+        while self.F:
+
+            path = heapq.heappop(self.F)[2]
+            
+            action = {'to_visit':path[-1],
+                      'path':path,
+                      'freeze':False}
+
+            self.percepts = self.env.react(action)
+
+            if all(path[-1] == self.percepts['finish']):
+                action = {'to_visit':path[-1],
+                      'path':path,
+                      'freeze':True}
+                self.percepts = self.env.react(action)
+                return path
+            
+            for n in self.percepts['neighbors']:
+                cycle = False
+                for node in path:
+                    if n[0]==node[0] and n[1]==node[1]:
+                        cycle = True
+                if not cycle:
+                    c = cost(path+[n],self.env.map)
+                    heu = h(self.percepts['pos'],self.percepts['finish'])
+                    heapq.heappush(self.F,(c+heu,np.random.rand(),path + [n]))
 
 class BBAgent():
 
@@ -198,3 +234,5 @@ class BBAgent():
                         self.F.append(path + [n])
 
         return self.best_path
+    
+   

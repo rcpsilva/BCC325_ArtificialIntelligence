@@ -7,7 +7,7 @@ class Maze():
         
         self.start = np.array(start)
         self.finish = np.array(finish)
-        self.map = 0.3 + np.random.random((nrows,ncols))*0.4
+        self.map = 0.3 + np.random.random((nrows,ncols))*0.6
         self.directions = np.array([[0,1],[0,-1],[1,0],[-1,0]])
         self.nrows = nrows
         self.ncols = ncols
@@ -17,7 +17,7 @@ class Maze():
             for j in range(self.map.shape[1]):
                 if (i != start[0] or j!=start[1]) and (i != finish[0] or j!=finish[1]):
                     if np.random.random() < prob:
-                        self.map[i][j] = 1  
+                        self.map[i][j] = 1
 
         self.render_environment()
 
