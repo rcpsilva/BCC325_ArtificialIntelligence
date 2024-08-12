@@ -1,0 +1,196 @@
+\documentclass{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{Resumo sobre Aprendizado de Máquina}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introdução ao Aprendizado de Máquina}
+
+O aprendizado de máquina é uma subárea da inteligência artificial que se concentra no desenvolvimento de algoritmos que permitem que sistemas aprendam a partir de dados e melhorem seu desempenho ao longo do tempo. Existem três tipos principais de aprendizado de máquina: aprendizado supervisionado, aprendizado não supervisionado e aprendizado por reforço.
+
+\section{Tipos de Aprendizado de Máquina}
+
+\subsection{Aprendizado Supervisionado}
+
+\textbf{Definição:} O aprendizado supervisionado envolve o uso de um conjunto de exemplos rotulados, onde cada exemplo é descrito por um conjunto de \textbf{características de entrada} $\{X_1, X_2, \dots, X_m\}$ e um conjunto de \textbf{características-alvo} $\{Y_1, Y_2, \dots, Y_k\}$. O objetivo é aprender uma função que mapeia as características de entrada para as características-alvo.
+
+\textbf{Aplicações:}
+\begin{itemize}
+    \item \textbf{Predição de Atividades:} Um smartwatch pode prever a atividade do usuário (ex: dormir, caminhar) com base na frequência cardíaca e no movimento.
+    \item \textbf{Previsão de Enchentes:} Prever a probabilidade de uma área inundar com base na topografia, clima e uso do solo.
+    \item \textbf{Reconhecimento de Escrita:} Prever palavras que alguém escreveu à mão em um tablet com base na forma das letras.
+\end{itemize}
+
+\subsection{Aprendizado Não Supervisionado}
+
+\textbf{Definição:} No aprendizado não supervisionado, o modelo é treinado em dados que não possuem rótulos. O objetivo é identificar padrões ou estruturas ocultas nos dados.
+
+\textbf{Aplicações:}
+\begin{itemize}
+    \item \textbf{Agrupamento de Clientes (Customer Segmentation):} Técnicas como K-means são usadas para segmentar clientes em grupos com características semelhantes.
+    \item \textbf{Redução de Dimensionalidade:} Algoritmos como Análise de Componentes Principais (PCA) reduzem a quantidade de variáveis em um conjunto de dados, preservando as características mais importantes.
+    \item \textbf{Detecção de Anomalias:} Identificar padrões incomuns em dados, que podem ser sinais de fraudes ou defeitos em processos industriais.
+\end{itemize}
+
+\subsection{Aprendizado por Reforço}
+
+\textbf{Definição:} No aprendizado por reforço, um agente aprende a tomar decisões por meio de interações com o ambiente. O agente recebe recompensas ou punições com base em suas ações, aprendendo a maximizar as recompensas cumulativas ao longo do tempo.
+
+\textbf{Aplicações:}
+\begin{itemize}
+    \item \textbf{Robótica:} Treinar robôs para realizar tarefas complexas, como caminhar ou pegar objetos, por tentativa e erro.
+    \item \textbf{Jogos:} Algoritmos como AlphaGo, que superam jogadores humanos em jogos de tabuleiro ou vídeo games.
+    \item \textbf{Sistemas de Recomendação:} Adaptar continuamente as sugestões com base nas interações e preferências dos usuários ao longo do tempo.
+\end{itemize}
+
+\section{Principais Tarefas do Aprendizado Supervisionado}
+
+O aprendizado supervisionado pode ser aplicado em várias tarefas principais, cada uma com seus próprios objetivos e métodos.
+
+\subsection{Classificação}
+
+Na classificação, o objetivo é categorizar as entradas em uma ou mais classes discretas. Exemplos incluem:
+
+\begin{itemize}
+    \item \textbf{Diagnóstico Médico:} Classificar pacientes como tendo ou não uma determinada doença com base em sintomas e exames.
+    \item \textbf{Detecção de Spam:} Classificar emails como spam ou não-spam.
+\end{itemize}
+
+\subsection{Regressão}
+
+A tarefa de regressão envolve prever um valor contínuo para as entradas. Exemplos incluem:
+
+\begin{itemize}
+    \item \textbf{Previsão de Preços:} Prever o preço de uma casa com base em características como tamanho, localização, etc.
+    \item \textbf{Previsão de Vendas:} Estimar o número de vendas de um produto com base em campanhas de marketing e outras variáveis.
+\end{itemize}
+
+\subsection{Detecção de Anomalias}
+
+Detecção de anomalias é a tarefa de identificar entradas que se desviam significativamente do padrão esperado. Exemplos incluem:
+
+\begin{itemize}
+    \item \textbf{Fraude em Cartões de Crédito:} Identificar transações que são possivelmente fraudulentas.
+    \item \textbf{Monitoramento de Equipamentos:} Detectar falhas potenciais em equipamentos industriais antes que ocorram.
+\end{itemize}
+
+\subsection{Classificação Multiclasse e Multirrotulo}
+
+Além da classificação binária, onde as entradas são atribuídas a uma de duas classes, existem problemas mais complexos, como:
+
+\begin{itemize}
+    \item \textbf{Classificação Multiclasse:} Onde cada entrada pode ser classificada em uma de várias classes (por exemplo, classificação de espécies animais).
+    \item \textbf{Classificação Multirrotulo:} Onde cada entrada pode pertencer a várias classes simultaneamente (por exemplo, marcar tópicos relevantes em um artigo).
+\end{itemize}
+
+\section{Avaliação de Predições}
+
+\subsection{Funções de Perda}
+
+Dado um conjunto de exemplos $E$ e uma característica-alvo $Y$, seja $\hat{Y}(e)$ a predição para o exemplo $e$. A \textbf{perda} é uma medida de quão próxima a predição está do valor real. Algumas funções de perda comuns são:
+
+\begin{itemize}
+    \item \textbf{Perda 0-1 (L0):}
+    \[
+    \text{loss}(p, a) = \begin{cases} 
+    1 & \text{se } p \neq a \\
+    0 & \text{se } p = a 
+    \end{cases}
+    \]
+
+    \item \textbf{Perda Absoluta (L1):}
+    \[
+    \text{loss}(p, a) = |p - a|
+    \]
+
+    \item \textbf{Perda Quadrática (L2):}
+    \[
+    \text{loss}(p, a) = (p - a)^2
+    \]
+
+    \item \textbf{Perda de Pior Caso (L$\infty$):}
+    \[
+    \text{loss}_{\infty} = \max_{e \in E} |\hat{Y}(e) - Y(e)|
+    \]
+\end{itemize}
+
+\subsection{Erro Médio}
+
+O erro médio em um conjunto de dados $E$ para uma predição $\hat{Y}$ é dado por:
+\[
+\frac{1}{|E|} \sum_{e \in E} \text{loss}(\hat{Y}(e), Y(e))
+\]
+onde $|E|$ é o número de exemplos em $E$.
+
+\section{Métricas de Avaliação de Classificadores}
+
+\subsection{Taxa de Verdadeiros Positivos (Recall)}
+A taxa de verdadeiros positivos é definida como a proporção de positivos reais que foram corretamente classificados:
+\[
+\text{Recall} = \frac{tp}{tp + fn}
+\]
+
+\subsection{Taxa de Falsos Positivos}
+A taxa de falsos positivos é definida como a proporção de negativos reais que foram incorretamente classificados como positivos:
+\[
+\text{Taxa de Falsos Positivos} = \frac{fp}{fp + tn}
+\]
+
+\section{Áreas de Aplicação e Desafios}
+
+Os métodos de aprendizado supervisionado, não supervisionado e por reforço são amplamente aplicados em várias áreas como saúde, finanças, e segurança, mas enfrentam desafios como overfitting, necessidade de grandes volumes de dados e questões éticas relacionadas à privacidade e viés.
+
+\section{Avaliação de Modelos de Aprendizado Supervisionado}
+
+A avaliação de modelos de aprendizado supervisionado é crucial para garantir que o modelo generalize bem para novos dados, ou seja, dados que não foram usados durante o treinamento. Abaixo estão alguns dos principais conceitos e práticas para a avaliação de modelos:
+
+\subsection{Divisão de Conjuntos de Dados}
+
+Uma prática comum para avaliar modelos supervisionados é dividir o conjunto de dados em dois ou três subconjuntos: treinamento, validação, e teste.
+
+\begin{itemize}
+    \item \textbf{Conjunto de Treinamento:} Usado para treinar o modelo, ou seja, ajustar os parâmetros do modelo de acordo com os dados.
+    \item \textbf{Conjunto de Validação:} Usado para ajustar hiperparâmetros e evitar overfitting. A validação permite comparar diferentes configurações de modelos para selecionar a melhor.
+    \item \textbf{Conjunto de Teste:} Usado para avaliar o desempenho do modelo em dados não vistos, garantindo que o modelo generalize bem.
+\end{itemize}
+
+Uma divisão típica pode ser 60\% dos dados para treinamento, 20\% para validação, e 20\% para teste, mas isso pode variar dependendo do tamanho e da natureza do conjunto de dados.
+
+\subsection{Validação Cruzada (Cross-Validation)}
+
+Para garantir uma avaliação mais robusta, especialmente em casos onde o conjunto de dados é pequeno, é comum usar validação cruzada. Na validação cruzada, o conjunto de dados é dividido em várias partes (ou \textit{folds}). O modelo é treinado em \(k-1\) partes e testado na parte restante. Esse processo é repetido \(k\) vezes, e o desempenho final é a média dos resultados em todas as partes.
+
+\subsection{Métricas de Avaliação}
+
+Além da função de perda, existem várias métricas que podem ser usadas para avaliar a performance de modelos de aprendizado supervisionado:
+
+\begin{itemize}
+    \item \textbf{Acurácia:} Proporção de predições corretas sobre o total de exemplos.
+    \item \textbf{Precisão (Precision):} Proporção de predições positivas corretas entre todas as predições positivas feitas pelo modelo.
+    \item \textbf{Revocação (Recall):} Proporção de positivos reais que foram corretamente identificados pelo modelo.
+    \item \textbf{F1-Score:} A média harmônica entre a precisão e a revocação, útil para casos de classes desbalanceadas.
+    \item \textbf{Erro Quadrático Médio (MSE):} Média dos quadrados das diferenças entre os valores previstos e os valores reais, usada principalmente em regressão.
+    \item \textbf{Coeficiente de Determinação (\(R^2\)):} Mede a proporção da variância nos dados dependentes que é explicada pelo modelo, também usada em regressão.
+\end{itemize}
+
+\subsection{Curvas ROC e AUC}
+
+Para problemas de classificação, especialmente quando há um desbalanceamento entre as classes, as curvas ROC (Receiver Operating Characteristic) e a métrica AUC (Area Under the Curve) são amplamente utilizadas. A curva ROC plota a taxa de verdadeiros positivos (Recall) contra a taxa de falsos positivos para diferentes limiares de decisão. O AUC mede a área sob essa curva, indicando a capacidade do modelo em distinguir entre as classes.
+
+\subsection{Overfitting e Underfitting}
+
+\begin{itemize}
+    \item \textbf{Overfitting:} Ocorre quando o modelo se ajusta muito bem aos dados de treinamento, capturando ruídos e padrões não generalizáveis, resultando em baixa performance no conjunto de teste.
+    \item \textbf{Underfitting:} Ocorre quando o modelo é muito simples para capturar os padrões nos dados de treinamento, resultando em baixa performance tanto no treinamento quanto no teste.
+\end{itemize}
+
+Para evitar overfitting, técnicas como regularização (ex: L1, L2), poda de árvores (no caso de árvores de decisão), e métodos de ensemble (ex: Random Forest, Gradient Boosting) podem ser aplicadas.
+
+\end{document}
