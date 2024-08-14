@@ -3,7 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 
-\title{Resumo sobre Aprendizado de Máquina}
+\title{Introdução ao Aprendizado de Máquina}
 \author{}
 \date{}
 
@@ -119,6 +119,18 @@ Dado um conjunto de exemplos $E$ e uma característica-alvo $Y$, seja $\hat{Y}(e
     \[
     \text{loss}_{\infty} = \max_{e \in E} |\hat{Y}(e) - Y(e)|
     \]
+    
+    \item \textbf{Verossimilhança:}
+    \[
+    L(\theta) = \prod_{i=1}^{n} P(Y_i | X_i; \theta)
+    \]
+    A verossimilhança é usada para estimar os parâmetros $\theta$ do modelo que maximizam a probabilidade dos dados observados $\{(X_1, Y_1), \dots, (X_n, Y_n)\}$. Em problemas de classificação, o objetivo é maximizar essa função de verossimilhança para encontrar os parâmetros do modelo.
+
+    \item \textbf{Log-Verossimilhança:}
+    \[
+    \log L(\theta) = \sum_{i=1}^{n} \log P(Y_i | X_i; \theta)
+    \]
+    A log-verossimilhança é a versão logarítmica da função de verossimilhança. Ela é comumente utilizada porque transforma o produto de probabilidades em uma soma, o que facilita a derivação e a otimização durante o treinamento do modelo. Maximizar a log-verossimilhança é equivalente a maximizar a verossimilhança.
 \end{itemize}
 
 \subsection{Erro Médio}
@@ -173,11 +185,37 @@ Além da função de perda, existem várias métricas que podem ser usadas para 
 
 \begin{itemize}
     \item \textbf{Acurácia:} Proporção de predições corretas sobre o total de exemplos.
+    \[
+    \text{Acurácia} = \frac{TP + TN}{TP + TN + FP + FN}
+    \]
+    onde $TP$ são os verdadeiros positivos, $TN$ são os verdadeiros negativos, $FP$ são os falsos positivos, e $FN$ são os falsos negativos.
+
     \item \textbf{Precisão (Precision):} Proporção de predições positivas corretas entre todas as predições positivas feitas pelo modelo.
+    \[
+    \text{Precisão} = \frac{TP}{TP + FP}
+    \]
+
     \item \textbf{Revocação (Recall):} Proporção de positivos reais que foram corretamente identificados pelo modelo.
+    \[
+    \text{Recall} = \frac{TP}{TP + FN}
+    \]
+
     \item \textbf{F1-Score:} A média harmônica entre a precisão e a revocação, útil para casos de classes desbalanceadas.
+    \[
+    \text{F1-Score} = \frac{2 \cdot \text{Precisão} \cdot \text{Recall}}{\text{Precisão} + \text{Recall}}
+    \]
+
     \item \textbf{Erro Quadrático Médio (MSE):} Média dos quadrados das diferenças entre os valores previstos e os valores reais, usada principalmente em regressão.
+    \[
+    \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (\hat{Y}_i - Y_i)^2
+    \]
+    onde $n$ é o número de exemplos, $\hat{Y}_i$ é a predição para o $i$-ésimo exemplo, e $Y_i$ é o valor real do $i$-ésimo exemplo.
+
     \item \textbf{Coeficiente de Determinação (\(R^2\)):} Mede a proporção da variância nos dados dependentes que é explicada pelo modelo, também usada em regressão.
+    \[
+    R^2 = 1 - \frac{\sum_{i=1}^{n} (\hat{Y}_i - Y_i)^2}{\sum_{i=1}^{n} (Y_i - \bar{Y})^2}
+    \]
+    onde $\bar{Y}$ é a média dos valores reais.
 \end{itemize}
 
 \subsection{Curvas ROC e AUC}
