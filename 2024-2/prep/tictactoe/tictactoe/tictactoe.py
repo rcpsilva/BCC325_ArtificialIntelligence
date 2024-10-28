@@ -57,19 +57,19 @@ def winner(board):
     
     # Check rows
     for row in board:
-        if row[0] == row[1] == row[2]:
+        if row[0] == row[1] == row[2] and row[0]!=None:
             return row[0]
 
     # Check columns
     for j in range(len(board)):
-        if board[0][j] == board[1][j] == board[2][j]: 
+        if board[0][j] == board[1][j] == board[2][j] and board[0][j]!=None: 
             return board[0][j]
 
-
     # Check diagonals
-    if board[0][0] == board[1][1] == board[2][2]:
+    if board[0][0] == board[1][1] == board[2][2] and board[0][0]!=None:
         return board[0][0]
-    if board[0][2] == board[1][1] == board[2][0]:
+    
+    if board[0][2] == board[1][1] == board[2][0] and board[0][2]!=None:
         return board[0][2]
 
 
@@ -147,10 +147,6 @@ def min_action(board):
 
 if __name__ == '__main__':
 
-    board = initial_state()
-    board[0][0] = X
+    board = [[O, O, EMPTY], [EMPTY, EMPTY, EMPTY], [X, X, X]]
+    print(winner(board))
     
-    act = actions(board)
-
-    print(player(board))
-    print(act)
