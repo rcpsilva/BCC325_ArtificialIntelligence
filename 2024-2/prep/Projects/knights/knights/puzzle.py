@@ -48,16 +48,12 @@ knowledge3 = And(
     Biconditional(AKnight,Not(AKnave)), # A can only be either a knight or a knave (but not both)
     Biconditional(BKnight,Not(BKnave)), # B can only be either a knight or a knave (but not both)
     Biconditional(CKnight,Not(CKnave)), # C can only be either a knight or a knave (but not both)
-    
     Implication(AKnight,Or(AKnave,AKnight)),
     Implication(AKnave,Not(Or(AKnave,AKnight))),
-
     Implication(BKnight, Implication(AKnight,BKnave)),
     Implication(BKnight, Implication(AKnave,Not(BKnave))),
-
     Implication(BKnight,CKnave),
     Implication(BKnave,Not(CKnave)),
-
     Implication(CKnight,AKnight),
     Implication(CKnave,Not(AKnight)),
     
