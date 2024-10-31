@@ -189,7 +189,7 @@ while True:
                 else:
                     print("No known safe moves, AI making random move.")
             else:
-                print("AI making safe move.")
+                print("AI making safe move")
             time.sleep(0.2)
 
         # Reset game state

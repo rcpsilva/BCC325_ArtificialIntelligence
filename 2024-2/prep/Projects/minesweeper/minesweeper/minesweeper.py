@@ -1,5 +1,6 @@
 import itertools
 import random
+from copy import deepcopy
 
 
 class Minesweeper():
@@ -105,27 +106,30 @@ class Sentence():
         """
         Returns the set of all cells in self.cells known to be mines.
         """
-        raise NotImplementedError
+        return self.cells if self.count == len(self.cells) else set()
 
     def known_safes(self):
         """
         Returns the set of all cells in self.cells known to be safe.
         """
-        raise NotImplementedError
+        return self.cells if self.count == 0 else set()
 
     def mark_mine(self, cell):
         """
         Updates internal knowledge representation given the fact that
         a cell is known to be a mine.
         """
-        raise NotImplementedError
+        if cell in self.cells:
+            self.cells = self.cells - {cell}
+            self.count = self.count - 1
 
     def mark_safe(self, cell):
         """
         Updates internal knowledge representation given the fact that
         a cell is known to be safe.
         """
-        raise NotImplementedError
+        if cell in self.cells:
+            self.cells = self.cells - {cell}
 
 
 class MinesweeperAI():
@@ -182,7 +186,77 @@ class MinesweeperAI():
             5) add any new sentences to the AI's knowledge base
                if they can be inferred from existing knowledge
         """
-        raise NotImplementedError
+        # 1)
+        self.moves_made.add(cell)
+
+        # 2) 
+        self.mark_safe(cell)
+
+        # 3)
+        cells = set()
+        for i in range(cell[0]-1,cell[0]+2):
+            for j in range(cell[1]-1,cell[1]+2):
+                if 0<=i<self.height and 0<=j<self.width:
+                    if ((i,j) not in self.safes) and ((i,j) not in self.mines):
+                        cells.add((i,j))
+                    elif ((i,j) in self.mines):
+                        count -= 1
+
+        self.knowledge.append(Sentence(cells=cells, count=count))
+
+        new_knowledge_added = True
+        while new_knowledge_added:
+            
+            print(f'move: {cell} count: {count}')
+            self.print_knowledge()
+            new_knowledge_added = False
+            
+            # 4)
+            self.knowledge = [k for k in self.knowledge if k.cells]
+
+            nsafes = len(self.safes)
+            nmines = len(self.mines)
+            
+            for sentence in self.knowledge:
+                self.safes |= sentence.known_safes()
+                self.mines |= sentence.known_mines()
+
+            if nsafes < len(self.safes) or nmines < len(self.mines):
+                new_knowledge_added = True    
+
+            for cell in self.mines:
+                for sentence in self.knowledge:
+                    sentence.mark_mine(cell)
+
+            for cell in self.safes:
+                for sentence in self.knowledge:
+                    sentence.mark_safe(cell)
+
+            # 5) 
+            new_knowledge = deepcopy(self.knowledge)
+            for s1 in self.knowledge:
+                for s2 in self.knowledge:
+                    if s1 != s2:
+                       if s1.cells and s2.cells:
+                           if s1.cells.issubset(s2.cells):
+                                if s2.cells-s1.cells:
+                                    if Sentence(cells=s2.cells-s1.cells, count=s2.count-s1.count) not in self.knowledge:
+                                        new_knowledge.append(Sentence(cells=s2.cells-s1.cells, count=s2.count-s1.count))
+                                        new_knowledge_added = True
+
+            self.knowledge = deepcopy(new_knowledge)
+
+
+    def print_knowledge(self):
+        print('----------------KB------------------')
+        for k in self.knowledge:
+            print(k)
+        print(f'-----------------------------')
+        print(f'safes: {self.safes}')
+        print(f'mines: {self.mines}')
+        print(f'moves: {self.moves_made}')
+        print('-----------------------------------')
+
 
     def make_safe_move(self):
         """
@@ -193,7 +267,12 @@ class MinesweeperAI():
         This function may use the knowledge in self.mines, self.safes
         and self.moves_made, but should not modify any of those values.
         """
-        raise NotImplementedError
+
+        for move in self.safes:
+            if move not in self.moves_made:
+                return move
+            
+        return None
 
     def make_random_move(self):
         """
@@ -202,4 +281,27 @@ class MinesweeperAI():
             1) have not already been chosen, and
             2) are not known to be mines
         """
-        raise NotImplementedError
+        rows = list(range(self.height))
+        cols = list(range(self.width))
+
+        random.shuffle(rows)
+        random.shuffle(cols)
+
+        for i in rows:
+            for j in cols:
+                if ((i,j) not in self.moves_made) and ((i,j) not in self.mines):
+                    return (i,j) 
+
+        return None
+    
+if __name__ == '__main__':
+    ai = MinesweeperAI(height=4, width=5)
+    ai.add_knowledge((2, 4), 1)
+    ai.add_knowledge((2, 3), 1)
+    ai.add_knowledge((1, 4), 0)
+    ai.add_knowledge((3, 2), 0)
+    expected = {(3, 4)}
+    result = ai.mines
+
+    print(ai.mines)
+
