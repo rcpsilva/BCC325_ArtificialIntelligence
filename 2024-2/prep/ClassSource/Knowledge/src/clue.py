@@ -40,13 +40,13 @@ knowledge.add(And(
     Not(mustard), Not(kitchen), Not(revolver)
 ))
 
+# Known cards
+knowledge.add(Not(plum))
+knowledge.add(Not(ballroom))
+
 # Unknown card
 knowledge.add(Or(
     Not(scarlet), Not(library), Not(wrench)
 ))
-
-# Known cards
-knowledge.add(Not(plum))
-knowledge.add(Not(ballroom))
 
 check_knowledge(knowledge)
