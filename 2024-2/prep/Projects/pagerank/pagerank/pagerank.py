@@ -2,6 +2,7 @@ import os
 import random
 import re
 import sys
+from copy import deepcopy
 
 DAMPING = 0.85
 SAMPLES = 10000
@@ -57,7 +58,20 @@ def transition_model(corpus, page, damping_factor):
     linked to by `page`. With probability `1 - damping_factor`, choose
     a link at random chosen from all pages in the corpus.
     """
-    raise NotImplementedError
+
+    N = len(corpus)
+    d = damping_factor
+    prob_dist = dict.fromkeys(corpus.keys(), (1-d)/N)
+    
+    if corpus[page]:
+        for link in corpus[page]:
+            prob_dist[link] += d/len(corpus[page])
+    else:
+        for pages in prob_dist:
+            prob_dist[page] += d/N
+
+
+    return prob_dist
 
 
 def sample_pagerank(corpus, damping_factor, n):
@@ -69,7 +83,39 @@ def sample_pagerank(corpus, damping_factor, n):
     their estimated PageRank value (a value between 0 and 1). All
     PageRank values should sum to 1.
     """
-    raise NotImplementedError
+    _corpus = deepcopy(corpus)
+
+    for page in _corpus:
+        if not _corpus[page]:
+            _corpus[page] = _corpus.keys()
+
+
+    pr = dict.fromkeys(_corpus.keys(), 0)
+
+    #select a random page 
+    random_page = random.choice(list(_corpus.keys()))
+    for i in range(n):
+        
+        pr[random_page]+=(1/n)
+
+        prob_dist = transition_model(_corpus,random_page,damping_factor)
+
+        pages = list(prob_dist.keys())
+        probs = list(prob_dist.values())
+
+        random_page = random.choices(pages, weights=probs, k=1)[0]
+
+    return pr
+
+def pretty_print_dict(d, indent=0):
+    for key, value in d.items():
+        print('  ' * indent + str(key) + ':', end=' ')
+        if isinstance(value, dict):
+            print()
+            pretty_print_dict(value, indent + 1)
+        else:
+            print(value)
+
 
 
 def iterate_pagerank(corpus, damping_factor):
@@ -81,7 +127,48 @@ def iterate_pagerank(corpus, damping_factor):
     their estimated PageRank value (a value between 0 and 1). All
     PageRank values should sum to 1.
     """
-    raise NotImplementedError
+
+    _corpus = deepcopy(corpus)
+
+    for page in _corpus:
+        if not _corpus[page]:
+            _corpus[page] = _corpus.keys()
+
+    N = len(_corpus)
+    pr = dict.fromkeys(_corpus.keys(), 1/N)
+    incoming = {key: set() for key in _corpus.keys()}
+
+    for page in _corpus:
+        #print(f'page: {page}')
+        for link in _corpus[page]:
+            #print(link,end=',')
+            incoming[link].add(page)
+
+
+    change = True
+    constant_term  = (1-damping_factor)/N
+
+    while change:
+        
+        max_diff = 0
+
+        for page in pr:
+            
+            sum_prs = 0
+            
+            for page_i in incoming[page]:
+                sum_prs += pr[page_i]/len(_corpus[page_i])
+                    
+            prev = pr[page]
+            pr[page] =  constant_term + damping_factor * sum_prs
+            
+            max_diff = abs(prev-pr[page]) if abs(prev-pr[page]) > max_diff else max_diff
+        
+        if max_diff < 0.001:
+            change = False
+
+
+    return pr
 
 
 if __name__ == "__main__":
