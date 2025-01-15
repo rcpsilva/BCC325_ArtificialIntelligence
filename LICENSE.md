@@ -20,4 +20,4 @@ This course is licensed under a [Creative Commons Attribution-NonCommercial-Shar
 
 ---
 
-For more details, see the [full license text](https://creativecommons.org/licenses/by-n
+For more details, see the [full license text](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
