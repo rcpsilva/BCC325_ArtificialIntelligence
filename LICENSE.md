@@ -1,6 +1,6 @@
 # License
 
-This course is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/) license. This is a human-readable summary of (and not a substitute for) the license. Official translations of this license are available in other languages.
+This repository is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/) license. This is a human-readable summary of (and not a substitute for) the license. Official translations of this license are available in other languages.
 
 ---
 
