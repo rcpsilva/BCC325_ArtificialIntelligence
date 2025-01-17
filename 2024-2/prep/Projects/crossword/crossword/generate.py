@@ -90,8 +90,9 @@ class CrosswordCreator():
         Enforce node and arc consistency, and then solve the CSP.
         """
         self.enforce_node_consistency()
-        #self.ac3()
+        self.ac3()
         #return self.backtrack(dict())
+        
 
     def enforce_node_consistency(self):
         """
@@ -99,23 +100,15 @@ class CrosswordCreator():
         (Remove any values that are inconsistent with a variable's unary
          constraints; in this case, the length of the word.)
         """
-
-        
-        print(self.domains)
         
         for variable in self.domains:
-            print(self.domains[variable])
             new_domain = deepcopy(self.domains[variable])
             for word in self.domains[variable]:
                 if len(word) != variable.length:
                     new_domain.remove(word)
 
             self.domains[variable] = new_domain
-                
-            
 
-
-        print(self.domains)
 
     def revise(self, x, y):
         """
@@ -126,7 +119,27 @@ class CrosswordCreator():
         Return True if a revision was made to the domain of `x`; return
         False if no revision was made.
         """
-        raise NotImplementedError
+
+        def is_good(word_x,word_y,overlap):
+            return word_x[overlap[0]] == word_y[overlap[1]]
+
+        overlap = self.crossword.overlaps[(x,y)]
+        removals = set()
+
+        for dx in self.domains[x]:
+            good_to_go = False
+            for dy in self.domains[y]:
+                if is_good(dx,dy,overlap):
+                    good_to_go = True
+
+            if not good_to_go:
+                removals.add(dx)
+        
+        if removals:
+            self.domains[x] -= removals
+            return True
+        
+        return False
 
     def ac3(self, arcs=None):
         """
@@ -137,7 +150,8 @@ class CrosswordCreator():
         Return True if arc consistency is enforced and no domains are empty;
         return False if one or more domains end up empty.
         """
-        raise NotImplementedError
+        print('ac3')
+        self.revise(Variable(0, 1, 'down', 5),Variable(0, 1, 'across', 3))
 
     def assignment_complete(self, assignment):
         """
