@@ -1,5 +1,6 @@
 import random
 
+rel_path = '2024-2/prep/ClassSource/Optimization/src3/src3/hospitals/'
 
 class Space():
 
@@ -148,13 +149,13 @@ class Space():
              self.height * cell_size + cost_size + padding * 2),
             "white"
         )
-        house = Image.open("assets/images/House.png").resize(
+        house = Image.open(rel_path+"assets/images/House.png").resize(
             (cell_size, cell_size)
         )
-        hospital = Image.open("assets/images/Hospital.png").resize(
+        hospital = Image.open(rel_path+"assets/images/Hospital.png").resize(
             (cell_size, cell_size)
         )
-        font = ImageFont.truetype("assets/fonts/OpenSans-Regular.ttf", 30)
+        font = ImageFont.truetype(rel_path+"assets/fonts/OpenSans-Regular.ttf", 30)
         draw = ImageDraw.Draw(img)
 
         for i in range(self.height):
@@ -196,4 +197,4 @@ for i in range(15):
     s.add_house(random.randrange(s.height), random.randrange(s.width))
 
 # Use local search to determine hospital placement
-hospitals = s.hill_climb(image_prefix="hospitals", log=True)
+hospitals = s.hill_climb(image_prefix=rel_path+"hospitals", log=True)
