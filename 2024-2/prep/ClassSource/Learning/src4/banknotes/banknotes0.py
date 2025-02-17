@@ -12,7 +12,7 @@ from sklearn.neighbors import KNeighborsClassifier
 model = GaussianNB()
 
 # Read data in from file
-with open("banknotes.csv") as f:
+with open(r"C:\Users\rcpsi\OneDrive\Documents\GitHub\BCC325_ArtificialIntelligence\2024-2\prep\ClassSource\Learning\src4\banknotes\banknotes.csv") as f:
     reader = csv.reader(f)
     next(reader)
 
