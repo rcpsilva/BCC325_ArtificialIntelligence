@@ -1,0 +1,34 @@
+## Cronograma
+
+Semanas                 & Conteúdo 
+----------------------- & ------------- 
+1 e 2 & Introdução
+3 e 4 & Busca (Prova 1 - 28 de Maio) 
+5 e 6 & Representação e Manipulação do Conhecimento (Prova 2 - 11 de Junho)            
+7 e 8 & Incerteza (Prova 3  - 25 de Junho)   
+9 e 10 & Otimização  (Prova 4 - 09 de Julho)   
+11 e 12 & Aprendizado  (Prova 5 - 23 de Julho)  
+13 e 14 & Redes Neurais (Prova 6 - 06 de Agosto)  
+15 e 16 & Linguagem (Prova 7 - 20 de Agosto)  
+17 & Vista de Provas 
+18 & Exame Especial (01 de Setembro) 
+
+Metodologia:
+
+Projetos práticos: Implementação de vários algoritmos e técnicas de inteligência artificial.
+
+Provas: Conjunto de perguntas para medir do aluno em relação à teoria e às implementações realizadas pelos alunos. Realizado sob demanda do professor.
+
+Leituras recomendadas: Leitura de textos técnicos com a finalidade de proporcionar ao discente a oportunidade de consulta e desenvolvimento de sua capacidade de análise, síntese e crítica de uma bibliografia específica.
+
+Observações: A principal linguagem de programação deste curso será a linguagem Python. O código fonte dos trabalhos práticos será submetido pelo GitHub. O aluno precisará ter acesso à internet e um computador (desktop ou laptop).
+
+Atividades avaliativas:
+
+Tanto os projetos práticos quanto a parte teórica da disciplina serão avaliados com base nas provas. A nota final será calculada da seguinte forma:
+
+7 Provas (P1, P2, P3, P4, P5, P6, P7) de 10 pontos
+
+Nota Final = (	0.05 x P1 + 0.05 x P2 + 0.05 x P3 + 0.05 x P4 + 0.10 x P5 + 0.20 x P6 + 0.50 x P7)
+
+Exame Especial: Os alunos que tiverem pelo menos 75% de frequência (mínimo para aprovação) e média inferior a seis pontos poderão fazer o Exame Especial ou o Exame Especial Parcial. Estes exames serão provas únicas, individuais.
