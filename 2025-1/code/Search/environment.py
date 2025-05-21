@@ -1,3 +1,22 @@
+class MazeEnvironment:
+    def __init__(self,maze):
+
+        self.pos_start, self.pos_goal= self.pos_start_goal(maze)
+
+    def pos_start_goal(self, maze):
+        start = None
+        goal = None
+        for i in range(len(maze)):
+            for j in range(len(maze[0])):
+                if maze[i][j] == 'g':
+                    goal = (i,j)
+                if maze[i][j] == 's':
+                    start = (i,j)
+
+        return start, goal
+
+
+
 
 class Environment:
     def __init__(self,G={},start=[],goal=[]):
