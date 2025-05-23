@@ -1,6 +1,6 @@
 from agents import BFS, DFS
 from environment import MazeEnvironment
-
+  
 maze = [
     ['s', 0,   1,   0,   0],
     [ 1 , 0,   1,   0,   1],
