@@ -1,7 +1,8 @@
 class MazeEnvironment:
     def __init__(self,maze):
 
-        self.pos_start, self.pos_goal= self.pos_start_goal(maze)
+        self.start, self.goal= self.pos_start_goal(maze)
+        self.maze = maze
 
     def pos_start_goal(self, maze):
         start = None
@@ -15,7 +16,15 @@ class MazeEnvironment:
 
         return start, goal
 
+    def get_neighbors(self,pos):
 
+        actions = [(pos[0],pos[1]+1),(pos[0],pos[1]-1),(pos[0]+1,pos[1]),(pos[0],pos[1])]
+        neighbors = []
+
+        for action in actions:
+            # se está dentro do tabuleiro
+
+            # se é um posição livre
 
 
 class Environment:
