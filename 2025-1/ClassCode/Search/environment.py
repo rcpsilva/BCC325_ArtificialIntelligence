@@ -18,13 +18,18 @@ class MazeEnvironment:
 
     def get_neighbors(self,pos):
 
-        actions = [(pos[0],pos[1]+1),(pos[0],pos[1]-1),(pos[0]+1,pos[1]),(pos[0],pos[1])]
+        actions = [(pos[0],pos[1]+1),(pos[0],pos[1]-1),(pos[0]+1,pos[1]),(pos[0]-1,pos[1])]
         neighbors = []
 
         for action in actions:
             # se está dentro do tabuleiro
 
-            # se é um posição livre
+            if (0 <= action[0] < len(self.maze)) and (0 <= action[1] < len(self.maze[0])):
+                # se é um posição livre
+                if self.maze[action[0]][action[1]] != 1:
+                    neighbors.append(action)
+
+        return neighbors
 
 
 class Environment:
