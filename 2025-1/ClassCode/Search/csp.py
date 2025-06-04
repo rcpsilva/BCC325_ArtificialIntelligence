@@ -32,29 +32,21 @@ def is_complete(s):
     
     return True
 
-def find_blank_square(s):
-    for i in range(9):
-        for j in range(9):
-            if s[i][j] == 0:
-                return (i,j)
-    return ()
-
 def backtrack_sk(s):
 
     if is_complete(s):
-        print(s)
+        for row in s:
+            print(row)
     else:
-        blank  = find_blank_square(s)
-        while blank:
-            i,j = blank[0], blank[1]
-            for e in range(1,10):
-                if is_valid_sk(s,i,j,e):
-                    s[i][j] = e
-                    backtrack_sk(s)
-                    s[i][j] = 0
-            
-            blank = find_blank_square(s)
-                
+        for i in range(9):
+            for j in range(9):
+                if s[i][j] == 0:
+                    for e in range(1,10):
+                        if is_valid_sk(s,i,j,e):
+                            s[i][j] = e
+                            backtrack_sk(s)
+                            s[i][j] = 0
+                    return
 
 def is_valid_nq(s,e):
 
