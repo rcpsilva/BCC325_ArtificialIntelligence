@@ -126,5 +126,63 @@ class DFS():
 
         path.reverse()
         return path
-    
+
+class DFBB():
+
+    def __init__(self,env,bound=None):
+
+        self.env = env
+        self.goal = env.goal
+        self.visited = {env.start:{'parent':-1,'c':0}}
+        self.F = [env.start]
+        if bound:
+            self.bound = bound
+        else:
+            self.bound = max(len(env.maze),len(env.maze[0]))**2
+
+
+    def h(self, pos):
+        # Manhattan Distance
+        return (abs(pos[0]-self.goal[0]) + abs(pos[1]-self.goal[1]))
+
+    def c(self,pos):
+        return self.visited[pos]['c']
+
+    def search(self):
+        
+        best_path = None
+
+        while self.F:
+            node = self.F.pop(-1)
+
+            if node==self.goal:
+                if self.visited[node]['c'] < self.bound:
+                    self.bound = self.visited[node]['c']
+                    best_path = node
+            
+            for v in self.env.get_neighbors(node): 
+                c = self.visited[node]['c']+1
+                h = self.h(v)
+                if (c+h < self.bound):
+                    if v not in self.visited:
+                        self.F.append(v)
+                        self.visited[v] = {'parent':node,'c':self.visited[node]['c']+1}
+                    else:
+                        if c < self.visited[v]['c']:
+                            self.F.append(v)
+                            self.visited[v] = {'parent':node,'c':c}
+
+        return best_path
+            
+
+    def get_path(self,goal):
+        node = goal
+        path = [node]
+        while self.visited[node]['parent'] != -1:
+            path.append(self.visited[node]['parent'])
+            node = self.visited[node]['parent']
+
+        path.reverse()
+        return path
+
     

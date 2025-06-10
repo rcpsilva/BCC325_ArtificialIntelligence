@@ -1,4 +1,4 @@
-from agents import BFS, DFS
+from agents import BFS, DFS, AStar, DFBB
 from environment import MazeEnvironment
   
 maze = [
@@ -20,6 +20,25 @@ maze = [
     [0,0,0,0,0,1,0,0,'g'],
 ]
 
+maze = [
+    ['s',0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],
+    [0,0,0,1,1,1,1,1,1],
+    [0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,1,1,0,0,0],
+    [0,0,0,1,1,1,1,1,0],
+    [0,0,1,0,0,0,0,0,0],
+    [0,0,0,0,0,1,0,0,0],
+    [0,0,0,0,0,1,0,1,1],
+    [0,0,0,0,0,1,0,0,'g'],
+    [0,0,0,0,0,1,0,1,1],
+    [0,0,0,0,0,1,0,0,0],
+    [0,0,0,0,0,1,0,0,0],
+    [0,0,0,0,0,1,0,0,0],
+    [0,0,0,0,0,1,0,0,0],
+    [0,0,0,0,0,1,0,0,0],
+]
+
 print("Labirinto original:")
 for row in maze:
     print(row)
@@ -36,7 +55,7 @@ print(env.goal)
 
 
 # Executa BFS
-agent = DFS(env)
+agent = BFS(env)
 goal = agent.search()
 path = agent.get_path(goal)
 
