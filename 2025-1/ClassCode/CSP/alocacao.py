@@ -15,7 +15,7 @@ def is_valid(s,v,problem):
 
         # um professor só pode dar uma aula por vez
         profa = problem['constraints'][a['aula']]['professor']
-        if profa == prof and  a['horario'] == horario:
+        if prof == profa and a['horario'] == horario:
             return False
 
     # capacida minima
@@ -54,7 +54,7 @@ if __name__ == '__main__':
     s = [
         {'aula': 'Aula1', 'sala': 'Sala1', 'horario': '08h', 'professor': 'ProfA'},
         {'aula': 'Aula2', 'sala': 'Sala2', 'horario': '10h', 'professor': 'ProfB'},
-        #{'aula': 'Aula3', 'sala': 'Sala1', 'horario': '14h', 'professor': 'ProfA'}
+        {'aula': 'Aula3', 'sala': 'Sala1', 'horario': '14h', 'professor': 'ProfA'}
     ]
 
     
