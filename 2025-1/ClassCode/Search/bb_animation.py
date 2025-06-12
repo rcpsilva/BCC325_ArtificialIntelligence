@@ -27,7 +27,7 @@ maze = [
 ]
 
 env   = MazeEnvironment(maze)
-agent = DFBB(env,20)
+agent = DFBB(env,21)
 
 # 2. Instrumentar o DFBB para registrar ordem de expansão
 visited_order = []
