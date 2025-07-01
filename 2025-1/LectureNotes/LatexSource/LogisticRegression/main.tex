@@ -1,0 +1,153 @@
+% logistic_example_2D.tex ----------------------------------------------
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{bm}  
+\geometry{a4paper, margin=2.5cm}
+
+\title{Regressão Logística com Dois Atributos \\ e Gradiente Descendente Manual}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Dados}
+
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+$i$ & $x_{1i}$ & $x_{2i}$ & $y_i$\\
+\midrule
+1 & 0 & 0 & 0\\
+2 & 1 & 0 & 0\\
+3 & 0 & 1 & 1\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+\noindent
+Modelo com intercepto:
+\[
+\hat{y}_i = \sigma(z_i),\qquad
+z_i = w_0 + w_1 x_{1i} + w_2 x_{2i},\qquad
+\sigma(z) = \frac{1}{1 + e^{-z}}.
+\]
+
+\section{Função-custo e gradientes}
+
+\[
+J(\bm w) = -\frac{1}{m}\sum_{i=1}^{m}
+\Bigl[\,y_i \ln \hat{y}_i + (1-y_i) \ln\bigl(1-\hat{y}_i\bigr)\Bigr],
+\qquad m = 3.
+\]
+
+\[
+\frac{\partial J}{\partial w_0} = \frac{1}{m}\sum_{i=1}^{m}(\hat{y}_i - y_i),
+\qquad
+\frac{\partial J}{\partial w_1} = \frac{1}{m}\sum_{i=1}^{m}(\hat{y}_i - y_i)\,x_{1i},
+\qquad
+\frac{\partial J}{\partial w_2} = \frac{1}{m}\sum_{i=1}^{m}(\hat{y}_i - y_i)\,x_{2i}.
+\]
+
+\section{Hiperparâmetros}
+
+\begin{itemize}
+  \item Pesos iniciais: $w_0^{(0)} = w_1^{(0)} = w_2^{(0)} = 0$
+  \item Taxa de aprendizagem: $\alpha = 0.5$
+\end{itemize}
+
+\section{Iterações do gradiente descendente}
+
+\subsection*{Iteração 0 $\;\rightarrow\;$ 1}
+
+\[
+\hat{y}_i^{(0)} = \sigma(0) = 0.5 \quad\forall i
+\]
+
+\[
+\begin{aligned}
+g_{w_0}^{(0)} &= \tfrac13(0.5 + 0.5 - 0.5) = 0.1667, \\
+g_{w_1}^{(0)} &= \tfrac13\bigl(0.5\!\cdot\!0 + 0.5\!\cdot\!1 + (-0.5)\!\cdot\!0\bigr) = 0.1667, \\
+g_{w_2}^{(0)} &= \tfrac13\bigl(0.5\!\cdot\!0 + 0.5\!\cdot\!0 + (-0.5)\!\cdot\!1\bigr) = -0.1667.
+\end{aligned}
+\]
+
+\[
+\boxed{
+\begin{aligned}
+w_0^{(1)} &= 0 - 0.5\cdot 0.1667 = -0.0833,\\
+w_1^{(1)} &= 0 - 0.5\cdot 0.1667 = -0.0833,\\
+w_2^{(1)} &= 0 - 0.5\cdot (-0.1667) = 0.0833.
+\end{aligned}}
+\]
+
+\subsection*{Iteração 1 $\;\rightarrow\;$ 2}
+
+\[
+\begin{aligned}
+z^{(1)} &= [-0.0833,\,-0.1666,\,0.0000],\\
+\hat{y}^{(1)} &= \sigma(z^{(1)}) \approx [0.4792,\,0.4585,\,0.5000].
+\end{aligned}
+\]
+
+\[
+\begin{aligned}
+g_{w_0}^{(1)} &= \tfrac13(0.4792 + 0.4585 - 0.5) = 0.1459,\\
+g_{w_1}^{(1)} &= \tfrac13(0\!+\!0.4585\!+\!0) = 0.1528,\\
+g_{w_2}^{(1)} &= \tfrac13(0\!+\!0\!-\!0.5) = -0.1667.
+\end{aligned}
+\]
+
+\[
+\boxed{
+\begin{aligned}
+w_0^{(2)} &= -0.0833 - 0.5\cdot 0.1459 = -0.1563,\\
+w_1^{(2)} &= -0.0833 - 0.5\cdot 0.1528 = -0.1597,\\
+w_2^{(2)} &=  0.0833 - 0.5\cdot (-0.1667) = 0.1667.
+\end{aligned}}
+\]
+
+\subsection*{Iteração 2 $\;\rightarrow\;$ 3}
+
+\[
+\begin{aligned}
+z^{(2)} &= [-0.1563,\,-0.3160,\,0.0104],\\
+\hat{y}^{(2)} &\approx [0.4610,\,0.4217,\,0.5026].
+\end{aligned}
+\]
+
+\[
+\begin{aligned}
+g_{w_0}^{(2)} &= \tfrac13(0.4610 + 0.4217 - 0.4974) = 0.1284,\\
+g_{w_1}^{(2)} &= \tfrac13(0\!+\!0.4217\!+\!0) = 0.1406,\\
+g_{w_2}^{(2)} &= \tfrac13(0\!+\!0\!-\!0.4974) = -0.1658.
+\end{aligned}
+\]
+
+\[
+\boxed{
+\begin{aligned}
+w_0^{(3)} &= -0.1563 - 0.5\cdot 0.1284 = -0.2205,\\
+w_1^{(3)} &= -0.1597 - 0.5\cdot 0.1406 = -0.2299,\\
+w_2^{(3)} &=  0.1667 - 0.5\cdot (-0.1658) = 0.2496.
+\end{aligned}}
+\]
+
+\section{Observações}
+
+\begin{itemize}
+  \item O peso $w_1$ torna-se negativo enquanto $w_2$ cresce positivamente, coerente com o fato de que $x_2=1$ está associado a $y=1$ e $x_1=1$ está associado a $y=0$.
+  \item Mais iterações continuarão a ajustar os pesos até que a variação em $J$ se torne pequena.
+  \item O procedimento geral com mais atributos ou amostras é idêntico: calculam-se gradientes, aplicam-se as atualizações, repete-se.
+\end{itemize}
+
+\end{document}
+% ----------------------------------------------------------------------
