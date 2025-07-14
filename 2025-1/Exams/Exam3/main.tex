@@ -1,0 +1,94 @@
+% exam_regression.tex --------------------------------------------------
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath, amssymb, amsfonts, bm}
+\usepackage{booktabs}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+
+\title{BCC740 - Inteligência Artificial \\ Prova 3}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+\vspace{-1.5cm}
+
+\begin{enumerate}
+    \item Para o modelo linear múltiplo (modeloo linear com múltiplas variávei de entrada), considere o seguinte conjunto de dados:
+  \[
+  \begin{array}{ccc}
+    x_1 & x_2 & y \\
+    \hline
+    0 & 0 & 2 \\
+    1 & 0 & 4 \\
+    0 & 1 & 3 \\
+    1 & 1 & 7 \\
+  \end{array}
+  \]
+  Monte a matriz \(X\) (com coluna de 1's) e o vetor \(\bm{y}\).
+
+  \item Por que é comum adicionar uma coluna de uns na matriz \(X\)?
+
+  \item Com os dados da questão anterior, calcule as matrizes \(X^{\!\top}X\) e \(X^{\!\top} \bm{y}\).
+
+  \item Inverta a matriz \(X^{\!\top}X\) pelo método que achar mais adequad.
+
+  \item Obtenha os pesos \(\hat{\bm{w}}\) utilizando a fórmula dos mínimos quadrados:
+  \[
+  \hat{\bm{w}} = (X^{\!\top} X)^{-1} X^{\!\top} \bm{y}.
+  \]
+
+  \item Considere a função sigmoide:
+  \[
+  \sigma(z) = \frac{1}{1 + e^{-z}}.
+  \]
+  Considere também, o conjunto de dados abaixo:
+  \[
+  \begin{array}{ccc}
+    x_1 & x_2 & y \\
+    \hline
+    0 & 1 & 1 \\
+    1 & 0 & 0 \\
+  \end{array}
+  \]
+  Considere pesos \(w_0 = 0.5\), \(w_1 = 1\), \(w_2 = -1\). Calcule \(z\) e \(\hat{y} = \sigma(z)\) para cada linha.
+
+  \item Considere a função de verossimilhança abaixo:
+
+  \[
+    L(\bm{w}) = \prod_{i=1}^{n} \hat{y}_i^{y_i} (1 - \hat{y}_i)^{1 - y_i}
+    \]
+  
+    \begin{enumerate}
+        \item Por que ela não é comumente utilizada em problemas de classificação? Qual é a alternativa? 
+        \item Escreva a expressão da função de perda de entropia cruzada (- log verossimilhança) para dois exemplos rotulados \(y_i \in \{0, 1\}\) e predições \(\hat{y}_i = \sigma(z_i)\), \(i = 1, 2\).
+    \end{enumerate}
+  
+  \item Considere o conjunto de dados abaixo:
+  \[
+  \begin{array}{ccc}
+    x_1 & x_2 & y \\
+    \hline
+    0 & 1 & 1 \\
+    1 & 0 & 0 \\
+  \end{array}
+  \]
+  
+  Considere o conjuto de pesos iniciais \(w_0 = 1, w_1 = 1, w_2 = 1\). Qual será o valor dos pesos após a primeira iteração do algoritmo de descida do gradiente com $\eta = 1$? Veja a formula das derivadas parciais da \textit{loss} abaixo.
+  
+  \[
+    \frac{\partial L}{\partial w_j} = \sum_{i=1}^{n} \left( \hat{y}_i - y_i \right) x_{ij}
+    \]
+
+\end{enumerate}
+
+  
+\end{document}
+% ----------------------------------------------------------------------
