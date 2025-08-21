@@ -1,7 +1,7 @@
 % ------------------------------------------------------------
 % UFOP – Prova (estilo conciso, sem seções, sem instruções)
 % ------------------------------------------------------------
-\documentclass[11pt,a4paper]{article}
+\documentclass[12pt,a4paper]{article}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
@@ -21,15 +21,12 @@
 \begin{document}
 
 \begin{center}
-  {\Large \textbf{BCC 740 -- Prova 4.1}}\\[2pt]
+  {\Large \textbf{BCC 740 -- Inteligência Artificial}}\\[2pt]
+  {\large \textbf{Prova 4}}\\[4pt]
 \end{center}
 
-\noindent \textbf{Instruções:}
 
-Para cada uma das questões apresentadas, há uma resposta incorreta ou parcialmente incorreta. Sua tarefa é analisar cada caso e explicar, de forma clara e fundamentada, por que a resposta está equivocada.
-
-Você não deve apenas indicar a resposta correta; é necessário apresentar uma justificativa que evidencie o(s) erro(s) cometidos na resposta original, considerando os conceitos, definições ou procedimentos pertinentes ao tema da questão
-
+*Verifique se a sua folha de questões possui 14 questões.
 
 \begin{enumerate}[leftmargin=0.55cm,itemsep=0.65em]
 
@@ -38,14 +35,13 @@ Você não deve apenas indicar a resposta correta; é necessário apresentar uma
 
   \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{dt.png}
+    \includegraphics[width=0.95\textwidth]{dt.png}
     \caption{Árvore de decisão}
     \label{fig:dt}
   \end{figure}
 
 
   \begin{table}[h!]
-    \small
     \centering
     \begin{tabular}{lcccc}
     \hline
@@ -59,30 +55,24 @@ Você não deve apenas indicar a resposta correta; é necessário apresentar uma
     \label{tab:e19e20}
   \end{table}
 
-  \textbf{\textit{Resposta: e19 - Skips, e20 - Reads}}
+  \item Considere o treinamento de uma rede neural via descida do gradiente. Dados o vetor de pesos e \textit{biases} $\mathbf{w} = [0.9,0.65,1.67,9.15,7,34,9.11]^T$, a taxa de aprendizado $\eta = 0.1$ e o gradiente da \textit{loss} $\nabla L = [0.1,0.2,0.33,0.4,0.12,0.15,1]$, qual será o novo vetor de pesos?
   
   \item O que acontece com o processo de otimização se a taxa de aprendizado (\textit{learning rate}) for muito alta? E se for muito baixa?
-  
-  \textbf{\textit{Resposta: Se for muito alta é overfitting apresentando alta sensibilidade a ruídos, pouco generalista. Se for muito baixa, pode ser underfitting pelo modelo ser muito simples para um problema complexo.}}
+
+  \item Quais critérios podem ser utilizados para escolher a função de ativação de um neurônio em uma rede neural artificial?
   
   \item Defina uma estratégia de regularização que funcione exclusivamente para redes neurais artificiais e outra que funcione exclusivamente para árvores de decisão.
   
-  \textbf{\textit{Resposta: Para árvores de decisão utilizamos o índice gini. Para redes neurais artificiais utilizamos a regra da cadeia de forma regressiva.}}
-  
   \item Defina uma estratégia de regularização que seja aplicável tanto a redes neurais artificiais quanto a árvores de decisão.
-  
-  \textbf{\textit{Resposta: Erro quadrado e minimização dele}}
   
   \item Indique uma estratégia de regularização que atua na função de perda. Explique como ela regulariza o modelo. 
   
-  \textbf{\textit{Resposta: Descida do gradiente}}
-
   \item Observe as curvas de aprendizado de dois algoritmos de aprendizagem de máquina. Quais são os nomes dos processos ilustrados em cada figura?
   
   \begin{figure}[htbp]
       \centering
       % --- Underfitting ---
-      \begin{subfigure}[b]{0.4\textwidth}
+      \begin{subfigure}[b]{0.48\textwidth}
           \centering
           \includegraphics[width=\textwidth]{under.png}
           \caption{Algoritmo A}
@@ -90,7 +80,7 @@ Você não deve apenas indicar a resposta correta; é necessário apresentar uma
       \end{subfigure}
       \hfill
       % --- Overfitting ---
-      \begin{subfigure}[b]{0.4\textwidth}
+      \begin{subfigure}[b]{0.48\textwidth}
           \centering
           \includegraphics[width=\textwidth]{over.png}
           \caption{Algoritmo B}
@@ -101,29 +91,17 @@ Você não deve apenas indicar a resposta correta; é necessário apresentar uma
       \label{fig:learning_curves}
   \end{figure}
 
-  \textbf{\textit{Resposta:  (a) - overfitting (b) - underfitting}} 
-
   \item Ao treinar um modelo de aprendizagem de máquina, você verificou que o algoritmo de treinamento apresenta dificuldade em minimizar o erro (\textit{loss}). O que pode ser feito para mitigar esse problema?
-
-  \textbf{\textit{Resposta: Adicionar mais dados ou implementar alguma técnica de regularização.}}
 
   \item Quais funções de perda (\textit{loss}) podem ser utilizadas para treinar uma rede neural em um problema de regressão? E em problemas de classificação?
   
-  \textbf{\textit{Resposta: Descida do gradiente}}
-  
   \item Quais são as limitações de avaliar um modelo de aprendizagem de máquina usando apenas um único \textit{holdout}? Indique um método mais adequado de avaliação e explique como ele resolve as limitações do \textit{holdout}.
   
-  \textbf{\textit{Resposta: Quando usamos apenas um holdout, o modelo se adapta aos dados fornecidos, deixando o erro baixo mas, com dados diferentes, o erro continua alto.}}
-
+  \item O que é \textit{data leakage}? Dê dois exemplos comuns e explique como evitá-los.
+  
+  \item Em um problema desbalanceado, por que a acurácia pode mascarar o \textit{overfitting}? Sugira métricas alternativas.
+  
   \item Descreva a função dos conjuntos de treinamento, validação e teste.
-  
-  \textbf{\textit{Resposta:}}
-
-  \textbf{\textit{Treinamento - Serve para ajustar os parâmetros internos do modelo.}}
-
-  \textbf{\textit{Validação - Serve para avaliar o modelo durante o processo de treinamento.}}
-  
-  \textbf{\textit{Teste - Serve para verificar se o modelo escolhido obtém bons resultados e ajustar o tipo de modelo ou seus hiperparâmetros para obter melhores resultados, caso necessário.}}
 
 \end{enumerate}
 
