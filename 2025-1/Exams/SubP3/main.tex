@@ -1,0 +1,140 @@
+% exam_regression_incorrect.tex -----------------------------------------
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath, amssymb, amsfonts, bm}
+\usepackage{booktabs}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+
+\title{BCC740 - Inteligência Artificial \\ Exame Especial Parcial - Prova 3}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\vspace{-1.5cm}
+
+*Verifique se a sua folha de questões possui 8 questões.*
+
+\begin{enumerate}
+    \item Para o modelo linear múltiplo (modelo linear com múltiplas variáveis de entrada), considere o seguinte conjunto de dados:
+    \[
+    \begin{array}{ccc}
+      x_1 & x_2 & y \\
+      \hline
+      0 & 0 & 2 \\
+      1 & 0 & 4 \\
+      0 & 1 & 3 \\
+      1 & 1 & 7 \\
+    \end{array}
+    \]
+    Monte a matriz \(X\) e o vetor \(\bm{y}\).
+
+    \textbf{Resposta incorreta:}
+    \[
+    X = \begin{bmatrix}
+    0 & 0 \\
+    1 & 0 \\
+    0 & 1 \\
+    1 & 1
+    \end{bmatrix}, \quad
+    \bm{y} = \begin{bmatrix}2 \\ 4 \\ 3 \\ 7\end{bmatrix}
+    \]
+
+    Explique por que essa resposta está incorreta ou parcialmente incorreta.
+
+    \item Por que é comum adicionar uma coluna de uns na matriz \(X\)?
+
+    \textbf{Resposta incorreta:}  
+    “A coluna de uns em \(X\) não é necessária.”
+
+    Explique por que essa resposta está incorreta ou parcialmente incorreta.
+
+
+    
+    \item Considere a função de verossimilhança
+    \[
+    L(\bm{w}) = \prod_{i=1}^{n} \hat{y}_i^{y_i}(1-\hat{y}_i)^{1-y_i}.
+    \]
+    
+    Por que ela não é comumente utilizada em problemas de classificação? Qual é a alternativa?  
+    \textbf{Resposta incorreta:}  
+    “A função de verossimilhança é suficiente para classificação, não é necessário transformá-la.”
+
+    Explique por que essa resposta está incorreta ou parcialmente incorreta.
+
+    \item Considere o modelo linear múltiplo com pesos \(\hat{w}_0 = 2\), \(\hat{w}_1 = 3\), \(\hat{w}_2 = -1\).  
+    Explique o significado de cada peso no contexto da regressão.  
+
+    \textbf{Resposta incorreta:}  
+    “O peso \(\hat{w}_0 = 2\) significa que a variável resposta \(y\) sempre será 2, independentemente dos valores de \(x_1\) e \(x_2\).  
+    O peso \(\hat{w}_1 = 3\) indica que, quando \(x_1\) aumenta em 1, \(y\) aumenta em 3 apenas se \(x_2 = 0\).  
+    Já o peso \(\hat{w}_2 = -1\) não tem interpretação clara porque é negativo.”  
+
+    Explique por que essa resposta está incorreta ou parcialmente incorreta.  
+
+
+
+    \item Considere um classificador logístico treinado para prever se um e-mail é spam (\(y=1\)) ou não spam (\(y=0\)).  
+    Para uma determinada entrada, o modelo retorna \(\hat{y} = 0.8\).  
+    Como interpretar esse resultado?  
+
+    \textbf{Resposta incorreta:}  
+    “O modelo tem certeza absoluta de que o e-mail é spam, pois \(\hat{y} = 0.8\) significa probabilidade 100\%.”  
+
+    Explique por que essa resposta está incorreta ou parcialmente incorreta.  
+
+    \item Um colega afirmou:  
+    “Para qualquer problema de aprendizado supervisionado, seja regressão ou classificação, a função de perda adequada é sempre o erro quadrático médio (MSE), já que ele mede o quanto o modelo erra.”  
+    Você concorda com essa afirmação?  
+
+    \textbf{Resposta incorreta:}  
+    “Não. O MSE é adequado apenas para problemas de regresão. Para problemas de classificação, a função de perda mais adequada é a acurácia.”  
+
+    Explique por que essa resposta está incorreta ou parcialmente incorreta.  
+
+    \item Em um problema de regressão linear múltipla, um aluno avaliou o desempenho do modelo apenas pela acurácia (proporção de previsões exatas).  
+    Você considera essa métrica adequada?  
+
+    \textbf{Resposta incorreta:}  
+    “Sim, a acurácia é a melhor métrica porque mostra diretamente quantos valores previstos coincidiram exatamente com os valores reais, o que é o objetivo final do modelo.”  
+
+    Explique por que essa resposta está incorreta ou parcialmente incorreta.  
+
+    \item Considere a regressão logística treinada em um conjunto de dados altamente desbalanceado (95\% de exemplos negativos e 5\% de positivos).  
+    Um colega afirmou que a acurácia é suficiente para avaliar o desempenho do modelo.  
+
+    \textbf{Resposta incorreta:}  
+    “Sim, pois se o modelo classificar todos os exemplos como negativos, ele terá 95\% de acurácia, o que demonstra ótimo desempenho.”  
+
+    Explique por que essa resposta está incorreta ou parcialmente incorreta.  
+
+
+
+\end{enumerate}
+
+\vspace{1cm}
+\section*{Rubrica de Avaliação}
+Cada questão será avaliada segundo os seguintes critérios:
+
+\begin{center}
+\begin{tabular}{p{4.5cm}p{10cm}}
+\toprule
+\textbf{Critério} & \textbf{Descrição}  \\
+\midrule
+Identificação do erro & Reconhece corretamente o(s) ponto(s) incorreto(s) ou incompletos da resposta \\
+Explicação conceitual & Explica por que o ponto identificado está incorreto, demonstrando compreensão teórica \\
+Clareza e precisão & Explicação clara, sem ambiguidades, com terminologia adequada \\
+Profundidade adicional & Complementa com a resposta correta, exemplo ou contextualização \\
+\midrule
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}
+% ----------------------------------------------------------------------
