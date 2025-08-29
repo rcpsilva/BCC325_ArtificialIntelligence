@@ -1,0 +1,33 @@
+## Cronograma
+
+Semanas & Conteúdo
+1 e 2   & Busca em espaços de estados 
+3 e 4   & Busca em espaços de estados (Prova 1 (P1) - 27/10) 
+5 e 6   & Problemas de Satisfação de Restrições 
+7 e 8   & Problemas de Satisfação de Restrições (Prova 2 (P2) - 24/11) 
+9 e 10  & Sistemas Baseados em Conhecimento
+11 e 12 & Aprendizado de Máquina (Prova 3 (P3) - 17/12) 
+13 e 14 & Aprendizado de Máquina 
+15 e 16 & Aprendizado de Máquina (Prova 4 (P4) - 09/02)
+17      & Vista de Provas
+18      & Exame Especial (02/03)
+
+Metodologia:
+
+Projetos práticos: Implementação de vários algoritmos e técnicas de inteligência artificial.
+
+Provas: Conjunto de perguntas para medir do aluno em relação à teoria e às implementações realizadas pelos alunos. Realizado sob demanda do professor.
+
+Leituras recomendadas: Leitura de textos técnicos com a finalidade de proporcionar ao discente a oportunidade de consulta e desenvolvimento de sua capacidade de análise, síntese e crítica de uma bibliografia específica.
+
+Observações: A principal linguagem de programação deste curso será a linguagem Python. O código fonte dos trabalhos práticos será submetido pelo GitHub. O aluno precisará ter acesso à internet e um computador (desktop ou laptop).
+
+Atividades avaliativas:
+
+Tanto os projetos práticos quanto a parte teórica da disciplina serão avaliados com base nas provas. A nota final será calculada da seguinte forma:
+
+4 Provas (P1, P2, P3, P4) de 10 pontos
+
+Nota Final = (	0.1 x P1 + 0.2 x P2 + 0.2 x P3 + 0.5 x P4)
+
+Exame Especial: Os alunos que tiverem pelo menos 75% de frequência (mínimo para aprovação) e média inferior a seis pontos poderão fazer o Exame Especial ou o Exame Especial Parcial. Estes exames serão provas únicas, individuais.
