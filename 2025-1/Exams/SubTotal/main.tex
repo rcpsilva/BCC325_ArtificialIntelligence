@@ -1,0 +1,121 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb,booktabs}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+
+\title{BCC740 – Inteligência Artificial \\ Exame Especial Total}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\vspace{-0.5cm}
+
+\noindent \textbf{Instruções:}  
+Cada questão apresenta uma resposta incorreta ou parcialmente incorreta. Sua tarefa é analisar e explicar por que a resposta está equivocada.  
+Você não deve apenas indicar a resposta correta; é necessário justificar claramente os erros.
+
+\begin{enumerate}
+
+\item No contexto de busca em espaços de estados, o que caracteriza um problema de busca e quais são seus componentes fundamentais?
+
+\textbf{Resposta incorreta:}  
+“Um problema de busca é qualquer problema que envolve encontrar uma resposta. Seus componentes são apenas o estado inicial e o objetivo final.”  
+
+Explique por que essa resposta está incorreta ou parcialmente incorreta.
+
+\item Relacione espaços de estados e grafos. Descreva os elementos de um problema de busca representado como grafo.
+
+\textbf{Resposta incorreta:}  
+“O espaço de estados não pode ser representado como grafo, pois estados não possuem conexões. No grafo só importa o nó inicial e o final.”  
+
+Explique por que essa resposta está incorreta ou parcialmente incorreta.
+
+\item Apresente o algoritmo genérico de busca e explique como ele pode ser adaptado para busca em profundidade e busca em largura.
+
+\textbf{Resposta incorreta:}  
+“O algoritmo genérico de busca sempre usa fila. Para profundidade basta continuar usando fila e para largura basta inverter a ordem de inserção.”  
+
+Explique por que essa resposta está incorreta ou parcialmente incorreta.
+
+\item Em um CSP com variáveis \(A,B,C \in \{1,2,3,4\}\) e restrições \(A<B\), \(B<C\), quantas atribuições satisfazem todas as restrições?
+
+\textbf{Resposta incorreta:}  
+“Todas as 64 atribuições satisfazem as restrições, já que o domínio é de tamanho 4.”  
+
+Explique por que essa resposta está incorreta ou parcialmente incorreta.
+
+\item Classifique cada uma das seguintes restrições quanto à aridade e forma de representação:  
+(a) \(A \neq B\), (b) \(\text{Sala}(\text{Aula1}) = \text{Sala2}\),  
+(c) tabela com combinações válidas de três variáveis, (d) \(E<A \land E<B \land E<C \land E<D\).  
+
+\textbf{Resposta incorreta:}  
+“Todas são unárias e todas são representadas de forma intencional.”  
+
+Explique por que essa resposta está incorreta ou parcialmente incorreta.
+
+\item Para o modelo linear múltiplo com dados simples de entrada \(x_1,x_2\) e saída \(y\), um aluno montou a matriz \(X\) como:
+\[
+X = \begin{bmatrix}
+0 & 0 \\
+1 & 0 \\
+0 & 1 \\
+1 & 1
+\end{bmatrix}
+\]
+sem incluir coluna de 1’s.  
+
+Explique por que essa construção está incorreta ou parcialmente incorreta.
+
+\item Considere a regressão logística para classificar e-mails como spam (\(y=1\)) ou não spam (\(y=0\)). Para uma entrada, o modelo retorna \(\hat{y} = 0.9\). Como interpretar?
+
+\textbf{Resposta incorreta:}  
+“Isso significa que o modelo está 100\% certo de que o e-mail é spam.”  
+
+Explique por que essa resposta está incorreta ou parcialmente incorreta.
+
+\item Na figura abaixo, duas curvas de aprendizado representam comportamentos distintos:  
+
+\textbf{Resposta incorreta:}  
+“A curva (a) representa overfitting e a curva (b) representa underfitting.”  
+
+Explique por que essa resposta está incorreta ou parcialmente incorreta.
+
+\item Quais funções de perda podem ser usadas para treinar uma rede neural em problemas de regressão e em problemas de classificação?
+
+\textbf{Resposta incorreta:}  
+“Em ambos os casos sempre usamos a descida do gradiente como função de perda.”  
+
+Explique por que essa resposta está incorreta ou parcialmente incorreta.
+
+\item Em um conjunto de dados altamente desbalanceado (95\% de negativos, 5\% de positivos), um colega afirmou que a acurácia é suficiente para avaliar o modelo.
+
+\textbf{Resposta incorreta:}  
+“Sim, porque se o modelo classificar tudo como negativo ele já terá 95\% de acurácia, o que mostra ótimo desempenho.”  
+
+Explique por que essa resposta está incorreta ou parcialmente incorreta.
+
+\end{enumerate}
+
+\section*{Rubrica de Avaliação}
+Cada questão será avaliada segundo os seguintes critérios:
+
+\begin{center}
+\begin{tabular}{p{4.5cm}p{10cm}}
+\toprule
+\textbf{Critério} & \textbf{Descrição}  \\
+\midrule
+Identificação do erro & Reconhece corretamente o(s) ponto(s) incorreto(s) ou incompletos da resposta \\
+Explicação conceitual & Explica por que o ponto identificado está incorreto, demonstrando compreensão teórica \\
+Clareza e precisão & Explicação clara, sem ambiguidades, com terminologia adequada \\
+Profundidade adicional & Complementa com a resposta correta, exemplo ou contextualização \\
+\midrule
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}
