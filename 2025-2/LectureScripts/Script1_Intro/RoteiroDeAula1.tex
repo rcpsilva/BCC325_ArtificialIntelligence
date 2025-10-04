@@ -1,0 +1,271 @@
+\documentclass[9pt,a4paper]{extarticle}
+\usepackage{parskip}
+
+% ======================
+% Packages
+% ======================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+
+\setlist{nosep}
+\geometry{margin=2cm}
+
+% ======================
+% Listings setup (Python)
+% ======================
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}
+\lstset{
+    language=Python,
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red!70!black},
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    inputencoding=utf8
+}
+
+% ======================
+% Document
+% ======================
+\begin{document}
+
+\title{Roteiro de Aula 1 -- Introdução à Inteligência Artificial}
+\author{Disciplina: BCC740 -- Inteligência Artificial}
+\date{\today}
+\maketitle
+
+\section{Objetivos da Aula}
+\begin{itemize}
+  \item Apresentar o escopo e os objetivos da disciplina.
+  \item Introduzir a noção de \textbf{agentes computacionais racionais}.
+  \item Relacionar os principais tópicos do curso segundo Poole \& Mackworth (3ª ed.):
+  \begin{enumerate}
+    \item Busca em espaços de estados (Cap. 3).
+    \item Problemas de satisfação de restrições (Cap. 4).
+    \item Sistemas baseados em conhecimento (Cap. 5).
+    \item Aprendizado de máquina (Caps. 7 e 8).
+  \end{enumerate}
+\end{itemize}
+
+\section{Visão Geral da Disciplina}
+
+O curso segue a estrutura conceitual de \textbf{Poole \& Mackworth (2023)}, enfatizando a IA como o estudo de \textit{agentes computacionais} que raciocinam e aprendem em ambientes possivelmente incertos e dinâmicos.
+
+\subsection*{Abordagem adotada}
+\begin{itemize}
+  \item \textbf{Modelo de agente:} agente = percepção + raciocínio + ação.
+  \item \textbf{Fundamento computacional:} problemas de decisão e otimização.
+  \item \textbf{Foco metodológico:} representação, inferência e aprendizado.
+\end{itemize}
+
+\subsection*{Perspectiva unificadora}
+A IA moderna combina:
+\begin{enumerate}[label=(\roman*)]
+  \item Métodos \textbf{simbólicos} (busca, lógica, restrições);
+  \item Métodos \textbf{estatísticos} (aprendizado de máquina);
+  \item Representações estruturadas e modelos probabilísticos.
+\end{enumerate}
+
+\section{Agentes Computacionais}
+
+Segundo Poole \& Mackworth, um \textbf{agente computacional} é uma entidade que:
+\begin{itemize}
+  \item Recebe \textbf{percepções} do ambiente;
+  \item Mantém um \textbf{estado interno} que representa o que acredita sobre o mundo;
+  \item Escolhe ações com base em um \textbf{modelo computacional de decisão}.
+\end{itemize}
+
+\subsection*{Função agente}
+\[
+f: \text{Percepções}^* \rightarrow \text{Ações}
+\]
+
+\subsection*{Tipos de ambiente}
+\begin{itemize}
+  \item Determinístico vs. estocástico.
+  \item Estático vs. dinâmico.
+  \item Observável vs. parcialmente observável.
+  \item Discreto vs. contínuo.
+\end{itemize}
+
+\paragraph{PEAS}
+\[
+\text{PEAS} = (\text{Performance}, \text{Environment}, \text{Actuators}, \text{Sensors})
+\]
+
+\section{Busca em Espaços de Estados (Capítulo 3)}
+
+\subsection*{Definição}
+Um problema de busca é definido por:
+\[
+\langle S, A, c, s_0, G \rangle
+\]
+onde:
+\begin{itemize}
+  \item $S$: conjunto de estados possíveis.
+  \item $A$: conjunto de ações aplicáveis.
+  \item $c(s,a,s')$: custo de transição.
+  \item $s_0$: estado inicial.
+  \item $G$: conjunto de estados meta.
+\end{itemize}
+
+\subsection*{Busca não informada}
+\begin{itemize}
+  \item Busca em largura (BFS).
+  \item Busca em profundidade (DFS).
+  \item Busca de custo uniforme.
+\end{itemize}
+
+\begin{lstlisting}
+from collections import deque
+
+def bfs(start, goal, neighbors):
+    frontier = deque([start])
+    explored = {start: None}
+    while frontier:
+        state = frontier.popleft()
+        if state == goal:
+            break
+        for nxt in neighbors(state):
+            if nxt not in explored:
+                explored[nxt] = state
+                frontier.append(nxt)
+    return explored
+\end{lstlisting}
+
+\subsection*{Busca informada}
+\begin{itemize}
+  \item Funções heurísticas $h(n)$.
+  \item Algoritmo A*.
+  \item Otimalidade e completude.
+\end{itemize}
+
+\section{Problemas de Satisfação de Restrições (Capítulo 4)}
+
+\subsection*{Definição}
+Um \textbf{problema de satisfação de restrições (CSP)} é uma tupla:
+\[
+\langle X, D, C \rangle
+\]
+onde:
+\begin{itemize}
+  \item $X = \{X_1,\dots,X_n\}$ são variáveis;
+  \item $D_i$ é o domínio de cada $X_i$;
+  \item $C$ é o conjunto de restrições.
+\end{itemize}
+
+\subsection*{Exemplo: coloração de mapa}
+\begin{lstlisting}
+import itertools
+
+cores = ["R", "G", "B"]
+vizinhos = {"A":["B","C"], "B":["A","C"], "C":["A","B"]}
+
+for a,b,c in itertools.product(cores, repeat=3):
+    if a!=b and b!=c and a!=c:
+        print(f"A={a}, B={b}, C={c}")
+\end{lstlisting}
+
+\subsection*{Técnicas de solução}
+\begin{itemize}
+  \item Busca com retrocesso (\textit{backtracking}).
+  \item Propagação de restrições (AC-3, forward checking).
+  \item Heurísticas de seleção de variáveis (MRV, grau máximo).
+\end{itemize}
+
+\section{Sistemas Baseados em Conhecimento (Capítulo 5)}
+
+\subsection*{Ideia central}
+Representar o conhecimento sobre o mundo e inferir novas informações.
+
+\subsection*{Lógica proposicional}
+\[
+A \Rightarrow B, \quad A
+\Rightarrow B
+\]
+
+\subsection*{Inferência baseada em regras}
+\begin{lstlisting}
+base = [("chuva", "rua_molhada"), ("rua_molhada", "transito_lento")]
+fatos = {"chuva"}
+
+for p, q in base:
+    if p in fatos:
+        fatos.add(q)
+
+print("Inferencias:", fatos)
+\end{lstlisting}
+
+\subsection*{Representação de conhecimento}
+\begin{itemize}
+  \item Cláusulas definidas: $A \Leftarrow B_1, \dots, B_n$
+  \item Encadeamento para frente (data-driven)
+  \item Encadeamento para trás (goal-driven)
+\end{itemize}
+
+\section{Aprendizado de Máquina (Capítulos 7 e 8)}
+
+\subsection*{Definição}
+Aprender a partir de dados significa induzir um modelo que generalize:
+\[
+h: \mathcal{X} \rightarrow \mathcal{Y}
+\]
+
+\subsection*{Tipos de aprendizado}
+\begin{itemize}
+  \item Supervisionado (classificação, regressão).
+  \item Não supervisionado (agrupamento, redução de dimensionalidade).
+  \item Por reforço (ação e recompensa).
+\end{itemize}
+
+\subsection*{Exemplo: aprendizado supervisionado}
+\begin{lstlisting}
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.datasets import load_iris
+
+X, y = load_iris(return_X_y=True)
+model = DecisionTreeClassifier().fit(X, y)
+print(model.predict([[5.0, 3.5, 1.4, 0.2]]))
+\end{lstlisting}
+
+\subsection*{Componentes de um agente que aprende}
+\begin{itemize}
+  \item Representação (forma do modelo).
+  \item Avaliação (função de perda, erro).
+  \item Otimização (ajuste dos parâmetros).
+\end{itemize}
+
+\section{Resumo e Leituras Recomendadas}
+
+\begin{itemize}
+  \item Poole, D. L. \& Mackworth, A. K. (2023). \textit{Artificial Intelligence: Foundations of Computational Agents} (3rd ed.). Cambridge University Press.
+  \item Capítulo 2: Agentes e Ambientes.
+  \item Capítulo 3: Busca em Espaços de Estado.
+  \item Capítulo 4: CSPs.
+  \item Capítulo 5: Lógica e Conhecimento.
+  \item Capítulos 7–8: Aprendizado de Máquina.
+\end{itemize}
+
+\paragraph{Atividade sugerida.}
+Descreva um agente computacional para um problema real (ex.: robô aspirador, entrega de encomendas, sistema de recomendação), identificando:
+\begin{itemize}
+  \item o ambiente (PEAS);
+  \item o tipo de problema (busca, restrição, conhecimento ou aprendizado);
+  \item e como o agente poderia aprender a melhorar seu desempenho.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,266 @@
+\documentclass[9pt,a4paper]{extarticle}
+\usepackage{parskip}
+
+% ======================
+% Packages
+% ======================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+
+\setlist{nosep}
+\geometry{margin=2cm}
+
+% ======================
+% Listings setup (Python)
+% ======================
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}
+\lstset{
+    language=Python,
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red!70!black},
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    inputencoding=utf8
+}
+
+% ======================
+% Document
+% ======================
+\begin{document}
+
+\title{Roteiro de Aula 2 -- Busca (Cap. 3.1--3.5, Poole \& Mackworth, AIFCA 3e)}
+\author{Disciplina: BCC740 -- Inteligência Artificial}
+\date{\today}
+\maketitle
+
+\section*{Sumário da Aula}
+\begin{enumerate}
+  \item 3.1 \textbf{Problem Solving as Search}
+  \item 3.2 \textbf{State Spaces}
+  \item 3.3 \textbf{Graph Searching}
+  \item 3.4 \textbf{A Generic Searching Algorithm}
+  \item 3.5 \textbf{Uninformed Search Strategies}
+\end{enumerate}
+
+\section{Problem Solving as Search}
+\subsection*{Ideia central}
+Resolver um problema como \textbf{busca} em um espaço de estados: encontrar uma sequência de ações que transforma o estado inicial em um estado meta, minimizando (opcionalmente) um custo.
+
+\subsection*{Formulação}
+Um problema de busca é uma quíntupla
+\[
+\langle S, A, \gamma, c, (s_0,G) \rangle
+\]
+onde:
+\begin{itemize}
+  \item $S$: conjunto (possivelmente grande) de estados.
+  \item $A(s)$: conjunto de ações aplicáveis em $s \in S$.
+  \item $\gamma(s,a)$: função de transição (ou $T(s,a)\to s'$).
+  \item $c(s,a,s') \ge 0$: custo do passo; custo de caminho $g(n)$ é a soma acumulada.
+  \item $s_0 \in S$: estado inicial; $G \subseteq S$: conjunto de metas (teste de objetivo).
+\end{itemize}
+
+\paragraph{Solução}
+Uma \textbf{solução} é uma sequência de ações $(a_1,\dots,a_k)$ tal que $\gamma(\dots\gamma(\gamma(s_0,a_1),a_2)\dots,a_k) \in G$.
+Quando há custo, buscamos solução de \textbf{custo mínimo}.
+
+\section{State Spaces}
+\subsection*{Representação de estados e ações}
+\begin{itemize}
+  \item \textbf{Estados}: escolhas de representação têm impacto em eficiência (ex.: tuplas imutáveis para puzzles).
+  \item \textbf{Ações}: operadores locais; podem depender do estado (pré-condições).
+\end{itemize}
+
+\subsection*{Exemplos de modelagem}
+\paragraph{8-Puzzle}
+\begin{itemize}
+  \item $S$: permutações da grade $3\times 3$ com um espaço vazio.
+  \item $A$: mover o vazio $\{\uparrow,\downarrow,\leftarrow,\rightarrow\}$ quando possível.
+  \item Meta: estado ordenado (1..8; vazio).
+\end{itemize}
+
+\paragraph{Missionários e Canibais}
+\begin{itemize}
+  \item Estado: $(M_E, C_E, B)$ com $B\in\{\text{esq},\text{dir}\}$; restrição $M \ge C$ em cada margem quando $M>0$.
+  \item Ações: transportar $(\Delta M, \Delta C)$ com $1 \le \Delta M+\Delta C \le 2$ respeitando restrições.
+\end{itemize}
+
+\section{Graph Searching}
+\subsection*{Tree search vs Graph search}
+\begin{itemize}
+  \item \textbf{Tree search}: ignora estados repetidos; pode reexpandir o mesmo estado inúmeras vezes.
+  \item \textbf{Graph search}: mantém \textit{explored set} (fechados) e/ou \textit{visited} para evitar repetições e ciclos.
+\end{itemize}
+
+\paragraph{Estados repetidos}
+Sem controle de repetição, complexidade explode. Em ambientes com \textit{reversibility} (desfazer ação) ciclos são comuns.
+
+\section{A Generic Searching Algorithm}
+\subsection*{Nós de busca}
+Cada nó mantém: estado, pai, ação geradora, profundidade, custo $g(n)$.
+
+\begin{lstlisting}
+from collections import deque
+import heapq
+
+class Node:
+    __slots__ = ("state","parent","action","depth","g")
+    def __init__(self, state, parent=None, action=None, g=0):
+        self.state  = state
+        self.parent = parent
+        self.action = action
+        self.g      = g
+        self.depth  = 0 if parent is None else parent.depth + 1
+
+def solution(n):
+    """Reconstroi a sequencia de acoes/estados a partir do no meta."""
+    path = []
+    while n and n.parent is not None:
+        path.append(n.action)
+        n = n.parent
+    return list(reversed(path))
+\end{lstlisting}
+
+\subsection*{Algoritmo Genérico de Busca em Grafo}
+\begin{lstlisting}
+def generic_graph_search(s0, is_goal, successors, add_to_frontier, pop_frontier):
+    start = Node(s0)
+    if is_goal(s0):  # teste de objetivo no no inicial
+        return []
+    frontier = add_to_frontier(None, start)  # inicializa fronteira
+    explored = set()                         # estados ja expandidos
+
+    while frontier:
+        node, frontier = pop_frontier(frontier)  # escolhe politica de expansao
+        if node.state in explored:
+            continue
+        explored.add(node.state)
+
+        for (a, s_next, cost) in successors(node.state):
+            child = Node(s_next, parent=node, action=a, g=node.g + cost)
+            if is_goal(s_next):
+                return solution(child)
+            # regra de duplicatas: aqui simples; pode-se manter "best_g[state]"
+            if s_next not in explored:
+                frontier = add_to_frontier(frontier, child)
+
+    return None  # falha
+\end{lstlisting}
+
+\paragraph{Observação} A \textbf{política de fronteira} define a estratégia (seção 3.5). Para busca de custo uniforme, por exemplo, a fronteira é uma \texttt{priority queue} por $g(n)$; para BFS, uma \texttt{queue}; para DFS, uma \texttt{stack}.
+
+\section{3.5 Uninformed Search Strategies}
+\subsection*{Estratégias e Estruturas de Dados da Fronteira}
+\begin{itemize}
+  \item \textbf{BFS} (em largura): fila FIFO.
+  \item \textbf{DFS} (em profundidade): pilha LIFO.
+  \item \textbf{DLS} (depth-limited search): pilha com limite $L$.
+  \item \textbf{IDS} (iterative deepening): repete DLS para $L=0,1,2,\dots$.
+  \item \textbf{Uniform-Cost} (custo uniforme, UCS): fila de prioridade por $g(n)$.
+\end{itemize}
+
+\subsection*{Implementações básicas}
+
+\textbf{BFS}
+
+\begin{lstlisting}
+def add_fifo(frontier, node):
+    if frontier is None:
+        frontier = deque()
+    frontier.append(node)
+    return frontier
+
+def pop_fifo(frontier):
+    return frontier.popleft(), frontier
+\end{lstlisting}
+
+\textbf{DFS}
+
+\begin{lstlisting}
+def add_lifo(frontier, node):
+    if frontier is None:
+        frontier = []
+    frontier.append(node)
+    return frontier
+
+def pop_lifo(frontier):
+    return frontier.pop(), frontier
+\end{lstlisting}
+
+\textbf{Uniform-cost}
+\begin{lstlisting}
+def add_priority_by_g(frontier, node):
+    if frontier is None:
+        frontier = []
+    heapq.heappush(frontier, (node.g, id(node), node))
+    return frontier
+
+def pop_priority(frontier):
+    _, _, node = heapq.heappop(frontier)
+    return node, frontier
+\end{lstlisting}
+
+\subsection*{Propriedades (assumindo fator de ramificação $b$, solução mais rasa a profundidade $d$, e custo de passos $\ge \epsilon > 0$)}
+\begin{table}[h]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lccccp{6cm}@{}}
+\toprule
+\textbf{Estratégia} & \textbf{Completa} & \textbf{Ótima} & \textbf{Tempo} & \textbf{Espaço} & \textbf{Observações} \\
+\midrule
+BFS & Sim (se $b$ finito) & Sim (custos iguais) & $O(b^{d})$ & $O(b^{d})$ & Encontra solução mais rasa; custo de memória alto. \\
+DFS & Não (em geral) & Não & $O(b^{m})$ & $O(b\cdot m)$ & Pode ficar preso em ramos profundos; pouca memória. \\
+DLS (limite $L$) & Não (se $L<d$) & Não & $O(b^{L})$ & $O(b\cdot L)$ & Útil quando há limite natural/segurança. \\
+IDS & Sim & Sim (custos iguais) & $O(b^{d})$ & $O(b\cdot d)$ & Combina completude/ótimo da BFS com memória da DFS. \\
+UCS & Sim ($c\ge\epsilon$) & Sim & $ O \left ( b^{ 1 + \lfloor C^{\*/\epsilon} \rfloor } \right ) $ & $\ge O(b^{d})$ & Expande por custo crescente; otimo para custos variados. \\
+\bottomrule
+\end{tabular}
+\caption{Resumo de estrategias nao-informadas (3.5). $m$ e a profundidade maxima, $C^{\*}$ e o custo otimo.}
+\end{table}
+
+\subsection*{Tree vs Graph Search e Ótimalidade}
+\begin{itemize}
+  \item \textbf{BFS/IDS}: ótima em \textit{tree} quando custo de passo é uniforme; em \textit{graph}, manter visitados evita revisitar estados.
+  \item \textbf{UCS}: ótima (com $c\ge \epsilon$) tanto em árvore quanto em grafo, desde que se gerencie duplicatas preservando o melhor $g$ conhecido por estado.
+\end{itemize}
+
+\subsection*{Boas práticas}
+\begin{itemize}
+  \item \textbf{Fechados} (explored set) + \textbf{frontier} determinística.
+  \item Tabela $best\_g[state]$ para descartar caminhos piores (UCS).
+  \item Separar \textit{estado} da \textit{descrição do nó} (pai, ação, custos).
+\end{itemize}
+
+\section*{Mini-Exercícios (para fixação)}
+\begin{enumerate}
+  \item Modele o \textit{Missionários e Canibais} como busca: defina $S$, $A$, $\gamma$, $c$, $s_0$, $G$. Liste pelo menos três ações válidas em $s_0$.
+  \item Dê um exemplo simples em que DFS encontra uma solução mais rápida que BFS; explique por quê.
+  \item Para o 8-Puzzle, explique a diferença prática entre \textit{tree} e \textit{graph} search. Em que cenário \textit{tree search} é inviável?
+  \item Implemente UCS para um grid $N\times N$ com custos não uniformes e compare o caminho encontrado vs BFS.
+  \item Explique por que IDS repete trabalho e, ainda assim, mantém custo assintótico comparável ao da BFS.
+\end{enumerate}
+
+\section*{Leitura Recomendada (AIFCA 3e)}
+\begin{itemize}
+  \item Cap. 3.1--3.5: definição de problema, espaços de estados, busca em grafo, algoritmo genérico e estratégias não-informadas.
+  \item Exercícios de final de capítulo sobre BFS/DFS/IDS/UCS e repetição de estados.
+\end{itemize}
+
+\end{document}
