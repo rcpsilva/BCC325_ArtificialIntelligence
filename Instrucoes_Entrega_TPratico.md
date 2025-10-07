@@ -16,17 +16,14 @@ Algumas perguntas da prova vão depender diretamente desse código.
 
 3. **Após instalar a extensão**, abra o arquivo do seu código.  
    Um **ícone de impressora** aparecerá na barra superior do editor.  
-   Clique nesse ícone para **imprimir os arquivos que contêm:**
-   - As implementações dos **agentes**;
-   - A implementação do **ambiente** (problema prático da lista de exercícios).
-
+   Clique nesse ícone para **imprimir o seu código com numeração das linhas**
 ---
 
 ## ⚠️ Observações importantes
 
 - O código deve estar **legível** e com **números de linha visíveis** na impressão.  
 - **Entregas sem numeração de linha ou sem extensão correta não serão aceitas.**  
-- Certifique-se de incluir **todos os arquivos relevantes** (por exemplo: `agents.py`, `environment.py`, `main.py`).  
+- Certifique-se de incluir **todos os arquivos relevantes**.  
 - As impressões devem ser **em preto e branco** ou **tons de cinza**, com boa legibilidade.  
 
 ---
