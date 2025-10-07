@@ -50,6 +50,7 @@
 
 \section*{Sumário da Aula}
 \begin{enumerate}
+  \item Introdução: Agentes e Ação Inteligente
   \item 3.1 \textbf{Problem Solving as Search}
   \item 3.2 \textbf{State Spaces}
   \item 3.3 \textbf{Graph Searching}
@@ -57,7 +58,44 @@
   \item 3.5 \textbf{Uninformed Search Strategies}
 \end{enumerate}
 
+% ==============================================================
+\section{Agentes e Ação Inteligente (Contexto do Capítulo 3)}
+% ==============================================================
+
+\subsection*{Definição de Agente e Agente Inteligente}
+
+Um \textbf{agente} é algo que \textbf{age em um ambiente}: ele percebe (recebe informações do ambiente) e executa ações no mundo.  
+(\textit{Poole \& Mackworth, 3e; fontes:} \url{https://www.inf.unibz.it}, \url{https://artint.info})
+
+\medskip
+Um \textbf{agente inteligente} é aquele agente que \textbf{age de forma inteligente} — ou seja, cujas ações não são arbitrárias, mas adaptadas às suas metas, à situação e às limitações.  
+(\textit{Fontes:} \url{https://artint.info}, \url{https://www.cs.ubc.ca})
+
+\subsection*{Características de um agente que age inteligentemente}
+De acordo com Poole \& Mackworth, um agente age inteligentemente quando:
+\begin{enumerate}[label=(\roman*)]
+  \item Suas ações são apropriadas às suas metas e às circunstâncias do ambiente.
+  \item Ele é flexível frente a mudanças no ambiente e nas metas.
+  \item Ele aprende com a experiência — melhora seu desempenho ao longo do tempo.
+  \item Ele faz escolhas apropriadas levando em conta suas limitações perceptuais e computacionais (memória, tempo, custo).
+\end{enumerate}
+
+\subsection*{Síntese conceitual}
+Em outras palavras, a \textbf{inteligência de um agente} é medida pelo quão bem ele consegue \textbf{agir bem}, dadas:
+\begin{itemize}
+  \item suas percepções (o que pode observar),
+  \item suas capacidades (o que pode calcular e executar),
+  \item suas metas (o que busca alcançar).
+\end{itemize}
+
+\paragraph{Relação com o tema da aula:}  
+Resolver problemas como busca é uma das formas mais fundamentais de ação inteligente.  
+Ao formalizar o raciocínio como uma sequência de decisões que leva de um estado inicial a um estado objetivo, estudamos \textbf{como um agente pode planejar suas ações racionalmente}.
+
+% ==============================================================
 \section{Problem Solving as Search}
+% ==============================================================
+
 \subsection*{Ideia central}
 Resolver um problema como \textbf{busca} em um espaço de estados: encontrar uma sequência de ações que transforma o estado inicial em um estado meta, minimizando (opcionalmente) um custo.
 
@@ -76,41 +114,23 @@ onde:
 \end{itemize}
 
 \paragraph{Solução}
-Uma \textbf{solução} é uma sequência de ações $(a_1,\dots,a_k)$ tal que $\gamma(\dots\gamma(\gamma(s_0,a_1),a_2)\dots,a_k) \in G$.
+Uma \textbf{solução} é uma sequência de ações $(a_1,\dots,a_k)$ tal que $\gamma(\dots\gamma(\gamma(s_0,a_1),a_2)\dots,a_k) \in G$.  
 Quando há custo, buscamos solução de \textbf{custo mínimo}.
 
+% ==============================================================
 \section{State Spaces}
+% ==============================================================
+
 \subsection*{Representação de estados e ações}
 \begin{itemize}
   \item \textbf{Estados}: escolhas de representação têm impacto em eficiência (ex.: tuplas imutáveis para puzzles).
   \item \textbf{Ações}: operadores locais; podem depender do estado (pré-condições).
 \end{itemize}
 
-\subsection*{Exemplos de modelagem}
-\paragraph{8-Puzzle}
-\begin{itemize}
-  \item $S$: permutações da grade $3\times 3$ com um espaço vazio.
-  \item $A$: mover o vazio $\{\uparrow,\downarrow,\leftarrow,\rightarrow\}$ quando possível.
-  \item Meta: estado ordenado (1..8; vazio).
-\end{itemize}
-
-\paragraph{Missionários e Canibais}
-\begin{itemize}
-  \item Estado: $(M_E, C_E, B)$ com $B\in\{\text{esq},\text{dir}\}$; restrição $M \ge C$ em cada margem quando $M>0$.
-  \item Ações: transportar $(\Delta M, \Delta C)$ com $1 \le \Delta M+\Delta C \le 2$ respeitando restrições.
-\end{itemize}
-
-\section{Graph Searching}
-\subsection*{Tree search vs Graph search}
-\begin{itemize}
-  \item \textbf{Tree search}: ignora estados repetidos; pode reexpandir o mesmo estado inúmeras vezes.
-  \item \textbf{Graph search}: mantém \textit{explored set} (fechados) e/ou \textit{visited} para evitar repetições e ciclos.
-\end{itemize}
-
-\paragraph{Estados repetidos}
-Sem controle de repetição, complexidade explode. Em ambientes com \textit{reversibility} (desfazer ação) ciclos são comuns.
-
+% ==============================================================
 \section{A Generic Searching Algorithm}
+% ==============================================================
+
 \subsection*{Nós de busca}
 Cada nó mantém: estado, pai, ação geradora, profundidade, custo $g(n)$.
 
@@ -155,112 +175,419 @@ def generic_graph_search(s0, is_goal, successors, add_to_frontier, pop_frontier)
             child = Node(s_next, parent=node, action=a, g=node.g + cost)
             if is_goal(s_next):
                 return solution(child)
-            # regra de duplicatas: aqui simples; pode-se manter "best_g[state]"
             if s_next not in explored:
                 frontier = add_to_frontier(frontier, child)
-
     return None  # falha
 \end{lstlisting}
 
-\paragraph{Observação} A \textbf{política de fronteira} define a estratégia (seção 3.5). Para busca de custo uniforme, por exemplo, a fronteira é uma \texttt{priority queue} por $g(n)$; para BFS, uma \texttt{queue}; para DFS, uma \texttt{stack}.
+\paragraph{Observação}
+A \textbf{política de fronteira} define a estratégia (Seção 3.5).  
+Para busca de custo uniforme, por exemplo, a fronteira é uma \texttt{priority queue} por $g(n)$; para BFS, uma \texttt{queue}; para DFS, uma \texttt{stack}.
 
-\section{3.5 Uninformed Search Strategies}
+
+% ==============================================================
+\section{Exemplo: O Problema do 8-Puzzle}
+% ==============================================================
+
+O \textbf{8-puzzle} é um dos exemplos mais clássicos de \textit{problema de busca em espaço de estados}.  
+Ele ilustra como representar estados, operadores e funções de custo, e serve de base para o estudo posterior de buscas informadas (heurísticas, Seção 3.6).
+
+\subsection*{Descrição informal}
+
+O tabuleiro consiste em uma grade $3 \times 3$ contendo oito peças numeradas de 1 a 8 e uma casa vazia.  
+O objetivo é mover as peças deslizantes, uma por vez, até atingir uma configuração final desejada (estado meta).
+
+\begin{center}
+\small
+\begin{tabular}{ccc}
+\textbf{Inicial} & \quad & \textbf{Meta} \\
+\begin{tabular}{|c|c|c|}
+\hline 2 & 8 & 3 \\ \hline
+1 & 6 & 4 \\ \hline
+7 &   & 5 \\ \hline
+\end{tabular}
+&
+$\;\Rightarrow\;$
+&
+\begin{tabular}{|c|c|c|}
+\hline 1 & 2 & 3 \\ \hline
+8 &   & 4 \\ \hline
+7 & 6 & 5 \\ \hline
+\end{tabular}
+\end{tabular}
+\end{center}
+
+A casa vazia (representada por “ \_ ”) pode ser movida para cima, baixo, esquerda ou direita, trocando de lugar com a peça adjacente.
+
+\subsection*{Representação de estados}
+
+Um estado é uma permutação dos números $\{1,\dots,8\}$ e do espaço vazio “\_”, representada, por exemplo, como uma tupla de nove elementos:
+\[
+S = \{(x_1, x_2, \dots, x_9) \mid x_i \in \{1,\dots,8,\_\}\}.
+\]
+
+\subsection*{Estado inicial e meta}
+
+\[
+s_0 = (2,8,3,\,1,6,4,\,7,\_,5), \qquad
+G = \{(1,2,3,\,8,\_,4,\,7,6,5)\}.
+\]
+
+\subsection*{Ações possíveis}
+
+O espaço vazio pode se mover nas quatro direções, quando possível:
+\[
+A = \{\text{mover\_cima},\ \text{mover\_baixo},\ \text{mover\_esquerda},\ \text{mover\_direita}\}.
+\]
+As ações dependem da posição atual do espaço vazio.
+
+\subsection*{Função de transição}
+
+Seja $\gamma(s,a)$ a função de transição que aplica a ação $a$ ao estado $s$, trocando o espaço vazio com a peça adjacente correspondente.
+
+\begin{lstlisting}
+def successors(state):
+    """Retorna todos os estados sucessores do 8-puzzle."""
+    idx = state.index("_")
+    moves = []
+    row, col = divmod(idx, 3)
+    directions = {
+        "up":    (-1, 0),
+        "down":  ( 1, 0),
+        "left":  ( 0,-1),
+        "right": ( 0, 1)
+    }
+    for act, (dr, dc) in directions.items():
+        nr, nc = row + dr, col + dc
+        if 0 <= nr < 3 and 0 <= nc < 3:
+            nidx = 3*nr + nc
+            new_state = list(state)
+            new_state[idx], new_state[nidx] = new_state[nidx], new_state[idx]
+            moves.append((act, tuple(new_state), 1))
+    return moves
+\end{lstlisting}
+
+\subsection*{Custo e objetivo}
+
+\begin{itemize}
+  \item Custo de cada passo: $c(s,a,s') = 1$ (cada movimento tem custo unitário).
+  \item Teste de objetivo: $s = G$.
+\end{itemize}
+
+\subsection*{Espaço de busca}
+
+O número total de possíveis arranjos é $9! = 362{,}880$,  
+mas apenas metade desses ($181{,}440$) são \textbf{atingíveis} a partir de qualquer estado dado — o espaço de estados é particionado em dois conjuntos disjuntos (paridade de permutação).
+
+\subsection*{Propriedades importantes}
+
+\begin{itemize}
+  \item O fator de ramificação médio é $\bar{b} \approx 2.13$ (nem todas as quatro direções são sempre possíveis).
+  \item A profundidade da solução ótima típica varia de 10 a 30 movimentos.
+  \item O problema é ideal para demonstrar buscas \textbf{em largura (BFS)} e \textbf{de custo uniforme (UCS)}.
+\end{itemize}
+
+\subsection*{Observações}
+
+\begin{itemize}
+  \item O 8-puzzle é um caso particular do \textbf{n-puzzle}, cuja versão $15$-puzzle ($4\times4$) é notoriamente mais difícil.
+  \item Ele fornece uma boa base para o estudo de \textbf{buscas informadas} (heurísticas como distância de Manhattan ou número de peças fora do lugar).
+  \item Em busca cega, a \textbf{BFS} encontra a solução mínima, enquanto a \textbf{DFS} pode gerar ciclos e expandir estados redundantes.
+\end{itemize}
+
+\subsection*{Exercício sugerido}
+
+Implemente o 8-puzzle utilizando o \texttt{generic\_graph\_search} da Seção 3.4:
+\begin{itemize}
+  \item Defina \texttt{successors(state)} conforme o código acima.
+  \item Use \texttt{is\_goal(state)} para detectar o estado final.
+  \item Compare o número de nós expandidos para \textbf{BFS} e \textbf{UCS}.
+\end{itemize}
+
+
+% ==============================================================
+\section{Exemplo: O Problema dos Missionários e Canibais}
+% ==============================================================
+
+O \textbf{problema dos missionários e canibais} é um exemplo clássico de \textit{busca em espaço de estados}, ilustrando como restrições e ações reversíveis afetam a estrutura do problema.
+
+\subsection*{Descrição informal}
+
+Três missionários e três canibais precisam atravessar um rio usando um barco que comporta no máximo duas pessoas.  
+A condição é que, em nenhum dos lados do rio, o número de canibais pode ser maior que o número de missionários (quando houver missionários presentes), pois, caso contrário, os canibais comeriam os missionários.
+
+O objetivo é encontrar uma sequência de travessias que leve todos para a margem oposta de forma segura.
+
+\subsection*{Representação de estados}
+
+Cada estado é representado como uma tupla:
+\[
+(M_E, C_E, B)
+\]
+onde:
+\begin{itemize}
+  \item $M_E$ é o número de missionários na margem esquerda;
+  \item $C_E$ é o número de canibais na margem esquerda;
+  \item $B \in \{E, D\}$ indica a posição do barco (esquerda ou direita).
+\end{itemize}
+
+Como o total de pessoas é constante ($3M$ e $3C$), a situação da margem direita é deduzida automaticamente:
+\[
+M_D = 3 - M_E, \quad C_D = 3 - C_E
+\]
+
+\subsection*{Estado inicial e meta}
+
+\[
+s_0 = (3, 3, E), \qquad G = \{(0, 0, D)\}
+\]
+
+\subsection*{Ações possíveis}
+
+O barco pode levar uma ou duas pessoas, em qualquer combinação válida de missionários e canibais:
+\[
+A = \{(2,0), (0,2), (1,1), (1,0), (0,1)\}
+\]
+
+Cada ação $(m,c)$ representa levar $m$ missionários e $c$ canibais para a outra margem.
+
+\subsection*{Restrições de segurança}
+
+Um estado $(M_E, C_E, B)$ é \textbf{válido} se:
+\[
+\begin{cases}
+0 \le M_E, C_E \le 3, \\
+(M_E = 0 \ \text{ou} \ M_E \ge C_E), \\
+(M_D = 0 \ \text{ou} \ M_D \ge C_D).
+\end{cases}
+\]
+
+\subsection*{Função de transição}
+
+Dado o estado atual $s = (M_E, C_E, B)$ e a ação $(m,c)$, o próximo estado $s'$ é:
+
+\[
+s' =
+\begin{cases}
+(M_E - m, \, C_E - c, \, D), & \text{se } B = E,\\[4pt]
+(M_E + m, \, C_E + c, \, E), & \text{se } B = D.
+\end{cases}
+\]
+
+O novo estado é aceito apenas se for \textit{válido} segundo as restrições acima.
+
+\subsection*{Espaço de busca}
+
+O número máximo de estados possíveis é limitado:
+\[
+|S| = 4 \times 4 \times 2 = 32,
+\]
+mas vários estados são inválidos e são descartados pelas restrições de segurança.
+
+\subsection*{Exemplo de primeiras transições}
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}ccll@{}}
+\toprule
+\textbf{Etapa} & \textbf{Estado Atual $(M_E,C_E,B)$} & \textbf{Ação $(m,c)$} & \textbf{Novo Estado $(M_E',C_E',B')$} \\ \midrule
+1 & (3,3,E) & (0,2) & (3,1,D) \\
+2 & (3,1,D) & (0,1) & (3,2,E) \\
+3 & (3,2,E) & (2,0) & (1,2,D) \\
+4 & (1,2,D) & (1,1) & (2,3,E) \\
+5 & (2,3,E) & (0,2) & (2,1,D) \\
+\bottomrule
+\end{tabular}
+\caption{Sequência inicial de travessias válidas.}
+\end{table}
+
+\subsection*{Observações}
+
+\begin{itemize}
+  \item O problema ilustra a diferença entre \textbf{tree search} e \textbf{graph search}: muitas ações são reversíveis e podem gerar ciclos.
+  \item A busca em largura (BFS) encontra a solução de menor número de travessias; a busca em profundidade (DFS) pode se prender em ciclos.
+  \item O problema também pode ser visto como um \textbf{problema de satisfação de restrições} (CSP), onde cada margem deve obedecer às condições de segurança.
+\end{itemize}
+
+\subsection*{Exercício sugerido}
+
+Formalize o problema dos missionários e canibais em Python, implementando:
+\begin{itemize}
+  \item Uma função \texttt{successors(state)} que gere todos os estados válidos.
+  \item Uma função \texttt{is\_goal(state)}.
+  \item Aplique o algoritmo genérico de busca (Seção 3.4) com BFS para encontrar a sequência de ações mínima.
+\end{itemize}
+
+
+% ==============================================================
+\section{Graph Searching}
+% ==============================================================
+
+\subsection*{Tree search vs Graph search}
+\begin{itemize}
+  \item \textbf{Tree search}: ignora estados repetidos; pode reexpandir o mesmo estado inúmeras vezes.
+  \item \textbf{Graph search}: mantém \textit{explored set} (fechados) e/ou \textit{visited} para evitar repetições e ciclos.
+\end{itemize}
+
+\paragraph{Estados repetidos}
+Sem controle de repetição, a complexidade explode.  
+Em ambientes com \textit{reversibility} (ações reversíveis), ciclos são comuns.
+
+% ==============================================================
+\section{Uninformed Search Strategies (3.5)}
+% ==============================================================
+
 \subsection*{Estratégias e Estruturas de Dados da Fronteira}
 \begin{itemize}
   \item \textbf{BFS} (em largura): fila FIFO.
   \item \textbf{DFS} (em profundidade): pilha LIFO.
   \item \textbf{DLS} (depth-limited search): pilha com limite $L$.
   \item \textbf{IDS} (iterative deepening): repete DLS para $L=0,1,2,\dots$.
-  \item \textbf{Uniform-Cost} (custo uniforme, UCS): fila de prioridade por $g(n)$.
+  \item \textbf{Uniform-Cost} (UCS): fila de prioridade por $g(n)$.
 \end{itemize}
 
-\subsection*{Implementações básicas}
-
-\textbf{BFS}
+% ==============================================================
+\subsection{Implementações básicas}
+% ==============================================================
+\paragraph{Busca em Largura (BFS)}
+A \textbf{busca em largura} expande os nós nível a nível, utilizando uma fila (\textit{FIFO}) para a fronteira.  
+É completa e ótima se todos os passos têm custo igual.
 
 \begin{lstlisting}
+from collections import deque
+
 def add_fifo(frontier, node):
+    """Adiciona o no ao final da fila (FIFO)."""
     if frontier is None:
         frontier = deque()
     frontier.append(node)
     return frontier
 
 def pop_fifo(frontier):
+    """Remove o no mais antigo da fila."""
     return frontier.popleft(), frontier
 \end{lstlisting}
 
-\textbf{DFS}
+\paragraph{Busca em Profundidade (DFS)}
+A \textbf{busca em profundidade} expande sempre o nó mais recentemente inserido na fronteira (pilha, ou \textit{LIFO}).  
+Usa pouca memória, mas pode não ser completa em espaços infinitos.
 
 \begin{lstlisting}
 def add_lifo(frontier, node):
+    """Adiciona o no ao topo da pilha (LIFO)."""
     if frontier is None:
         frontier = []
     frontier.append(node)
     return frontier
 
 def pop_lifo(frontier):
+    """Remove o no mais recente da pilha."""
     return frontier.pop(), frontier
 \end{lstlisting}
 
-\textbf{Uniform-cost}
+\paragraph{Busca de Custo Uniforme (UCS)}
+A \textbf{busca de custo uniforme} (Uniform-Cost Search) expande sempre o nó com menor custo acumulado $g(n)$.  
+A fronteira é implementada como uma fila de prioridade (\texttt{heapq}).
+
 \begin{lstlisting}
+import heapq
+
 def add_priority_by_g(frontier, node):
-    if frontier is None:
+    """Adiciona o no a fila de prioridade segundo o custo acumulado g(n)."""
+    if frontier is None
         frontier = []
     heapq.heappush(frontier, (node.g, id(node), node))
     return frontier
 
 def pop_priority(frontier):
+    """Remove o no de menor custo acumulado g(n)."""
     _, _, node = heapq.heappop(frontier)
     return node, frontier
 \end{lstlisting}
 
-\subsection*{Propriedades (assumindo fator de ramificação $b$, solução mais rasa a profundidade $d$, e custo de passos $\ge \epsilon > 0$)}
+\paragraph{Resumo conceitual}
+\begin{itemize}
+  \item \textbf{BFS}: expande nós por profundidade — encontra o caminho mais curto em número de passos.
+  \item \textbf{DFS}: explora ramos inteiros antes de retroceder — economiza memória, mas pode se perder em loops.
+  \item \textbf{UCS}: expande por custo — ótima quando custos variam entre ações.
+\end{itemize}
+
+\subsection*{Tree vs Graph Search e Ótimalidade} 
+  
+  \begin{itemize} 
+    \item \textbf{BFS/IDS}: ótima em \textit{tree} quando custo de passo é uniforme; em \textit{graph}, manter visitados evita revisitar estados. 
+    \item \textbf{UCS}: ótima (com $c\ge \epsilon$) tanto em árvore quanto em grafo, desde que se gerencie duplicatas preservando o melhor $g$ conhecido por estado. 
+  \end{itemize} \subsection*{Boas práticas} \begin{itemize} \item \textbf{Fechados} (explored set) + \textbf{frontier} determinística. \item Tabela $best\_g[state]$ para descartar caminhos piores (UCS). \item Separar \textit{estado} da \textit{descrição do nó} (pai, ação, custos). \end{itemize}
+
+\section{Propriedades comparativas}
+
+As estratégias de busca diferem quanto à \textbf{completude} (se garantem encontrar uma solução quando ela existe),  
+\textbf{otimalidade} (se encontram a solução de menor custo), e  
+\textbf{complexidade de tempo e espaço}.  
+
+Assuma:
+\begin{itemize}
+  \item $b$ — fator de ramificação (número médio de sucessores por nó);
+  \item $d$ — profundidade da solução mais rasa;
+  \item $m$ — profundidade máxima da árvore de busca (pode ser infinita);
+  \item $C^{\*}$ — custo da solução ótima;
+  \item $\epsilon$ — menor custo positivo de ação ($c(s,a,s') \ge \epsilon > 0$).
+\end{itemize}
+
 \begin{table}[h]
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{@{}lccccp{6cm}@{}}
+\begin{tabular}{@{}lccccp{6.5cm}@{}}
 \toprule
-\textbf{Estratégia} & \textbf{Completa} & \textbf{Ótima} & \textbf{Tempo} & \textbf{Espaço} & \textbf{Observações} \\
+\textbf{Estratégia} & \textbf{Completa} & \textbf{Ótima} & \textbf{Tempo} & \textbf{Espaço} & \textbf{Observações} \\ 
 \midrule
-BFS & Sim (se $b$ finito) & Sim (custos iguais) & $O(b^{d})$ & $O(b^{d})$ & Encontra solução mais rasa; custo de memória alto. \\
-DFS & Não (em geral) & Não & $O(b^{m})$ & $O(b\cdot m)$ & Pode ficar preso em ramos profundos; pouca memória. \\
-DLS (limite $L$) & Não (se $L<d$) & Não & $O(b^{L})$ & $O(b\cdot L)$ & Útil quando há limite natural/segurança. \\
-IDS & Sim & Sim (custos iguais) & $O(b^{d})$ & $O(b\cdot d)$ & Combina completude/ótimo da BFS com memória da DFS. \\
-UCS & Sim ($c\ge\epsilon$) & Sim & $ O \left ( b^{ 1 + \lfloor C^{\*/\epsilon} \rfloor } \right ) $ & $\ge O(b^{d})$ & Expande por custo crescente; otimo para custos variados. \\
+BFS & Sim (se $b$ finito) & Sim (custos iguais) & $O(b^{d})$ & $O(b^{d})$ & Expande por profundidade; encontra solução mais rasa; alto custo de memória. \\[3pt]
+DFS & Não (em geral) & Não & $O(b^{m})$ & $O(b\cdot m)$ & Pode entrar em loops; eficiente em memória; útil para espaços muito profundos. \\[3pt]
+DLS (limite $L$) & Não (se $L<d$) & Não & $O(b^{L})$ & $O(b\cdot L)$ & Busca limitada em profundidade; útil quando há limite natural de profundidade. \\[3pt]
+IDS & Sim & Sim (custos iguais) & $O(b^{d})$ & $O(b\cdot d)$ & Combina completude e ótimo da BFS com o uso de memória da DFS. \\[3pt]
+UCS & Sim ($c\ge\epsilon$) & Sim & $O\!\left(b^{\,1+\lfloor C^{\*}/\epsilon \rfloor}\right)$ & $\ge O(b^{d})$ & Expande por custo crescente; ótima mesmo com custos diferentes; requer controle de duplicatas. \\
 \bottomrule
 \end{tabular}
-\caption{Resumo de estrategias nao-informadas (3.5). $m$ e a profundidade maxima, $C^{\*}$ e o custo otimo.}
+\caption{Propriedades comparativas das estratégias de busca não informadas (baseado em Poole \& Mackworth, AIFCA 3e, Seção 3.5).}
 \end{table}
 
-\subsection*{Tree vs Graph Search e Ótimalidade}
+\paragraph{Observações complementares}
 \begin{itemize}
-  \item \textbf{BFS/IDS}: ótima em \textit{tree} quando custo de passo é uniforme; em \textit{graph}, manter visitados evita revisitar estados.
-  \item \textbf{UCS}: ótima (com $c\ge \epsilon$) tanto em árvore quanto em grafo, desde que se gerencie duplicatas preservando o melhor $g$ conhecido por estado.
+  \item \textbf{Tree search} e \textbf{graph search} podem ter comportamento diferente: em \textit{graph search}, é essencial registrar estados visitados para evitar reexploração e ciclos.
+  \item \textbf{BFS} e \textbf{IDS} são ótimas apenas quando todos os custos de passo são iguais.
+  \item \textbf{UCS} é ótima para custos não uniformes, desde que se mantenha o melhor custo $g(s)$ conhecido por estado.
+  \item A escolha da estratégia depende de restrições práticas: memória disponível, profundidade esperada da solução e presença de ciclos.
 \end{itemize}
 
-\subsection*{Boas práticas}
+\paragraph{Resumo didático}
 \begin{itemize}
-  \item \textbf{Fechados} (explored set) + \textbf{frontier} determinística.
-  \item Tabela $best\_g[state]$ para descartar caminhos piores (UCS).
-  \item Separar \textit{estado} da \textit{descrição do nó} (pai, ação, custos).
+  \item BFS — \textit{segura, mas cara} (ótima e completa, porém consome muita memória).
+  \item DFS — \textit{econômica, mas arriscada} (rápida e simples, mas pode falhar).
+  \item IDS — \textit{equilíbrio entre ambas}.
+  \item UCS — \textit{melhor escolha} quando há custos variados e é necessária otimalidade real.
 \end{itemize}
 
+
+% ==============================================================
 \section*{Mini-Exercícios (para fixação)}
+% ==============================================================
+
 \begin{enumerate}
-  \item Modele o \textit{Missionários e Canibais} como busca: defina $S$, $A$, $\gamma$, $c$, $s_0$, $G$. Liste pelo menos três ações válidas em $s_0$.
-  \item Dê um exemplo simples em que DFS encontra uma solução mais rápida que BFS; explique por quê.
-  \item Para o 8-Puzzle, explique a diferença prática entre \textit{tree} e \textit{graph} search. Em que cenário \textit{tree search} é inviável?
-  \item Implemente UCS para um grid $N\times N$ com custos não uniformes e compare o caminho encontrado vs BFS.
-  \item Explique por que IDS repete trabalho e, ainda assim, mantém custo assintótico comparável ao da BFS.
+  \item Modele o \textit{Missionários e Canibais} como busca: defina $S$, $A$, $\gamma$, $c$, $s_0$, $G$.
+  \item Explique a diferença prática entre tree e graph search.
+  \item Implemente UCS em um grid $N\times N$ e compare com BFS.
+  \item Explique por que IDS repete trabalho mas ainda é eficiente.
 \end{enumerate}
 
 \section*{Leitura Recomendada (AIFCA 3e)}
 \begin{itemize}
-  \item Cap. 3.1--3.5: definição de problema, espaços de estados, busca em grafo, algoritmo genérico e estratégias não-informadas.
-  \item Exercícios de final de capítulo sobre BFS/DFS/IDS/UCS e repetição de estados.
+  \item Cap. 2: Agentes e ambientes.
+  \item Cap. 3.1--3.5: Problemas de busca, espaços de estados e estratégias não-informadas.
 \end{itemize}
 
 \end{document}
