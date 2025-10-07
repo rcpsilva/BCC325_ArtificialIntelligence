@@ -14,9 +14,9 @@
 \usepackage{tikz}
 \usetikzlibrary{positioning}
 
-\setlist{nosep}
+%\setlist{nosep}
 
-\title{Roteiro de Exercícios -- Busca em Espaço de Estados}
+\title{Lista de Exercícios -- Busca em Espaço de Estados}
 \author{BCC740 -- Inteligência Artificial \\ Prof. Rodrigo Silva}
 \date{}
 
@@ -35,8 +35,8 @@
 
 \begin{enumerate}
 
-  \item (Cap. 2) O que é um \textbf{agente}? Explique como ele interage com o ambiente.
-  \item (Cap. 2) Quando dizemos que um agente é \textbf{inteligente}? Quais propriedades o caracterizam como tal?
+  \item (Cap. 1) O que é um \textbf{agente}? Explique como ele interage com o ambiente.
+  \item (Cap. 1) Quando dizemos que um agente é \textbf{inteligente}? Quais propriedades o caracterizam como tal?
   
   \item (Seção 3.1) O que significa \textbf{busca} no contexto dos métodos de resolução de problemas apresentados no livro?
   \item (Seção 3.2) Quais são as \textbf{premissas} de um problema de busca em espaços de estados?
@@ -46,43 +46,47 @@
   \item (Seção 3.4) Apresente o \textbf{algoritmo genérico de busca} e descreva suas principais estruturas de dados.
   \item (Seção 3.5.1) Mostre um exemplo de execução do \textbf{algoritmo de busca em profundidade (DFS)}. Apresente o estado da fronteira a cada iteração.
   \item (Seção 3.5.2) Mostre um exemplo de execução do \textbf{algoritmo de busca em largura (BFS)}. Apresente o estado da fronteira a cada iteração.
+  \item (Seção 3.5) Apresente uma discussão sobre os custo de\textbf{tempo e espaço} dos algoritmos \textbf{DFS} e \textbf{BFS}. 
 
   \item Considere o problema de encontrar um caminho no labirinto abaixo. O objetivo é ir da posição \textbf{s} até a posição \textbf{g}. O agente pode se mover nas quatro direções (cima, baixo, esquerda, direita). 
 
   \begin{enumerate}[label*=\alph*)]
     \item Numere os nós expandidos (visitados) por um agente que implementa \textbf{busca em profundidade}. A ordem das ações é: cima, esquerda, direita e baixo. (Assuma poda de ciclos.)
-    \begin{figure}[!ht]
-      \centering
-      \includegraphics[width=0.35\textwidth]{grid.png}
-    \end{figure}
-
     \item Numere os nós expandidos por um agente que implementa a \textbf{busca de menor custo primeiro}.
-    \begin{figure}[!ht]
-      \centering
-      \includegraphics[width=0.35\textwidth]{grid.png}
-    \end{figure}
-
     \item Escreva em cada nó o valor da \textbf{heurística de distância de Manhattan} (distância em unidades horizontais + verticais até o objetivo).
-    \begin{figure}[!ht]
-      \centering
-      \includegraphics[width=0.35\textwidth]{grid.png}
-    \end{figure}
-
     \item Numere os nós expandidos por um agente que implementa a \textbf{busca gulosa} utilizando a heurística acima. (Assuma poda de ciclos.)
-    \begin{figure}[!ht]
-      \centering
-      \includegraphics[width=0.35\textwidth]{grid.png}
-    \end{figure}
-
     \item Numere os nós expandidos por um agente que implementa o algoritmo \textbf{$A^{\*}$}, considerando a distância de Manhattan como custo e heurística.
-    \begin{figure}[!ht]
-      \centering
-      \includegraphics[width=0.35\textwidth]{grid.png}
-    \end{figure}
+
   \end{enumerate}
 
 \end{enumerate}
 
+    \begin{figure}[!ht]
+      \centering
+      \includegraphics[width=0.35\textwidth]{grid.png}
+    \end{figure}
+    
+    \begin{figure}[!ht]
+      \centering
+      \includegraphics[width=0.35\textwidth]{grid.png}
+    \end{figure}
+
+        \begin{figure}[!ht]
+      \centering
+      \includegraphics[width=0.35\textwidth]{grid.png}
+    \end{figure}
+
+        \begin{figure}[!ht]
+      \centering
+      \includegraphics[width=0.35\textwidth]{grid.png}
+    \end{figure}
+
+        \begin{figure}[!ht]
+      \centering
+      \includegraphics[width=0.35\textwidth]{grid.png}
+    \end{figure}
+
+\pagebreak
 % ==============================================================
 \section{Trabalho Prático -- Missionários e Canibais}
 % ==============================================================
@@ -116,7 +120,7 @@ onde $M_E$ é o número de missionários à esquerda, $C_E$ é o número de cani
   \item Mostre a sequência de ações e o número de nós expandidos para cada método.
 \end{enumerate}
 
-\subsection*{Variações sugeridas (opcional)}
+\subsection*{Variações}
 
 Explore versões modificadas do problema e observe como o espaço de estados muda:
 \begin{itemize}
@@ -129,21 +133,10 @@ Explore versões modificadas do problema e observe como o espaço de estados mud
 
 \subsection*{Entrega}
 
-No repositório GitHub da disciplina, crie uma pasta chamada \texttt{TrabalhoPraticoBusca} contendo:
 \begin{itemize}
   \item \texttt{missionaries.py} com a implementação do problema;
   \item \texttt{agents.py} com as funções de busca adaptadas;
   \item Um arquivo \texttt{main.py} que execute os testes e exiba a sequência de ações e o número de nós expandidos.
-\end{itemize}
-
-O link do repositório deverá ser enviado via formulário, conforme instruções do professor.
-
-\subsection*{Dicas}
-
-\begin{itemize}
-  \item Use tuplas imutáveis para representar estados: \texttt{(M\_E, C\_E, B)};
-  \item Armazene estados visitados para evitar ciclos;
-  \item Utilize \texttt{deque} (BFS) ou \texttt{heapq} (UCS) conforme o tipo de busca.
 \end{itemize}
 
 \end{document}

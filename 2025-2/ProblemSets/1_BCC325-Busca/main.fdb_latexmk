@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1759858914.3645 "c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/ProblemSets/1_BCC325-Busca/main.tex" "main.pdf" "main" 1759858916.10535 0
-  "c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/ProblemSets/1_BCC325-Busca/main.tex" 1759858910 6977 edf8d0750dde0376047e48b234aa0fee ""
+["pdflatex"] 1759860725.65811 "c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/ProblemSets/1_BCC325-Busca/main.tex" "main.pdf" "main" 1759860727.40625 0
+  "c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/ProblemSets/1_BCC325-Busca/main.tex" 1759860724 6637 86efadbda3f185b6b59d4e996b715c4d ""
   "c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1730312644 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1730312644 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1730314164 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -172,9 +172,9 @@
   "c:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1730320026 3325936 6e896a909b476ed009efbfbadbcd5207 ""
   "c:/texlive/2024/texmf.cnf" 1730319826 713 e69b156964470283e0530f5060668171 ""
   "grid.png" 1730080476 5464 121f579e70a9e1c4529de2bf703640c9 ""
-  "main.aux" 1759858915 557 69595ea3cf20028eb0e8381ee19c8825 "pdflatex"
-  "main.out" 1759858915 414 ee09d05785c1d6ca71a433574a62e2f9 "pdflatex"
-  "main.tex" 1759858910 6977 edf8d0750dde0376047e48b234aa0fee ""
+  "main.aux" 1759860727 557 ea5b7c7368ca7381f80b2524c3efb8e1 "pdflatex"
+  "main.out" 1759860727 414 ee09d05785c1d6ca71a433574a62e2f9 "pdflatex"
+  "main.tex" 1759860724 6637 86efadbda3f185b6b59d4e996b715c4d ""
   (generated)
   "main.aux"
   "main.log"
