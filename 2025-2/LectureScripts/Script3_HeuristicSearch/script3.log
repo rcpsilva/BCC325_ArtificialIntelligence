@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.30)  16 OCT 2025 11:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.30)  16 OCT 2025 13:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -541,7 +541,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (c:/texlive/2024/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 120.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 124.
  (c:/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
@@ -555,42 +555,44 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 {c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathsurround' on input line 201.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 201.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 201.
-
-
-
 [2]
 
-[3] (./script3.aux)
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\mathsurround' on input line 264.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\z@' on input line 264.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 264.
+
+
+
+[3]
+
+[4] (./script3.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-10-09>
  ***********
 Package rerunfilecheck Info: File `script3.out' has not changed.
-(rerunfilecheck)             Checksum: CFC952FED6E97E00EB5C26D5BE21A092;1262.
+(rerunfilecheck)             Checksum: 12EE4411CEF1E4B7749A18260FD6C669;1691.
  ) 
 Here is how much of TeX's memory you used:
- 18091 strings out of 473577
- 285297 string characters out of 5732224
- 1237040 words of memory out of 5000000
- 40529 multiletter control sequences out of 15000+600000
- 582185 words of font info for 146 fonts, out of 8000000 for 9000
+ 18120 strings out of 473577
+ 285677 string characters out of 5732224
+ 1201040 words of memory out of 5000000
+ 40533 multiletter control sequences out of 15000+600000
+ 581780 words of font info for 149 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,14n,79p,1121b,2148s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0600.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0800.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0600.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
-Output written on script3.pdf (3 pages, 360361 bytes).
+ 69i,14n,79p,1121b,1312s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0600.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0800.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0600.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
+Output written on script3.pdf (4 pages, 396054 bytes).
 PDF statistics:
- 289 PDF objects out of 1000 (max. 8388607)
- 236 compressed objects within 3 object streams
- 110 named destinations out of 1000 (max. 500000)
- 48185 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 324 PDF objects out of 1000 (max. 8388607)
+ 268 compressed objects within 3 object streams
+ 128 named destinations out of 1000 (max. 500000)
+ 46153 words of extra memory for PDF output out of 51595 (max. 10000000)
 

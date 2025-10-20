@@ -90,6 +90,69 @@
   \item 3.6.3 \textbf{Construção de Heurísticas}
 \end{enumerate}
 
+\section{Pré-requistos}
+
+% ===============================================================
+\subsection{Estruturas de Dados: Filas de Prioridade e Heaps}
+% ===============================================================
+
+Os algoritmos \textbf{Uniform-Cost}, \textbf{A\Astar}, e outras variantes de busca informada
+utilizam uma \textbf{fronteira} (ou \textit{open list}) organizada como uma
+\textbf{fila de prioridade}.  
+O objetivo é sempre expandir primeiro o nó com menor valor de custo
+(ou estimativa de custo).
+
+\subsection*{Heaps: Estrutura de Dados para Fila de Prioridade}
+
+Uma implementação eficiente de fila de prioridade é o \textbf{heap binário}.
+Um heap é uma estrutura de árvore quase completa que mantém a seguinte propriedade:
+
+\begin{quote}
+  Para cada nó, o valor armazenado é menor ou igual (em um \textit{min-heap})
+  ou maior ou igual (em um \textit{max-heap}) que o valor dos filhos.
+\end{quote}
+
+Isso garante que o elemento de menor valor esteja sempre na raiz, o que permite:
+\begin{itemize}
+  \item Inserção de um novo elemento em tempo $O(\log n)$;
+  \item Remoção (ou acesso) ao elemento mínimo em tempo $O(\log n)$;
+  \item Verificação do mínimo em tempo $O(1)$.
+\end{itemize}
+
+\subsection*{Heap em Python}
+
+O módulo \texttt{heapq} da biblioteca padrão implementa um \textit{min-heap} sobre listas.
+Os elementos inseridos devem ser \emph{tuplas} ou objetos comparáveis,
+de modo que a comparação seja feita pelo primeiro item da tupla.
+
+\begin{lstlisting}
+import heapq
+
+# Exemplo básico:
+fronteira = []
+heapq.heappush(fronteira, (3, "C"))
+heapq.heappush(fronteira, (1, "A"))
+heapq.heappush(fronteira, (2, "B"))
+
+# Removendo o menor elemento
+_, estado = heapq.heappop(fronteira)
+print(estado)  # Saída: "A"
+\end{lstlisting}
+
+Na implementação de busca, as tuplas costumam conter:
+\[
+(\text{prioridade}, \text{desempate}, \text{nó})
+\]
+onde \texttt{prioridade} é o valor de custo $g(n)$ (UCS) ou $f(n)=g(n)+h(n)$ (A\Astar).
+
+\paragraph{Resumo:}
+\begin{itemize}
+  \item \texttt{heapq.heappush(heap, elemento)} insere com custo $O(\log n)$;
+  \item \texttt{heapq.heappop(heap)} remove o menor elemento com custo $O(\log n)$;
+  \item Heaps são cruciais para manter a eficiência de UCS e A\Astar, evitando varreduras lineares.
+\end{itemize}
+
+
 % ===============================================================
 \section{Busca Informada: Motivação}
 % ===============================================================
