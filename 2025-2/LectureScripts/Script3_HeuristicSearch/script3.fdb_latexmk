@@ -1,10 +1,11 @@
 # Fdb version 4
-["pdflatex"] 1760632017.50511 "c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/LectureScripts/Script3_HeuristicSearch/script3.tex" "script3.pdf" "script3" 1760632019.45195 0
-  "c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/LectureScripts/Script3_HeuristicSearch/script3.tex" 1760632011 14409 ed8f419f71e8e875c8de802bbb088d94 ""
+["pdflatex"] 1760949782.34404 "c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/LectureScripts/Script3_HeuristicSearch/script3.tex" "script3.pdf" "script3" 1760949784.34387 0
+  "c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/LectureScripts/Script3_HeuristicSearch/script3.tex" 1760949779 18634 84795e77b7a3b7b7f3d2f2b8a84ba707 ""
   "c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1730312644 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1730312644 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1730314164 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/ecbx0600.tfm" 1730313526 3584 ad9fcbc26a2a7bccd6d08b0a5792fbe0 ""
+  "c:/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/ecbx0700.tfm" 1730313526 3584 ca0c423beaacd28d53ddce5a826cd558 ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/ecbx0800.tfm" 1730313526 3584 269b66e921ba58750c12f7f1c8ea3ebd ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/ecbx0900.tfm" 1730313526 3584 1a7de6c99457381c64abc1a7c545505f ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1730313526 3584 2d666ecf6d466d8b007246bc2f94d9da ""
@@ -53,6 +54,7 @@
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1730278933 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb" 1730278933 32442 c975af247b6702f7ca0c299af3616b80 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0600.pfb" 1730312644 161999 bab6c1b450ca2637878cdf648d04987e ""
+  "c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0700.pfb" 1730312644 144215 65a43863de88d10fea6df7476a940e8e ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0800.pfb" 1730312644 164252 80f1e2aedb14b70a9faa6f99c56d1770 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb" 1730312644 143961 fe73b0de40bc9eebafe5b31a39c455e0 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb" 1730312644 145408 bcd327f112f643a875638eafb48d1d8b ""
@@ -154,9 +156,10 @@
   "c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1730319856 5521136 47e49b84c41d5ab3414c7e2d0ef6eb2b ""
   "c:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1730320026 3325936 6e896a909b476ed009efbfbadbcd5207 ""
   "c:/texlive/2024/texmf.cnf" 1730319826 713 e69b156964470283e0530f5060668171 ""
-  "script3.aux" 1760632019 2416 a80ab3d1306cf39d5b8cb91842c3a0e3 "pdflatex"
-  "script3.out" 1760632019 1691 12ee4411cef1e4b7749a18260fd6c669 "pdflatex"
-  "script3.tex" 1760632011 14409 ed8f419f71e8e875c8de802bbb088d94 ""
+  "figure1.pdf" 1760949528 41456 033a2060a22781b60a6bdbcb0926fc01 ""
+  "script3.aux" 1760949784 3576 e09c5cc2bfdfdd2e4d1b215e2b241a58 "pdflatex"
+  "script3.out" 1760949784 1691 12ee4411cef1e4b7749a18260fd6c669 "pdflatex"
+  "script3.tex" 1760949779 18634 84795e77b7a3b7b7f3d2f2b8a84ba707 ""
   (generated)
   "script3.aux"
   "script3.log"

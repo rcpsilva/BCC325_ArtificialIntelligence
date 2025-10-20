@@ -221,10 +221,43 @@ def uniform_cost_search(s0, is_goal, successors):
 \end{lstlisting}
 
 \subsection*{Corretude e Condições Suficientes}
-Se (i) o fator de ramificação é finito e (ii) todos os custos de arco são \textbf{estritamente positivos} ($\ge \epsilon > 0$), então a UCS é \textbf{completa} e \textbf{ótima}.
-O \emph{primeiro} caminho-meta removido da fronteira tem o menor custo.
 
-\paragraph{Nota (paradoxo de Zeno):} sem limite inferior $\epsilon$, pode haver caminhos infinitos de custo finito e a busca não terminar.
+Se (i) o fator de ramificação é finito e (ii) todos os custos de arco são
+\textbf{estritamente positivos} ($\ge \epsilon > 0$), então a
+\textbf{busca de custo uniforme (UCS)} é \textbf{completa} e
+\textbf{ótima}.  
+Em particular, o \emph{primeiro} caminho-meta removido da fronteira
+é aquele de menor custo total $g(p)$ — logo, a solução retornada é ótima.
+
+\paragraph{Racional:}
+a UCS expande caminhos a partir do nó inicial em \emph{ordem crescente de custo acumulado}.
+Como os custos de arco são positivos, os valores de $g(p)$ nunca diminuem ao longo do processo.
+Assim, nenhum caminho mais barato pode ser descoberto após a expansão de um mais caro:
+se existisse uma solução de custo menor que a primeira encontrada, ela teria sido expandida
+antes da solução atual.
+
+\paragraph{Importância do limite inferior ($\epsilon>0$):}
+A exigência de custos de arco \emph{limitados inferiormente}
+— isto é, todos os arcos possuem custo maior que uma constante positiva —
+garante que o algoritmo não ficará preso em caminhos infinitos de custo finito.
+Com esse limite, a UCS sempre encontrará uma solução (se existir) em grafos com
+fator de ramificação finito.
+
+\paragraph{Nota (paradoxo de Zeno):}
+Sem o limite inferior $\epsilon$, podem existir caminhos infinitos
+cujo custo total permanece finito.
+Por exemplo, considere uma sequência de nós
+$n_0, n_1, n_2, \dots$
+com arcos $\langle n_{i-1}, n_i \rangle$ de custo $1/2^i$.
+Cada caminho finito
+$\langle n_0, n_1, \dots, n_k \rangle$
+terá custo menor que $1$,
+mas a soma total converge para $1$.
+Se existir um arco direto de $n_0$ para o nó-meta com custo exatamente $1$,
+a UCS nunca o expandirá,
+pois continuará gerando extensões infinitas do caminho parcial de custo ligeiramente menor que $1$.
+Essa situação é uma analogia moderna ao \emph{paradoxo de Zeno} descrito por Aristóteles há mais de dois milênios.
+
 
 \subsection*{Complexidade (pior caso)}
 Se $c$ é o custo da solução ótima e $k=c/\epsilon$, a busca pode gerar até $O(b^{k})$ caminhos de comprimento $\le k$, resultando em \textbf{tempo} e \textbf{espaço} $O(k\,b^{k})$.
@@ -296,6 +329,69 @@ def a_star_search(s0, is_goal, successors, h):
 
 \paragraph{Admissibilidade (esboço):}
 Com $b<\infty$, custos $\ge \epsilon>0$ e $h$ admissível, a primeira solução retornada por \Astar\ é ótima.
+
+% ===============================================================
+\subsection*{Consistência (Monotonicidade) da Heurística}
+% ===============================================================
+
+Além de ser \textbf{admissível}, uma heurística pode também satisfazer uma condição mais forte,
+chamada de \textbf{consistência} (ou \textbf{monotonicidade}):
+
+\[
+  h(n) \le c(n, n') + h(n')
+\]
+para todo arco $(n, n')$ com custo $c(n, n')$.
+
+\paragraph{Intuição:}
+a estimativa nunca “salta” mais do que o custo real entre dois estados adjacentes.
+Isso implica que a função $f(n)=g(n)+h(n)$ é \emph{não decrescente}
+ao longo de qualquer caminho — o que permite reusar nós sem precisar reabrir a fronteira.
+
+\paragraph{Relações Importantes:}
+\begin{itemize}
+  \item Toda heurística consistente é também admissível.
+  \item O inverso nem sempre é verdadeiro.
+  \item Se $h$ é consistente, o A\Astar\ não precisa reexpandir nós: o primeiro custo encontrado para um estado é o menor possível.
+\end{itemize}
+
+% ===============================================================
+\subsection*{Prova (Esboço) de Otimalidade do \Astar}
+% ===============================================================
+
+A seguir apresenta-se uma visão resumida da demonstração de que o \Astar,
+com $h$ admissível e custos positivos, é \textbf{ótimo}.
+
+\paragraph{Hipóteses:}
+\begin{enumerate}
+  \item Custos de arco $c(n,n') \ge \epsilon > 0$.
+  \item Fator de ramificação $b < \infty$.
+  \item Heurística $h$ é admissível, ou seja, $h(n) \le h^*(n)$.
+\end{enumerate}
+
+\paragraph{Ideia da prova:}
+Seja $G_1$ o primeiro nó-meta removido da fronteira pelo \Astar.
+Suponha, por contradição, que existe outro caminho $P^*$ de custo menor ($C^* < g(G_1)$).
+Como $h$ é admissível,
+cada nó $n$ em $P^*$ teria $f(n) = g(n)+h(n) \le C^*$,
+logo todos esses nós teriam prioridade menor que $G_1$ na fila de prioridade.
+Mas então o \Astar\ teria expandido $P^*$ antes de $G_1$, o que é uma contradição.
+Portanto, $g(G_1)=C^*$ e a solução é ótima.
+
+\paragraph{Visualização:}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.7\linewidth]{figure1.pdf}
+  \caption{Esboço visual: os nós à esquerda da fronteira possuem $f(n) < C^*$,
+  os da fronteira têm $f(n) \le C^*$ e os à direita $f(n) > C^*$.
+  O primeiro nó-meta removido terá custo ótimo $C^*$.}
+\end{figure}
+
+\paragraph{Consequência prática:}
+A\Astar\ é:
+\begin{itemize}
+  \item \textbf{Completa}, se há limite inferior $\epsilon$ no custo dos arcos.
+  \item \textbf{Ótima}, se $h$ é admissível (ou consistente).
+\end{itemize}
 
 % ===============================================================
 \section{Branch and Bound}
