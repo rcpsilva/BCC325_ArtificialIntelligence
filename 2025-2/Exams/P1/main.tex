@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[brazil]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+\title{BCC325 – Prova 1 \\ Inteligência Artificial}
+\author{Universidade Federal de Ouro Preto}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\vspace{0.5cm}
+
+\textbf{Instruções:} Responda às questões a seguir com clareza e objetividade. Justifique todas as suas respostas sempre que possível. 
+
+\begin{enumerate}
+
+\item (2,0 pts) No contexto de busca em espaços de estados, explique:
+\begin{enumerate}
+    \item O que caracteriza um problema de busca.
+    \item Quais são os componentes fundamentais de um problema de busca.
+\end{enumerate}
+
+\item (2,0 pts) Considere o problema de encontrar o caminho da posição $(0,0)$ à posição $(3,3)$ em um gride 4x4. Apresente o grafo referente a este problema. Considere que não é possível voltar a uma posição já visitada.
+
+\item (2,0 pts) Apresente o algoritmo genérico de busca e explique como ele pode ser adaptado para busca em profundidade e busca em largura. Mostre as diferenças principais entre essas duas estratégias quanto a:
+\begin{itemize}
+    \item estrutura de dados usada;
+    \item tipo de solução encontrada;
+    \item complexidade de tempo e espaço.
+\end{itemize}
+
+
+\item (2,0 pts) Considere o labirinto abaixo. Apresente, passo a passo, a execução da sua do algoritmo de busca em profundidade com início em $s$, posição $(0,0)$, e objetivo, $g$, em $(3,3)$. Represente a fronteira a cada iteração. Considere as células livres (branco) e bloqueios (preto). 
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.3\textwidth]{labirinto.png}
+\caption{Labirinto para a busca em Profundidade}
+\end{figure}
+
+\item (1 pt) os seguintes algoritmos: Busca em Largura (BFS), Busca em Profundidade (DFS), Busca de Menor Custo Primeiro, e Busca A*.  
+
+Para cada algoritmo, indique se ele é completo e ótimo, justificando brevemente sua resposta em função das condições necessárias sobre o espaço de estados e as funções de custo.
+
+\medskip
+\noindent\textbf{Dica:} Discuta condições como fator de ramificação finito, existência de custos positivos e admissibilidade/consistência da heurística.
+\bigskip
+
+\item (1 pt) Considere um agente que utiliza a Busca em Profundidade em um problema com:
+\begin{itemize}
+    \item fator de ramificação $b$;
+    \item profundidade da solução $d$.
+\end{itemize}
+
+Derive a complexidade de tempo e de espaço em função de $b$ e $d$.  
+
+\end{enumerate}
+
+\end{document}
