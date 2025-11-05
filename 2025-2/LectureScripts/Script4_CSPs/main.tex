@@ -1,0 +1,146 @@
+\documentclass[9pt,a4paper]{extarticle}
+\usepackage{parskip}
+
+% =====================
+% Codificação, idioma e layout
+% =====================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=2cm}
+\usepackage{microtype}
+
+% =====================
+% Matemática e símbolos
+% =====================
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+
+% =====================
+% Links
+% =====================
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=blue
+}
+
+% =====================
+% Código-fonte (listings)
+% =====================
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{codebg}{rgb}{0.96,0.96,0.96}
+\definecolor{codekw}{RGB}{33,96,171}
+\definecolor{codecomment}{RGB}{85,110,85}
+\lstset{
+  backgroundcolor=\color{codebg},
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{codekw}\bfseries,
+  commentstyle=\color{codecomment}\itshape,
+  stringstyle=\color{red!70!black},
+  frame=single,
+  showstringspaces=false,
+  breaklines=true,
+  tabsize=2
+}
+
+% =====================
+% Documento
+% =====================
+\begin{document}
+
+\begin{center}
+  {\Large \textbf{Roteiro de Aula -- Problemas de Satisfação de Restrições (CSPs)}}\\[0.5em]
+  \textbf{Disciplina: Inteligência Artificial}
+\end{center}
+
+\section{Definição}
+Um \textbf{Problema de Satisfação de Restrições} (\textit{Constraint Satisfaction Problem} -- CSP) é definido por:
+\begin{itemize}
+  \item Um conjunto de \textbf{variáveis} \( X = \{X_1, X_2, \ldots, X_n\} \);
+  \item Um \textbf{domínio} de valores possíveis para cada variável \( D_i \);
+  \item Um conjunto de \textbf{restrições} \( C = \{C_1, C_2, \ldots, C_m\} \), que especificam combinações permitidas de valores.
+\end{itemize}
+
+O objetivo é encontrar uma atribuição de valores a todas as variáveis que \textbf{satisfaça todas as restrições}. Formalmente:
+\[
+A: X_i \to D_i \quad \text{tal que todas as } C_j \text{ sejam verdadeiras.}
+\]
+
+\section{Exemplos de Problemas Clássicos}
+\begin{description}
+  \item[Coloração de Mapas:] variáveis = regiões; domínio = \{vermelho, verde, azul\}; restrição: regiões adjacentes não podem ter a mesma cor.
+  \item[N-Rainhas:] variáveis = colunas; domínio = linhas; restrição: nenhuma rainha pode atacar outra.
+  \item[Sudoku:] variáveis = células da grade; domínio = \{1,\dots,9\}; restrição: sem repetição em linhas, colunas e blocos.
+\end{description}
+
+\section{Exemplos de Problemas Práticos}
+\begin{itemize}
+  \item \textbf{Agendamento de tarefas (Scheduling):} alocar disciplinas, professores e salas sem sobreposições.
+  \item \textbf{Planejamento de rotas (Roteirização):} planejar entregas respeitando janelas de tempo e capacidade.
+  \item \textbf{Design de circuitos / layout industrial:} posicionar componentes evitando sobreposição.
+\end{itemize}
+
+\section{Algoritmo \textit{Generate and Test}}
+\textbf{Ideia:} gerar todas as combinações possíveis e testar quais satisfazem as restrições.
+
+\subsection*{Etapas}
+\begin{enumerate}
+  \item Gerar uma atribuição completa (ou parcial) de valores;
+  \item Testar se todas as restrições são satisfeitas;
+  \item Se sim, retornar a solução; caso contrário, tentar outra combinação.
+\end{enumerate}
+
+\subsection*{Pseudocódigo}
+\begin{lstlisting}[language=Python]
+for cada combinacao possível de valores:
+    if satisfaz_todas_as_restricoes():
+        return solucao
+return "sem solucao"
+\end{lstlisting}
+
+\textbf{Limitação:} ineficiente — cresce exponencialmente com o número de variáveis e domínios.
+
+\section{Backtracking}
+A técnica de \textbf{backtracking} é um aperfeiçoamento do \textit{generate and test} que evita explorar soluções sabidamente inválidas.
+
+\subsection*{Ideia}
+Construir a solução incrementalmente, voltando atrás (\textit{backtrack}) quando uma restrição é violada.
+
+\subsection*{Etapas}
+\begin{enumerate}
+  \item Atribuir valor à primeira variável;
+  \item Testar restrições parciais;
+  \item Se houver violação, voltar à variável anterior e tentar outro valor;
+  \item Repetir até que todas as variáveis estejam atribuídas ou as possibilidades se esgotem.
+\end{enumerate}
+
+\subsection*{Pseudocódigo}
+\begin{lstlisting}[language=Python]
+def Backtrack(atribuicao):
+    if todas_variaveis_atribuidas(atribuicao):
+        return atribuicao
+    X = escolher_variavel_nao_atribuida()
+    for v in dominio(X):
+        if consistente(X, v, atribuicao):
+            atribuicao[X] = v
+            resultado = Backtrack(atribuicao)
+            if resultado != "falha":
+                return resultado
+            del atribuicao[X]
+    return "falha"
+\end{lstlisting}
+
+\subsection*{Vantagens}
+\begin{itemize}
+  \item Reduz consideravelmente o espaço de busca;
+  \item Permite heurísticas como \textit{Forward Checking} e \textit{Arc Consistency}.
+\end{itemize}
+
+\end{document}
