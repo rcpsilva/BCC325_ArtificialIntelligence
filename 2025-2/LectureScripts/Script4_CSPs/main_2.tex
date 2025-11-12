@@ -1,0 +1,179 @@
+\documentclass[9pt,a4paper]{extarticle}
+\usepackage{parskip}
+
+% =====================
+% Codificação, idioma e layout
+% =====================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=2cm}
+\usepackage{microtype}
+
+% =====================
+% Matemática e símbolos
+% =====================
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+
+% =====================
+% Links
+% =====================
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+
+% =====================
+% Código-fonte (listings)
+% =====================
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{codebg}{rgb}{0.96,0.96,0.96}
+\definecolor{codekw}{RGB}{33,96,171}
+\definecolor{codecm}{RGB}{110,110,110}
+\lstset{
+  backgroundcolor=\color{codebg},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{codekw}\bfseries,
+  commentstyle=\color{codecm}\itshape,
+  stringstyle=\color{purple},
+  showstringspaces=false,
+  frame=single,
+  frameround=tttt,
+  breaklines=true
+}
+
+% =====================
+% Início do documento
+% =====================
+\begin{document}
+
+\title{Roteiro de Aula -- Consistência de Arcos em CSPs (Poole \& Mackworth, Cap. 4)}
+\author{Prof. Rodrigo Silva}
+\date{}
+\maketitle
+
+\section*{Objetivo da Aula}
+Compreender o conceito de \textbf{consistência de restrições} em problemas de satisfação de restrições (CSPs), introduzir o algoritmo \textbf{GAC -- Generalized Arc Consistency}, e discutir sua aplicação prática e eficiência.
+
+\section{Introdução}
+\textbf{Problemas de Satisfação de Restrições (CSPs)} são definidos por um triplo:
+\[
+\langle V, D, C \rangle
+\]
+onde $V$ é o conjunto de variáveis, $D$ seus domínios, e $C$ o conjunto de restrições.
+
+O método \emph{generate and test} é ineficiente, pois repete verificações. O \emph{backtracking search} melhora, mas ainda reavalia inconsistências já conhecidas. \\
+\textbf{Ideia central:} eliminar valores inconsistentes dos domínios antes ou durante a busca.
+
+\paragraph{Exemplo 4.13.} Se $A<B$ e $dom(B)=\{1,2,3,4\}$, então $A=4$ é inconsistente. Podemos eliminar 4 de $dom(A)$ antes de buscar soluções.
+
+\section{Redes de Restrições}
+Um CSP pode ser representado como uma \textbf{rede bipartida de restrições}:
+\begin{itemize}
+    \item Nós circulares: variáveis ($A$, $B$, $C$);
+    \item Nós retangulares: restrições ($A<B$, $B<C$);
+    \item Arcos: conexões $\langle X, c \rangle$ entre variáveis e restrições.
+\end{itemize}
+
+\paragraph{Exemplo 4.14.} CSP com $A,B,C \in \{1,2,3,4\}$ e restrições $A<B$, $B<C$.  
+A rede contém quatro arcos:
+\[
+\langle A, A<B\rangle, \ \langle B, A<B\rangle, \ \langle B, B<C\rangle, \ \langle C, B<C\rangle
+\]
+
+\section{Consistência de Domínio e de Arco}
+\textbf{Consistência de domínio:} toda atribuição possível de uma variável satisfaz suas restrições unárias.
+
+\paragraph{Exemplo 4.16.} Para $B\neq 3$ e $dom(B)=\{1,2,3,4\}$, o domínio não é consistente. Removendo 3, torna-se consistente.
+
+\textbf{Consistência de arco:} para cada $x \in dom[X]$, deve haver pelo menos uma atribuição às variáveis relacionadas que satisfaça a restrição.
+
+\paragraph{Exemplo 4.17.} No CSP $A<B$, $B<C$, o arco $\langle A, A<B\rangle$ é inconsistente se $A=4$, pois não há valor de $B$ que satisfaça $A<B$. Assim, removemos $4$ de $dom(A)$.
+
+\section{O Algoritmo GAC}
+\textbf{Objetivo:} tornar a rede de restrições arc-consistente.
+
+\begin{lstlisting}[language=Python, caption={Pseudocódigo do algoritmo GAC (Poole \& Mackworth, 2023)}]
+procedure GAC(Vs, dom, Cs, to_do):
+    while to_do not empty do
+        select and remove (X, c) from to_do
+        let {Y1, ... , Yk} = scope(c) \ {X}
+        ND = { x $\in$ dom[X] , exists y1 ... ,yk $\in$ dom[Y1] ... dom[Yk]
+                such that c(X=x,Y1=y1,...,Yk=yk) holds }
+        if ND not equal dom[X] then
+            dom[X] = ND
+            to_do = to_do U {(Z, c_p) , {X,Z} $\subset$ scope(c_p, c_p != c, Z != X)}
+    return dom
+\end{lstlisting}
+
+\paragraph{Interpretação:}
+\begin{itemize}
+    \item Iterativamente remove valores inconsistentes dos domínios.
+    \item Se o domínio de $X$ é reduzido, outros arcos que dependem de $X$ são reavaliados.
+\end{itemize}
+
+\paragraph{Exemplo 4.18.}  
+Para $A<B$ e $B<C$, inicialmente:
+\[
+dom(A)=dom(B)=dom(C)=\{1,2,3,4\}
+\]
+Após aplicar o GAC:
+\[
+dom(A)=\{1,2\}, \quad dom(B)=\{2,3\}, \quad dom(C)=\{3,4\}
+\]
+
+\section{Casos de Término e Interpretação}
+Ao final do algoritmo:
+\begin{enumerate}
+    \item Algum domínio vazio $\Rightarrow$ sem solução.
+    \item Todos os domínios unitários $\Rightarrow$ solução única.
+    \item Domínios múltiplos não-vazios $\Rightarrow$ problema reduzido, mas requer busca.
+\end{enumerate}
+
+\paragraph{Exemplo 4.19.} Rede de agendamento: $A=4, B=2, C=3, D=4, E=1$.  
+\textbf{Conclusão:} todas as variáveis possuem domínios únicos; o CSP tem solução única.
+
+\paragraph{Exemplo 4.20.} CSP com $A=B$, $B=C$, $A\neq C$.  
+Mesmo sendo arc-consistente, não há solução global.
+
+\section{Complexidade e Extensões}
+Para restrições binárias:
+\[
+O(c \, d^3)
+\]
+onde $c$ é o número de restrições e $d$ o tamanho médio dos domínios.
+
+Espaço: $O(n\,d)$, com $n$ variáveis.
+
+Extensões:
+\begin{itemize}
+    \item Domínios infinitos (restrições intensionais);
+    \item \textbf{Path consistency}: analisa trios de variáveis;
+    \item \textbf{k-consistency}: generalização para $k$ variáveis.
+\end{itemize}
+
+\section{Atividades}
+\begin{enumerate}
+    \item Construa o grafo de restrições para o CSP $X<Y$, $Y<Z$ e identifique os arcos inconsistentes.
+    \item Aplique o algoritmo GAC passo a passo sobre $A<B$, $B<C$ com domínios $\{1,2,3,4\}$.
+    \item Implemente em Python uma versão simples do GAC e teste-a em pequenos CSPs.
+    \item Explique por que o GAC não garante a existência de solução, mesmo quando todos os arcos são consistentes.
+\end{enumerate}
+
+\section{Discussão Final}
+\begin{itemize}
+    \item A consistência de arcos é uma forma de \textbf{propagação de restrições}.
+    \item Reduz o espaço de busca de forma sistemática, sem gerar atribuições completas.
+    \item É frequentemente usada em conjunto com \textbf{busca com retrocesso}.
+\end{itemize}
+
+\paragraph{Leitura Recomendada:}
+\begin{itemize}
+    \item Poole, D.L. \& Mackworth, A.K. (2023). \textit{Artificial Intelligence: Foundations of Computational Agents}, 3rd ed., Cap. 4.
+    \item Russell, S. \& Norvig, P. (2020). \textit{Artificial Intelligence: A Modern Approach}, 4ª ed., Seção 6.2.
+\end{itemize}
+
+\end{document}
