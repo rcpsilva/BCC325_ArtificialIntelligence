@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\title{\vspace{-2 cm}Universidade Federal de Ouro Preto \\ BCC 325 - Inteligência Artificial \\ Raciocínio com Restrições}
+\author{Prof. Rodrigo Silva}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Leitura}
+
+\begin{itemize}
+    \item Capítulo 4 do livro \textit{Artificial Intelligence: Foundations of Computational Agents, 3rd Edition}, de David L. Poole e Alan K. Mackworth. Disponível em \textit{https://artint.info/}
+\end{itemize}
+
+\section{Questões}
+
+\begin{enumerate}
+    \item (Seção 4.1.1) O que é uma variável em um problema de satisfação de restrições (CSP)? Diferencie variáveis discretas de variáveis contínuas.
+
+    \item (Seção 4.1.1) O que é uma atribuição total de variáveis? Quantas atribuições totais existem para um CSP com $n$ variáveis, cada uma com domínio de tamanho $d$?
+
+    \item (Seção 4.1.2) Defina e exemplifique:
+    \begin{itemize}
+        \item (a) Restrição unária;
+        \item (b) Restrição binária;
+        \item (c) Restrição ternária;
+        \item (d) Definição intencional e extensional de uma restrição.
+    \end{itemize}
+
+    \item (Seção 4.2) Considere o CSP com variáveis $A, B, C \in \{1, 2, 3, 4\}$ e restrições $A < B$ e $B < C$:
+    \begin{itemize}
+        \item (a) Quantas atribuições totais existem?
+        \item (b) Quantas dessas atribuições satisfazem todas as restrições?
+        \item (c) Esboce a árvore de busca até o nível em que ocorre a primeira poda por violação de restrição.
+    \end{itemize}
+
+    \item (Seção 4.1.1) Qual é a vantagem de modelar estados por meio de variáveis em vez de enumerar todos os estados explicitamente?
+
+    \item (Seção 4.2) Explique o funcionamento do algoritmo \texttt{DFS\_solver} da Figura 4.1. Por que a verificação de restrições em atribuições parciais pode reduzir significativamente o espaço de busca?
+
+    \item (Seção 4.1.3) Considere o seguinte problema de agendamento de entregas com as variáveis $A, B, C, D, E$, todas com domínio $\{1, 2, 3, 4\}$ e as seguintes restrições:
+    \[
+    \{(B \neq 3), (C \neq 2), (A \neq B), (B \neq C), (C < D), (A = D), (E < A), (E < B), (E < C), (E < D), (B \neq D)\}
+    \]
+
+    \begin{itemize}
+        \item (a) Encontre uma solução que satisfaça todas as restrições;
+        \item (b) Justifique quais atribuições puderam ser descartadas por poda antes de explorar totalmente a árvore de busca.
+    \end{itemize}
+
+    \item (Reflexiva) Descreva uma situação do mundo real (diferente dos exemplos dados no livro) que pode ser modelada como um CSP. Especifique as variáveis, seus domínios e pelo menos duas restrições.
+
+\end{enumerate}
+
+\section{Problemas Práticos}
+
+\begin{enumerate}
+    \item Implemente o algoritmo A* para o problema do labirinto. 
+    \item Considere o seguinte problema de alocação de salas:
+
+    Uma universidade precisa alocar um conjunto de disciplinas em salas e horários disponíveis, respeitando restrições como:
+    \begin{itemize}
+        \item Uma sala só pode ter uma aula por horário;
+        \item Um professor só pode dar uma aula por vez;
+        \item A capacidade da sala deve ser suficiente para o número de alunos da disciplina;
+        \item Algumas disciplinas exigem salas específicas (por exemplo, laboratórios).
+    \end{itemize}
+
+    \begin{enumerate}
+        \item Modele este problema como um problema de satisfação de restrições (CSP), identificando:
+        \begin{itemize}
+            \item As variáveis do problema;
+            \item Os domínios de cada variável;
+            \item As restrições envolvidas.
+        \end{itemize}
+
+        \item Escreva um código baseado em busca com backtracking que resolva esse problema, seguindo a lógica dos exemplos de Sudoku ou N-Rainhas vistos em sala. Considere o exemplo abaixo como caso de teste. 
+
+
+\textbf{Dados de Entrada:}
+\begin{verbatim}
+aulas = ['Aula1', 'Aula2', 'Aula3']
+
+dominios = {
+    'Aula1': [('Sala1', '08h'), ('Sala2', '08h'), ('Sala1', '10h')],
+    'Aula2': [('Sala1', '08h'), ('Sala2', '10h')],
+    'Aula3': [('Sala2', '08h'), ('Sala2', '10h'), ('Sala1', '14h')]
+}
+
+constraints = {
+    'Aula1': {'professor': 'ProfA', 'alunos': 30, 'sala_requerida': None},
+    'Aula2': {'professor': 'ProfB', 'alunos': 20, 'sala_requerida': 'Sala2'},
+    'Aula3': {'professor': 'ProfA', 'alunos': 35, 'sala_requerida': None}
+}
+
+salas = {
+    'Sala1': {'capacidade': 40},
+    'Sala2': {'capacidade': 25}
+}
+\end{verbatim}
+
+\textbf{Saída:}
+\begin{verbatim}
+
+[
+    {'aula': 'Aula1', 'sala': 'Sala1', 'horario': '08h', 'professor': 'ProfA'},
+    {'aula': 'Aula2', 'sala': 'Sala2', 'horario': '10h', 'professor': 'ProfB'},
+    {'aula': 'Aula3', 'sala': 'Sala1', 'horario': '14h', 'professor': 'ProfA'}
+]
+
+
+\end{verbatim}
+        
+
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
