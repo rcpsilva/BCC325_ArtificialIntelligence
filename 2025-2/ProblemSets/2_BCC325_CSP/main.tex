@@ -61,70 +61,109 @@
     \end{itemize}
 
     \item (Reflexiva) Descreva uma situação do mundo real (diferente dos exemplos dados no livro) que pode ser modelada como um CSP. Especifique as variáveis, seus domínios e pelo menos duas restrições.
-
-\end{enumerate}
-
-\section{Problemas Práticos}
-
-\begin{enumerate}
-    \item Implemente o algoritmo A* para o problema do labirinto. 
-    \item Considere o seguinte problema de alocação de salas:
-
-    Uma universidade precisa alocar um conjunto de disciplinas em salas e horários disponíveis, respeitando restrições como:
+    
+    \item (Seção 4.3) Consistência de arco e GAC:
     \begin{itemize}
-        \item Uma sala só pode ter uma aula por horário;
-        \item Um professor só pode dar uma aula por vez;
-        \item A capacidade da sala deve ser suficiente para o número de alunos da disciplina;
-        \item Algumas disciplinas exigem salas específicas (por exemplo, laboratórios).
+        \item (a) Defina o que significa um arco $\langle X, c\rangle$ ser \emph{consistente de arco} (arc-consistent) em relação ao dicionário de domínios \texttt{dom}.
+        \item (b) O que significa uma rede de restrições ser \emph{arc-consistent}?
+        \item (c) Descreva os três possíveis estados em que a rede pode se encontrar após a execução do algoritmo \texttt{GAC} (Figura 4.4): comente o que cada caso implica sobre a existência e unicidade de soluções.
     \end{itemize}
 
-    \begin{enumerate}
-        \item Modele este problema como um problema de satisfação de restrições (CSP), identificando:
+    \item (Seção 4.3, Exemplo 4.14/4.18) Reconsidere o CSP da Questão 4, com variáveis $A,B,C \in \{1,2,3,4\}$ e restrições $A < B$ e $B < C$.
+    \begin{itemize}
+        \item (a) Desenhe a rede de restrições (constraint network) correspondente, indicando nós de variáveis, nós de restrições e arcos $\langle X, c\rangle$.
+        \item (b) Considere o conjunto inicial $to\_do$ contendo todos os arcos da rede. Aplique manualmente o algoritmo \texttt{GAC} (Figura 4.4), apresentando uma tabela com:
         \begin{itemize}
-            \item As variáveis do problema;
-            \item Os domínios de cada variável;
-            \item As restrições envolvidas.
+            \item o arco selecionado em cada passo;
+            \item se houve ou não redução de domínio;
+            \item quais novos arcos foram adicionados a $to\_do$.
+        \end{itemize}
+        \item (c) Indique os domínios finais de $A$, $B$ e $C$ após o término do algoritmo. Compare com os domínios iniciais e discuta em que sentido o problema foi “simplificado” para a busca em profundidade.
+    \end{itemize}
+
+    \item (Seção 4.3, Exemplo 4.20) Considere o CSP com variáveis $A$, $B$ e $C$, cada uma com domínio $\{1,2,3,4\}$, e restrições $A = B$, $B = C$ e $A \neq C$.
+    \begin{itemize}
+        \item (a) Mostre que essa rede é arc-consistent, isto é, que nenhum domínio pode ser reduzido usando apenas uma restrição por vez.
+        \item (b) Mostre que, apesar disso, o CSP não possui solução (não há atribuição que satisfaça todas as restrições simultaneamente).
+        \item (c) Explique por que esse exemplo mostra que a consistência de arco, por si só, não é suficiente para decidir a satisfatibilidade de um CSP em geral. Comente brevemente como técnicas de consistência de ordem superior (por exemplo, path consistency) podem ajudar nesse tipo de situação.
+    \end{itemize}
+
+\end{enumerate}
+
+\section{Problema Prático}
+
+\begin{enumerate}
+    \item \textbf{Backtracking para Sudoku e análise experimental}
+
+    Considere o problema de resolver jogos de Sudoku $9\times 9$ usando busca com backtracking.
+
+    \begin{enumerate}
+        \item \textbf{Implementação do resolvedor}
+
+        Implemente um algoritmo de \emph{backtracking} para resolver instâncias de Sudoku. Sua implementação deve:
+
+        \begin{itemize}
+            \item representar o tabuleiro como uma matriz $9\times 9$ (ou estrutura equivalente);
+            \item escolher, em cada passo, uma célula ainda não preenchida;
+            \item testar valores possíveis naquela célula, verificando se a atribuição é consistente com as regras do Sudoku (linha, coluna e subgrade $3\times 3$);
+            \item retroceder (backtrack) quando não houver valor possível para a próxima célula.
         \end{itemize}
 
-        \item Escreva um código baseado em busca com backtracking que resolva esse problema, seguindo a lógica dos exemplos de Sudoku ou N-Rainhas vistos em sala. Considere o exemplo abaixo como caso de teste. 
+        \item \textbf{Contagem de atribuições avaliadas}
 
+        Modifique seu código para contar o \emph{número de atribuições avaliadas até que a primeira solução seja encontrada}. Para isso:
 
-\textbf{Dados de Entrada:}
-\begin{verbatim}
-aulas = ['Aula1', 'Aula2', 'Aula3']
+        \begin{itemize}
+            \item considere como \emph{atribuição avaliada} cada tentativa de atribuir um valor a uma célula ainda não preenchida (mesmo que essa tentativa venha a ser rejeitada logo em seguida por violar alguma restrição);
+            \item incremente um contador toda vez que o algoritmo tentar colocar um valor em uma célula durante a busca.
+        \end{itemize}
 
-dominios = {
-    'Aula1': [('Sala1', '08h'), ('Sala2', '08h'), ('Sala1', '10h')],
-    'Aula2': [('Sala1', '08h'), ('Sala2', '10h')],
-    'Aula3': [('Sala2', '08h'), ('Sala2', '10h'), ('Sala1', '14h')]
-}
+        Ao final da execução, o algoritmo deve imprimir (ou retornar) o número total de atribuições avaliadas para resolver aquela instância.
 
-constraints = {
-    'Aula1': {'professor': 'ProfA', 'alunos': 30, 'sala_requerida': None},
-    'Aula2': {'professor': 'ProfB', 'alunos': 20, 'sala_requerida': 'Sala2'},
-    'Aula3': {'professor': 'ProfA', 'alunos': 35, 'sala_requerida': None}
-}
+        \item \textbf{Seleção das instâncias}
 
-salas = {
-    'Sala1': {'capacidade': 40},
-    'Sala2': {'capacidade': 25}
-}
-\end{verbatim}
+        Escolha, em fontes confiáveis na internet (por exemplo, sites de Sudoku):
 
-\textbf{Saída:}
-\begin{verbatim}
+        \begin{itemize}
+            \item 5 instâncias classificadas como “fáceis”;
+            \item 5 instâncias classificadas como “difíceis” (por exemplo, “hard”, “expert” ou equivalente).
+        \end{itemize}
 
-[
-    {'aula': 'Aula1', 'sala': 'Sala1', 'horario': '08h', 'professor': 'ProfA'},
-    {'aula': 'Aula2', 'sala': 'Sala2', 'horario': '10h', 'professor': 'ProfB'},
-    {'aula': 'Aula3', 'sala': 'Sala1', 'horario': '14h', 'professor': 'ProfA'}
-]
+        Para cada instância, registre:
 
+        \begin{itemize}
+            \item o identificador ou link da fonte;
+            \item a classificação de dificuldade fornecida pelo site.
+        \end{itemize}
 
-\end{verbatim}
-        
+        \item \textbf{Experimento}
+
+        Para cada uma das 10 instâncias (5 fáceis e 5 difíceis):
+
+        \begin{itemize}
+            \item execute o seu algoritmo de backtracking;
+            \item registre o número de atribuições avaliadas até a primeira solução ser encontrada.
+        \end{itemize}
+
+        Organize os resultados em uma tabela, separando claramente os grupos de Sudokus fáceis e difíceis.
+
+        \item \textbf{Análise estatística}
+
+        \begin{itemize}
+            \item Calcule a \textbf{média} e o \textbf{desvio padrão} do número de atribuições avaliadas para o conjunto de problemas fáceis.
+            \item Calcule a \textbf{média} e o \textbf{desvio padrão} do número de atribuições avaliadas para o conjunto de problemas difíceis.
+        \end{itemize}
+
+        Apresente os resultados (por exemplo, em uma pequena tabela) e escreva um parágrafo discutindo:
+
+        \begin{itemize}
+            \item se, no seu experimento, os Sudokus difíceis exigiram mais atribuições avaliadas que os fáceis;
+            \item possíveis razões para diferenças observadas (por exemplo, estrutura dos puzzles, ordem de escolha de variáveis, heurísticas usadas ou não, etc.).
+        \end{itemize}
+
+    \end{enumerate}
 
 \end{enumerate}
-\end{enumerate}
+
 
 \end{document}
