@@ -9,7 +9,6 @@ def print_to_do(to_do):
 
     print(s) 
 
-
 def GAC(G,D):
     
     to_do = deepcopy(G)
@@ -36,9 +35,11 @@ def GAC(G,D):
             D[X] = set(ND)
 
             for edge in G:
-                if X in edge['c']['Scope'] and c['str'] != edge['c']['str']:
-                    Z = edge['c']['Scope'] - {X}
-                    to_do.append({'X':Z.pop(),'c':edge['c']})
+                if X != edge['X']:
+                    if X in edge['c']['Scope']:
+                        if edge['c']['str'] != c['str']:
+                            Z = edge['c']['Scope'] - {X}
+                            to_do.append({'X':Z.pop(),'c':edge['c']})
 
     return D
 
