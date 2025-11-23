@@ -14,7 +14,7 @@ def GAC(G,D):
     to_do = deepcopy(G)
 
     while to_do:
-        print_to_do(to_do)
+        #print_to_do(to_do)
 
         a = to_do.pop(0)
         X = a['X']
