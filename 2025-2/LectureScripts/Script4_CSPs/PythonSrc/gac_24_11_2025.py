@@ -24,21 +24,22 @@ def GAC(G,D):
         Y = c['Scope'] - {X}
         Y = Y.pop()
 
-        ND = []
+        ND = set()
 
         for v in D[X]:
             for y in D[Y]:
                 if c['Cs'](v,y):
-                    ND.append(v)
+                    ND.add(v)
                     break
 
-        if set(ND) != D[X]:
-            D[X] = set(ND)
+        if ND != D[X]:
+            D[X] = ND
 
             for edge in G:
-                if X in edge['c']['Scope'] and c['str'] != edge['c']['str']:
-                    Z = edge['c']['Scope'] - {X}
-                    to_do.append({'X':Z.pop(),'c':edge['c']})
+                if X in edge['c']['Scope']:
+                    if c['str'] != edge['c']['str']:
+                        if edge['X'] != X:
+                            to_do.append(edge)
 
     return D
 
