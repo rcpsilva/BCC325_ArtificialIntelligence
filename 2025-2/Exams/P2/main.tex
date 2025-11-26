@@ -1,0 +1,170 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\title{\vspace{-2 cm} BCC 325 - Inteligência Artificial - Prova 2}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+%\vspace{0.3cm}
+
+\vspace{-1.5cm}
+
+\begin{enumerate}
+
+\item Considere as variáveis \( A, B, C \in \{1, 2, 3\} \) e as restrições \( A < B \) e \( B < C \).
+    
+\begin{enumerate}
+    \item Quantas são atribuições totais possíveis.
+    \item Liste todas as atribuições totais possíveis.
+    \item Quantas dessas atribuições satisfazem todas as restrições?
+    \item Aponte quais atribuições não seriam verificadas se fosse utilizada a verificação de restrições em atribuições parciais do backtracking.
+\end{enumerate}
+
+\item Responda as questões a seguir com base no algoritmo DFS solver abaixo.
+
+\begin{algorithm}[H]
+\caption{\textsc{DFS\_solver}(\( V_s, C_s, \text{context} \))}
+\begin{algorithmic}[1]
+\State \( c_e \gets \{c \in C_s \mid c \text{ pode ser avaliado no } \text{context} \} \)
+\If{\( \text{context} \) viola alguma restrição em \( c_e \)}
+    \State \Return \{\}
+\ElsIf{\( V_s = \{\} \)}
+    \State \Return \{context\}
+\Else
+    \State selecione variável \( var \in V_s \)
+    \State \( sols \gets \{\} \)
+    \ForAll{\( val \in \text{domínio}(var) \)}
+        \State \( sols \gets sols \cup \textsc{DFS\_solver}(V_s \setminus \{var\}, C_s \setminus c_e, \{var = val\} \cup \text{context}) \)
+    \EndFor
+    \State \Return \( sols \)
+\EndIf
+\end{algorithmic}
+\end{algorithm}
+
+    \begin{enumerate}
+        \item Em que momento ocorre a verificação de restrições parciais?
+        \item Justifique por que isso melhora a eficiência do algoritmo em comparação ao \textit{generate-and-test}.
+    \end{enumerate}
+
+% -----------------------------------------------------------
+\item Considere o problema com variáveis $A, B, C$ e restrições:
+\[
+A < B, B > C, C > A.
+\]
+\[
+D(X) = \{1,2,3,4\}, X \in \{A,B,C\}.
+\]
+\begin{enumerate}
+    \item Modele este problema como um CSP formal (variáveis, domínios, restrições).
+    \item Represente o problema como uma rede de restrições.
+\end{enumerate}
+
+% -----------------------------------------------------------
+\item Considere o CSP
+\[
+A < B, B > C.
+\]
+com domínios iniciais
+\[
+D(A) = D(B) = D(C) = \{1,2,3,4\},
+\]
+e o algoritmo GAC abaixo:
+
+\begin{verbatim}
+def GAC(G,D):
+    to_do = deepcopy(G)
+    while to_do:
+        a = to_do.pop(0)
+        X = a['X'], c = a['c']
+        Y = c['Scope'] - {X}
+        Y = Y.pop()
+        ND = set()
+        for v in D[X]:
+            for y in D[Y]:
+                if c['Cs'](v,y):
+                    ND.add(v)
+                    break
+        if ND != D[X]:
+            D[X] = ND
+            for edge in G:
+                if X in edge['c']['Scope'] and edge['X'] != X:
+                    to_do.append(edge)
+    return D
+\end{verbatim}
+
+Usando este algoritmo:
+
+\begin{enumerate}
+    \item Liste todos os arcos inicialmente inseridos na fila \texttt{to\_do}.
+    \item Execute manualmente o processo de revisão dos domínios, mostrando a lista $to\_do$ a cada iterção e a remoção de valores.
+    \item Apresente os domínios finais $D'(A)$, $D'(B)$ e $D'(C)$ após a conclusão do GAC.
+\end{enumerate}
+
+\item O GAC pode apresentar 3 tipos de saídas possíveis. Quais são elas e o que elas dizem sobre o problema? 
+
+% -----------------------------------------------------------
+\item Considere a implementação de \emph{backtracking} que você desenvolveu para resolver o Sudoku no Problema Prático. A instância abaixo será utilizada como base para a simulação:
+
+\[
+\begin{array}{|c|c|c||c|c|c||c|c|c|}
+\hline
+5 & 3 & . & . & 7 & . & . & . & . \\ \hline
+6 & . & . & 1 & 9 & 5 & . & . & . \\ \hline
+. & 9 & 8 & . & . & . & . & 6 & . \\ \hline \hline
+8 & . & . & . & 6 & . & . & . & 3 \\ \hline
+4 & . & . & 8 & . & 3 & . & . & 1 \\ \hline
+7 & . & . & . & 2 & . & . & . & 6 \\ \hline \hline
+. & 6 & . & . & . & . & 2 & 8 & . \\ \hline
+. & . & . & 4 & 1 & 9 & . & . & 5 \\ \hline
+. & . & . & . & 8 & . & . & 7 & 9 \\ \hline
+\end{array}
+\]
+
+Simule manualmente as \textbf{três primeiras chamadas recursivas} do seu algoritmo de backtracking, descrevendo:
+
+\begin{enumerate}
+    \item Qual célula vazia é escolhida em cada chamada.
+    \item Quais valores são testados para essa célula, indicando quais são imediatamente rejeitados por violarem regras do Sudoku (linha, coluna ou subgrade).
+    \item Em que momento a recursão avança para a próxima célula vazia e em que momento ocorre retorno (backtrack) devido à falta de valores possíveis.
+\end{enumerate}
+
+A sua resposta deve refletir o comportamento exato do algoritmo que você implementou, incluindo a ordem dos testes e a lógica usada para verificar consistência.
+
+\item Considere sua implementação do problema dos \emph{missionários e canibais}, utilizando a representação de estados
+\[
+(M_E, C_E, B)
+\]
+onde $M_E$ e $C_E$ são, respectivamente, o número de missionários e canibais na margem esquerda, e $B \in \{E, D\}$ indica a posição do barco.
+
+Utilize o estado inicial padrão:
+\[
+(3, 3, E)
+\]
+e considere que a ação geradora de sucessores (\texttt{successors(state)}) segue exatamente as regras implementadas por você no Trabalho Prático.
+
+Simule manualmente as \textbf{três primeiras expansões de estados} produzidas pelo seu algoritmo de \textbf{BFS} (Busca em Largura), descrevendo:
+
+\begin{enumerate}
+    \item O estado selecionado da fronteira em cada iteração.
+    \item Todos os sucessores gerados a partir desse estado, indicando quais foram descartados por violarem as restrições do problema (por exemplo, canibais superando missionários em alguma margem).
+    \item A ordem em que os estados válidos são inseridos na fronteira.
+    \item O conteúdo da fronteira após cada uma das três expansões.
+\end{enumerate}
+
+Sua resposta deve refletir exatamente as regras de geração de sucessores que você implementou, incluindo restrições, ordem de ações e política de inserção na fronteira adotada no seu código.
+
+
+\end{enumerate}
+
+
+\end{document}
