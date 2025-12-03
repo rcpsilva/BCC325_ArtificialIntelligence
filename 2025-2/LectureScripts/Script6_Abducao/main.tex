@@ -1,0 +1,581 @@
+\documentclass[9pt,a4paper]{extarticle}
+
+% ======================
+% Codificação, idioma e layout
+% ======================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=2cm}
+\usepackage{parskip}
+\usepackage{microtype}
+
+% ======================
+% Matemática e teoremas
+% ======================
+\usepackage{amsmath, amssymb, amsthm}
+
+\newtheorem{definition}{Definição}
+
+% ======================
+% Documento
+% ======================
+\begin{document}
+
+\section*{Prova por Contradição, Horn Clauses e Diagnóstico por Consistência}
+
+% ==================================================
+\section{Motivação: Provar por Contradição em Bases de Conhecimento}
+% ==================================================
+
+\paragraph{Exposição.}
+\begin{itemize}
+    \item Em muitas aplicações queremos saber \emph{que combinações de fatos são impossíveis}.
+    \item Exemplo: no domínio elétrico, queremos proibir situações como
+    \begin{quote}
+        ``a mesma lâmpada está, ao mesmo tempo, \texttt{lit} e \texttt{dark}''.
+    \end{quote}
+    \item Para isso, precisamos representar contradições e raciocinar \emph{por absurdo}.
+\end{itemize}
+
+\paragraph{Conectar com lógica clássica.}
+\begin{itemize}
+    \item Prova por contradição: supomos algo, derivamos $\text{false}$, concluímos que a suposição é impossível.
+    \item Em bases de conhecimento, vamos capturar isso com uma constante especial $\mathit{false}$ e com \emph{integrity constraints}.
+\end{itemize}
+
+% ==================================================
+\section{Horn Clauses e Integrity Constraints}
+% ==================================================
+
+\begin{definition}[Integrity constraint]
+Uma \emph{restrição de integridade} é uma cláusula da forma
+\[
+\mathit{false} \leftarrow a_1 \land \dots \land a_k,
+\]
+em que cada $a_i$ é um átomo e $\mathit{false}$ é um átomo especial, que deve ser falso em toda interpretação.
+\end{definition}
+
+\begin{definition}[Horn clause]
+Uma \emph{Horn clause} é:
+\begin{itemize}
+    \item ou uma cláusula definida usual ($h \leftarrow a_1 \land \dots \land a_m$),
+    \item ou uma restrição de integridade ($\mathit{false} \leftarrow a_1 \land \dots \land a_k$).
+\end{itemize}
+Ou seja, a cabeça de uma Horn clause é um átomo comum ou o átomo especial $\mathit{false}$.
+\end{definition}
+
+\subsection{Equivalência lógica}
+
+\paragraph{Exposição.}
+\begin{itemize}
+    \item A integridade
+    \[
+    \mathit{false} \leftarrow a_1 \land \dots \land a_k
+    \]
+    é logicamente equivalente à cláusula
+    \[
+    \neg a_1 \lor \dots \lor \neg a_k.
+    \]
+    \item Interpretação: ``pelo menos um dos $a_i$ tem que ser falso''.
+    \item Diferentemente de uma base apenas com cláusulas definidas, uma KB com Horn clauses pode \emph{implicar negações} de átomos.
+\end{itemize}
+
+\subsection{Exemplo simples: $KB_1$ (Exemplo 5.17)}
+
+Considere:
+\begin{align*}
+\mathit{false} &\leftarrow a \land b.\\
+a &\leftarrow c.\\
+b &\leftarrow c.
+\end{align*}
+
+\paragraph{Raciocínio em sala.}
+\begin{itemize}
+    \item Suponha que $c$ seja verdadeiro em um modelo $I$.
+    \item Então $a$ e $b$ também são verdadeiros em $I$ (pelas duas regras).
+    \item Como $\mathit{false}$ deve ser sempre falso, a cláusula
+    \[
+       \mathit{false} \leftarrow a \land b
+    \]
+    fica violada em $I$ (corpo verdadeiro, cabeça falsa) $\Rightarrow$ $I$ não é modelo.
+    \item Logo, \textbf{não} existe modelo de $KB_1$ em que $c$ seja verdadeiro.  
+    Conclusão:
+    \[
+       KB_1 \models \neg c.
+    \]
+\end{itemize}
+
+\subsection{Exemplo: disjunções de negações (Exemplo 5.18)}
+
+Considere:
+\begin{align*}
+\mathit{false} &\leftarrow a \land b.\\
+a &\leftarrow c.\\
+b &\leftarrow d.\\
+b &\leftarrow e.
+\end{align*}
+
+\paragraph{Discussão.}
+\begin{itemize}
+    \item Se $c$ e $d$ fossem ambos verdadeiros em um modelo $I$, então $a$ e $b$ seriam verdadeiros, violando a integridade. Logo, em todo modelo:
+    \[
+        KB_2 \models \neg c \lor \neg d.
+    \]
+    \item Pelo mesmo raciocínio:
+    \[
+        KB_2 \models \neg c \lor \neg e.
+    \]
+    \item Isto mostra que, mesmo sem escrever disjunções e negações na entrada, conseguimos derivar sentenças desse tipo.
+\end{itemize}
+
+\subsection{Satisfatibilidade e inconsitência}
+
+\paragraph{Pontos importantes.}
+\begin{itemize}
+    \item Um conjunto de cláusulas é \emph{insatisfatível} se não tem modelos.
+    \item Ele é \emph{provavelmente inconsistente} em relação a um procedimento de prova se $\mathit{false}$ pode ser derivado.
+    \item Para bases apenas com \emph{cláusulas definidas}, sempre existe modelo (por exemplo, a interpretação que faz todos os átomos verdadeiros).
+    \item Já um conjunto de \emph{Horn clauses} pode ser insatisfatível, por exemplo:
+    \[
+       \{a,\; \mathit{false} \leftarrow a\}.
+    \]
+\end{itemize}
+
+% ==================================================
+\section{Assumíveis e Conflitos}
+% ==================================================
+
+\begin{definition}[Assumível]
+Um \emph{assumível} (assumable) é um átomo que pode ser assumido em uma prova por contradição. Ao provar $\mathit{false}$ a partir de assumíveis, obtemos disjunções de negações desses assumíveis.
+\end{definition}
+
+\begin{definition}[Conflito]
+Se $KB$ é um conjunto de Horn clauses, um \emph{conflito} de $KB$ é um conjunto de assumíveis
+\[
+C = \{c_1,\dots,c_r\}
+\]
+tal que
+\[
+KB \cup \{c_1,\dots,c_r\} \models \mathit{false}.
+\]
+Nesse caso, podemos concluir:
+\[
+KB \models \neg c_1 \lor \dots \lor \neg c_r.
+\]
+\end{definition}
+
+\begin{definition}[Conflito mínimo]
+Um conflito $C$ é \emph{mínimo} se nenhum subconjunto próprio de $C$ também é conflito.
+\end{definition}
+
+\subsection{Exemplo: conflitos em $KB_2$ (Exemplo 5.20)}
+
+Se o conjunto de assumíveis é $\{c,d,e,f,g,h\}$, então:
+\begin{itemize}
+    \item $\{c,d\}$ é um conflito mínimo de $KB_2$.
+    \item $\{c,e\}$ também é um conflito mínimo.
+    \item $\{c,d,e,h\}$ é um conflito, mas \textbf{não} mínimo.
+\end{itemize}
+
+% ==================================================
+\section{Diagnóstico Baseado em Consistência (CBD)}
+% ==================================================
+
+\paragraph{Ideia geral.}
+\begin{itemize}
+    \item Temos uma descrição de \emph{como o sistema deveria funcionar} (modelo nominal).
+    \item Temos observações (por exemplo, lâmpadas apagadas, apesar de interruptores ligados).
+    \item Fazemos suposições de normalidade (\texttt{ok\_cb1}, \texttt{ok\_s1}, \dots) e vemos quais combinações são \emph{incompatíveis} com as observações.
+\end{itemize}
+
+\paragraph{Noções-chave.}
+\begin{itemize}
+    \item \textbf{Assumíveis} representam componentes supostamente normais (ou eventualmente falhos).
+    \item \textbf{Conflitos} são conjuntos de suposições que não podem ser todas verdadeiras.
+    \item A partir dos conflitos, obtemos \emph{diagnósticos}: conjuntos de componentes que devem estar falhos para explicar tudo.
+\end{itemize}
+
+\subsection{Exemplo: circuito elétrico (Exemplos 5.21–5.22)}
+
+\paragraph{Contexto.}
+\begin{itemize}
+    \item Domínio: casa com disjuntores $cb1, cb2$, chaves $s1, s2, s3$ e lâmpadas $l1, l2$.
+    \item A KB contém:
+    \begin{itemize}
+        \item Regras que definem quando fios estão \texttt{live\_wX}.
+        \item Regras que definem quando lâmpadas estão \texttt{lit\_l1}, \texttt{dark\_l1}, etc.
+        \item Restrições de integridade para proibir uma lâmpada de ser, ao mesmo tempo, \texttt{lit} e \texttt{dark}:
+        \[
+        \mathit{false} \leftarrow \mathit{dark\_l1} \land \mathit{lit\_l1},
+        \quad
+        \mathit{false} \leftarrow \mathit{dark\_l2} \land \mathit{lit\_l2}.
+        \]
+        \item Assumíveis de normalidade:
+        \[
+          \mathit{ok\_cb1}, \mathit{ok\_cb2}, \mathit{ok\_s1}, \mathit{ok\_s2}, \mathit{ok\_s3}, \mathit{ok\_l1}, \mathit{ok\_l2}.
+        \]
+    \end{itemize}
+    \item Observações:
+    \[
+      \mathit{up\_s1}.\;
+      \mathit{up\_s2}.\;
+      \mathit{up\_s3}.\;
+      \mathit{dark\_l1}.\;
+      \mathit{dark\_l2}.
+    \]
+\end{itemize}
+
+\paragraph{Conflitos encontrados.}
+O sistema encontra dois conflitos mínimos:
+\[
+\{ \mathit{ok\_cb1}, \mathit{ok\_s1}, \mathit{ok\_s2}, \mathit{ok\_l1} \},
+\]
+\[
+\{ \mathit{ok\_cb1}, \mathit{ok\_s3}, \mathit{ok\_l2} \}.
+\]
+
+Interpretando:
+\begin{itemize}
+    \item Em qualquer modelo compatível com as observações, \emph{não} é possível que todos esses componentes estejam ok ao mesmo tempo.
+    \item Em termos lógicos:
+    \[
+    KB \models \neg \mathit{ok\_cb1} \lor \neg \mathit{ok\_s1} \lor \neg \mathit{ok\_s2} \lor \neg \mathit{ok\_l1},
+    \]
+    \[
+    KB \models \neg \mathit{ok\_cb1} \lor \neg \mathit{ok\_s3} \lor \neg \mathit{ok\_l2}.
+    \]
+\end{itemize}
+
+\subsection{Diagnósticos mínimos (Exemplo 5.22)}
+
+\paragraph{Ideia.}
+\begin{itemize}
+    \item Dado o conjunto de conflitos, um \textbf{diagnóstico} é um conjunto de assumíveis que tem pelo menos um elemento de cada conflito.
+    \item Um diagnóstico \emph{mínimo} é aquele em que nenhum subconjunto também é diagnóstico.
+\end{itemize}
+
+\paragraph{Resultado do exemplo.}
+No caso do circuito, os diagnósticos mínimos correspondem a:
+\[
+\{\mathit{ok\_cb1}\},\quad
+\{\mathit{ok\_s1},\mathit{ok\_s3}\},\quad
+\{\mathit{ok\_s1},\mathit{ok\_l2}\},\quad
+\{\mathit{ok\_s2},\mathit{ok\_s3}\},\quad
+\{\mathit{ok\_s2},\mathit{ok\_l2}\},\quad
+\{\mathit{ok\_l1},\mathit{ok\_s3}\},\quad
+\{\mathit{ok\_l1},\mathit{ok\_l2}\}.
+\]
+
+Em palavras: pelo menos uma dessas combinações de componentes \emph{não} está ok no mundo real.
+
+% ==================================================
+\section{Implementações com Horn Clauses e Assumíveis}
+% ==================================================
+
+\subsection{Visão geral do procedimento bottom-up (Figura 5.9)}
+
+\paragraph{Ideia.}
+\begin{itemize}
+    \item Estender o algoritmo bottom-up de cláusulas definidas.
+    \item Em vez de guardar apenas ``átomo é consequência'', guardamos pares
+    \[
+      \langle a, A \rangle
+    \]
+    em que $a$ é um átomo e $A$ é um conjunto de assumíveis que implicam $a$.
+\end{itemize}
+
+\paragraph{Passos.}
+\begin{enumerate}
+    \item Inicializar $C$ com todos assumíveis:
+    \[
+      C := \{ \langle a, \{a\} \rangle : a \text{ é assumível}\}.
+    \]
+    \item Enquanto possível, para cada cláusula
+    \[
+      h \leftarrow b_1 \land \dots \land b_m
+    \]
+    se para cada $b_i$ existe $\langle b_i, A_i \rangle \in C$, então adicionamos
+    \[
+      \langle h, A_1 \cup \dots \cup A_m \rangle.
+    \]
+    \item Quando geramos $\langle \mathit{false}, A \rangle$, o conjunto $A$ é um conflito.
+\end{enumerate}
+
+\paragraph{Refinamento.}
+\begin{itemize}
+    \item Podemos podar supersets: se já temos $\langle a, A_1 \rangle$ e surge $\langle a, A_2 \rangle$ com $A_1 \subset A_2$, podemos descartar o segundo.
+\end{itemize}
+
+\subsection{Visão geral do procedimento top-down (Figura 5.10)}
+
+\paragraph{Ideia.}
+\begin{itemize}
+    \item Versão top-down do raciocínio com Horn clauses.
+    \item Queremos provar $\mathit{false}$, começando de $G = \{\mathit{false}\}$.
+\end{itemize}
+
+\paragraph{Passos.}
+\begin{enumerate}
+    \item Manter um conjunto $G$ de átomos ``a provar'' que, juntos, implicam $\mathit{false}$.
+    \item Enquanto existir átomo $a \in G$ que não é assumível:
+    \begin{itemize}
+        \item Escolher uma cláusula $a \leftarrow B$ em $KB$.
+        \item Atualizar $G := (G \setminus \{a\}) \cup B$.
+    \end{itemize}
+    \item Quando $G$ ficar formado apenas por assumíveis, $G$ é um conflito.
+\end{enumerate}
+
+\paragraph{Observação.}
+\begin{itemize}
+    \item Como na derivação top-down de cláusulas definidas, escolhas diferentes de cláusulas podem levar a conflitos diferentes ou a falha.
+\end{itemize}
+
+% ==================================================
+\section{Discussão Final e Exercícios}
+% ==================================================
+
+\paragraph{Pontos para discussão em sala.}
+\begin{itemize}
+    \item Qual a vantagem de ter explicitamente $\mathit{false}$ na linguagem?\\
+    Permite escrever restrições de integridade e detectar inconsistências simplesmente tentando provar $\mathit{false}$.
+
+    \item Por que é útil saber quais combinações de assumíveis geram contradição?\\
+    Porque essas combinações indicam quais conjuntos de hipóteses não podem ser verdadeiros ao mesmo tempo, ajudando em diagnóstico, planejamento e projeto.
+
+    \item Como conflitos se relacionam com diagnósticos mínimos?\\
+    Conflitos são conjuntos de assumíveis incompatíveis; diagnósticos mínimos são conjuntos de assumíveis que intersectam todos os conflitos (têm pelo menos um elemento de cada conflito).
+\end{itemize}
+
+\paragraph{Sugestão de exercícios.}
+\begin{enumerate}
+    \item Considere uma KB simples com integridade:
+    \[
+      \mathit{false} \leftarrow \mathit{alarm} \land \mathit{quiet}.
+    \]
+    e regras para $\mathit{alarm}$ e $\mathit{quiet}$.  
+    Proponha um conjunto de assumíveis e encontre um conflito mínimo.
+
+    \item A partir dos conflitos do circuito elétrico, peça aos alunos que:
+    \begin{itemize}
+        \item listem diagnósticos mínimos;
+        \item expliquem em linguagem natural o significado de cada diagnóstico.
+    \end{itemize}
+\end{enumerate}
+
+
+\section*{Abdução e Explicações em Bases de Conhecimento}
+
+% ==================================================
+\section{Motivação: O que é Abdução?}
+% ==================================================
+
+\paragraph{Exposição.}
+\begin{itemize}
+    \item Enquanto \textbf{dedução} determina o que \emph{segue logicamente} de axiomas,  
+    \item e \textbf{indução} infere generalizações a partir de exemplos,  
+    \item a \textbf{abdução} busca hipóteses que \emph{expliquem observações}.
+\end{itemize}
+
+Exemplos introdutórios:
+\begin{itemize}
+    \item Observar que uma lâmpada está apagada $\Rightarrow$ considerar hipóteses (queimada, falta de energia, interruptor desligado).
+    \item Em sistemas tutores, inferir o que o aluno sabe a partir de erros cometidos.
+\end{itemize}
+
+A noção foi introduzida por **Charles Peirce**.
+
+% ==================================================
+\section{Formalização da Abdução}
+% ==================================================
+
+\begin{definition}[Assumables]
+Seja $A$ um conjunto de átomos que podem ser \emph{assumidos} como hipóteses.  
+Estes são os blocos básicos para construir explicações.
+\end{definition}
+
+\begin{definition}[Cenário]
+Dado $\langle KB, A\rangle$, um \emph{cenário} é um conjunto $H \subseteq A$ tal que  
+$KB \cup H$ é satisfatível, isto é, não contém contradições.
+\end{definition}
+
+\begin{definition}[Explicação]
+Uma explicação de $g$ é um conjunto $H \subseteq A$ tal que:
+\[
+KB \cup H \models g
+\qquad\text{e}\qquad
+KB \cup H \not\models \text{false}.
+\]
+\end{definition}
+
+\begin{definition}[Explicação mínima]
+Uma explicação $H$ é \emph{mínima} se nenhum subconjunto estrito de $H$ também explica $g$.
+\end{definition}
+
+\subsection{Comentário didático}
+
+\begin{itemize}
+    \item Observações \textbf{não são adicionadas} à KB — devem ser explicadas.
+    \item Contradições são proibidas: qualquer conjunto que implique \textbf{false} é descartado.
+\end{itemize}
+
+% ==================================================
+\section{Exemplo 1: Diagnóstico Médico Simples (Exemplo 5.31)}
+% ==================================================
+
+Considere a KB:
+
+\begin{align*}
+\mathit{bronchitis} &\leftarrow \mathit{influenza}.\\
+\mathit{bronchitis} &\leftarrow \mathit{smokes}.\\
+\mathit{coughing} &\leftarrow \mathit{bronchitis}.\\
+\mathit{wheezing} &\leftarrow \mathit{bronchitis}.\\
+\mathit{fever} &\leftarrow \mathit{influenza}.\\
+\mathit{fever} &\leftarrow \mathit{infection}.\\
+\mathit{sore\_throat} &\leftarrow \mathit{influenza}.\\
+\text{false} &\leftarrow \mathit{smokes} \land \mathit{nonsmoker}.
+\end{align*}
+
+Assumables:
+\[
+\{\mathit{smokes},\, \mathit{nonsmoker},\, \mathit{influenza},\, \mathit{infection}\}.
+\]
+
+\subsection{Exemplo A — Observação: \texttt{wheezing}}
+
+Para explicar $\mathit{wheezing}$:
+\[
+\mathit{wheezing} \leftarrow \mathit{bronchitis}.
+\]
+\[
+\mathit{bronchitis} \leftarrow \mathit{influenza} \quad\text{ou}\quad 
+\mathit{bronchitis} \leftarrow \mathit{smokes}.
+\]
+
+Explicações mínimas:
+\[
+\{\mathit{influenza}\}
+\qquad\text{ou}\qquad
+\{\mathit{smokes}\}.
+\]
+
+\subsection{Exemplo B — Observação: \texttt{wheezing $\land$ fever}}
+
+\[
+\mathit{fever} \leftarrow \mathit{influenza} \text{ ou } \mathit{infection}.
+\]
+
+Explicações mínimas:
+\[
+\{\mathit{influenza}\}
+\quad\text{e}\quad
+\{\mathit{smokes},\,\mathit{infection}\}.
+\]
+
+\subsection{Exemplo C — Observação: \texttt{wheezing $\land$ nonsmoker}}
+
+Como assumir $\mathit{smokes}$ leva a contradição:
+\[
+\{\mathit{smokes},\mathit{nonsmoker}\} \models \text{false},
+\]
+a única explicação mínima possível é:
+\[
+\{\mathit{influenza},\,\mathit{nonsmoker}\}.
+\]
+
+% ==================================================
+\section{Exemplo 2: Sistema de Alarme (Exemplo 5.32)}
+% ==================================================
+
+Base de conhecimento:
+\begin{align*}
+\mathit{alarm} &\leftarrow \mathit{tampering}.\\
+\mathit{alarm} &\leftarrow \mathit{fire}.\\
+\mathit{smoke} &\leftarrow \mathit{fire}.
+\end{align*}
+
+\subsection{Observação: \texttt{alarm}}
+
+Explicações mínimas:
+\[
+\{\mathit{tampering}\}, \qquad \{\mathit{fire}\}.
+\]
+
+\subsection{Observação: \texttt{alarm $\land$ smoke}}
+
+A presença de \texttt{smoke} ``explica'' o alarme:
+\[
+\{\mathit{fire}\}.
+\]
+
+Não há necessidade de assumir \texttt{tampering}: hipótese explicada por outra evidência.
+
+% ==================================================
+\section{Abdução vs. Diagnóstico Baseado em Consistência (CBD)}
+% ==================================================
+
+\paragraph{Principais diferenças.}
+
+\begin{itemize}
+    \item Em CBD:
+    \begin{itemize}
+        \item Assume-se comportamento \textbf{normal}.
+        \item Observações são adicionadas à KB.
+        \item Procura-se um conjunto de componentes que, se defeituosos, explique a inconsistência.
+    \end{itemize}
+
+    \item Em Abdução:
+    \begin{itemize}
+        \item Hipóteses incluem \textbf{normalidade e falhas}.
+        \item Observações devem ser explicadas, não adicionadas.
+        \item Requer modelagem mais detalhada (regra para cada forma de comportamento).
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Consequência.}
+Abdução produz diagnósticos mais detalhados, mas exige modelagem mais rica.
+
+% ==================================================
+\section{Exemplo 3 — Diagnóstico Elétrico (Exemplo 5.33)}
+% ==================================================
+
+Regras simplificadas:
+\begin{align*}
+\mathit{lit\_l1} &\leftarrow \mathit{live\_w0} \land \mathit{ok\_l1}.\\
+\mathit{dark\_l1} &\leftarrow \mathit{broken\_l1}.\\
+\mathit{dark\_l1} &\leftarrow \mathit{dead\_w0}.\\
+\text{false} &\leftarrow \mathit{ok\_l1} \land \mathit{broken\_l1}.
+\end{align*}
+
+Assumables:
+\[
+\{\mathit{ok\_l1},\, \mathit{broken\_l1},\, \mathit{live\_w0},\, \mathit{dead\_w0}\}.
+\]
+
+Observações como \texttt{dark\_l1} ou \texttt{lit\_l1} são explicadas por hipóteses que tornam essas regras verdadeiras.
+
+% ==================================================
+\section{Discussão Final e Exercícios}
+% ==================================================
+
+\paragraph{Perguntas para debate.}
+\begin{itemize}
+    \item Por que permitir hipóteses é útil, mas perigoso?
+    \item O que impede que o sistema simplesmente assuma tudo?
+    \item Como garantir minimalidade das explicações?
+\end{itemize}
+
+\paragraph{Exercício para casa.}
+\begin{itemize}
+    \item Modele um domínio simples (ex.: funcionamento de um computador) com:
+    \begin{itemize}
+        \item KB com Horn clauses,
+        \item assumables (normais e defeituosos),
+        \item observações.
+    \end{itemize}
+    \item Encontre explicações mínimas para duas observações distintas.
+\end{itemize}
+
+\end{document}
