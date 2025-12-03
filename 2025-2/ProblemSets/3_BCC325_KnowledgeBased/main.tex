@@ -1,0 +1,321 @@
+\documentclass[9pt,a4paper]{extarticle}
+
+% ======================
+% Codificação, idioma e layout
+% ======================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=2cm}
+\usepackage{parskip}
+\usepackage{microtype}
+
+% ======================
+% Matemática e teoremas
+% ======================
+\usepackage{amsmath, amssymb, amsthm}
+\newtheorem{definition}{Definição}
+
+% ======================
+% Listas
+% ======================
+\usepackage{enumitem}
+\setlist{nosep}
+
+% ======================
+% Documento
+% ======================
+\begin{document}
+
+\title{\vspace{-1em}Lista de Exercícios\\
+Cláusulas Definidas Proposicionais, Horn Clauses, Diagnóstico por Consistência e Abdução}
+\date{}
+\maketitle
+
+\vspace{-2cm}
+
+\section*{Instruções gerais}
+\begin{itemize}
+    \item Indique claramente quaisquer suposições adicionais que você fizer.
+    \item Quando for pedido para ``simular o algoritmo'', apresente os conjuntos intermediários (\emph{estados}) usados na execução (por exemplo, os conjuntos $C$ ou $G$).
+    \item Nos exercícios conceituais, responda em poucas linhas, com foco na precisão.
+\end{itemize}
+
+% ==================================================
+\section{Cláusulas definidas proposicionais}
+% ==================================================
+
+\begin{enumerate}[label=\textbf{1.\arabic*})]
+
+    \item Diga, para cada uma das fórmulas abaixo, se ela é:
+    \begin{itemize}
+        \item uma cláusula definida (regra ou fato),
+        \item ou não é uma cláusula definida.
+    \end{itemize}
+    Justifique brevemente.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item $\mathit{apple\_is\_eaten}.$
+        \item $\mathit{apple\_is\_eaten} \leftarrow \mathit{bird\_eats\_apple}.$
+        \item $\lnot \mathit{apple\_is\_eaten}.$
+        \item $\mathit{happy} \lor \mathit{sad} \lor \lnot \mathit{alive}.$
+        \item $\mathit{sam\_is\_in\_room} \land \mathit{night\_time} \leftarrow \mathit{switch\_1\_is\_up}.$
+        \item $\mathit{lit\_l2} \leftarrow \mathit{light\_l2} \land \mathit{live\_l2} \land \mathit{ok\_l2}.$
+    \end{enumerate}
+
+    \item  Mostre, para cada cláusula definida abaixo, uma cláusula equivalente na forma disjuntiva (com $\lor$ e negações de átomos):
+    \begin{enumerate}[label=(\alph*)]
+        \item $h \leftarrow a \land b \land c.$
+        \item $p \leftarrow q.$
+        \item $r.$
+    \end{enumerate}
+    Escreva as fórmulas resultantes utilizando apenas $\lor$ e $\lnot$.
+
+    \item  Considere a cláusula
+    \[
+       \mathit{wet\_grass} \leftarrow \mathit{raining} \land \mathit{sprinkler\_on}.
+    \]
+    Dê um exemplo de interpretação $I$ (atribuição de verdadeiro/falso para cada átomo) em que essa cláusula é:
+    \begin{enumerate}[label=(\alph*)]
+        \item verdadeira em $I$;
+        \item falsa em $I$.
+    \end{enumerate}
+    Explique por que em cada caso.
+
+    \item  Modele em termos de cláusulas definidas proposicionais as seguintes sentenças:
+    \begin{enumerate}[label=(\alph*)]
+        \item ``Uma pessoa está feliz se ela passou na prova e está saudável.''
+        \item ``Uma disciplina é concluída se todas as suas atividades foram entregues.''
+        \item ``Um aluno é aprovado se concluiu a disciplina e tirou nota final maior ou igual a $60$.''
+    \end{enumerate}
+    Use nomes de átomos em inglês, por exemplo: $\mathit{happy(X)}$ não é permitido (apenas proposicional), então use átomos proposicionais como $\mathit{passed}$, $\mathit{healthy}$, etc.
+
+\end{enumerate}
+
+% ==================================================
+\section{Procedimentos de prova: bottom-up e top-down }
+% ==================================================
+
+\begin{enumerate}[label=\textbf{2.\arabic*})]
+
+    \item  Considere a base de conhecimento $KB$:
+    \begin{align*}
+        &a \leftarrow b \land c.\\
+        &d.\\
+        &b \leftarrow d \land e.\\
+        &e.\\
+        &b \leftarrow g \land e.\\
+        &f \leftarrow a \land g.\\
+        &c \leftarrow e.
+    \end{align*}
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Usando o procedimento de prova bottom-up (encadeamento para frente), construa a sequência de conjuntos $C$ (conjuntos de átomos derivados) até o ponto fixo.
+        \item Indique quais átomos são consequências lógicas de $KB$ (isto é, quais pertencem a $C$ no final).
+        \item Explique por que $f$ e $g$ não devem ser derivados pelo procedimento.
+    \end{enumerate}
+
+    \item (Top-down: derivação bem-sucedida -- fácil) Usando a mesma base de conhecimento do exercício anterior, construa uma derivação top-down (SLD) para a consulta:
+    \[
+        \mathsf{ask}\; a.
+    \]
+    \begin{enumerate}[label=(\alph*)]
+        \item Apresente a sequência de cláusulas-resposta (ou conjuntos de subobjetivos $G$) até chegar a $\mathit{yes} \leftarrow$ (ou $G = \emptyset$).
+        \item Indique, em cada passo, qual cláusula de $KB$ foi utilizada.
+    \end{enumerate}
+
+    \item Ainda com a mesma $KB$, construa uma derivação top-down para a consulta $\mathsf{ask}\; a.$ que:
+    \begin{itemize}
+        \item em algum passo, ao provar $b$, escolha a regra $b \leftarrow g \land e.$
+    \end{itemize}
+    Mostre explicitamente por que esse ramo de prova falha.
+
+    \item Responda em poucas linhas:
+    \begin{enumerate}[label=(\alph*)]
+        \item Em que sentido o procedimento bottom-up é \emph{completo} e \emph{correto} para bases de cláusulas definidas proposicionais?
+        \item Em que sentido o procedimento top-down pode ser mais eficiente do que o bottom-up, mesmo podendo reprovar átomos múltiplas vezes?
+        \item Dê um exemplo de situação em que o procedimento top-down pode entrar em laço infinito, enquanto o bottom-up termina.
+    \end{enumerate}
+
+\end{enumerate}
+
+% ==================================================
+\section{Horn clauses, \texorpdfstring{$\mathit{false}$}{false} e prova por contradição (fáceis e médios)}
+% ==================================================
+
+\begin{enumerate}[label=\textbf{3.\arabic*})]
+
+    \item Considere a integridade:
+    \[
+       \mathit{false} \leftarrow \mathit{alarm} \land \mathit{quiet}.
+    \]
+    \begin{enumerate}[label=(\alph*)]
+        \item Escreva a fórmula equivalente usando apenas $\lor$ e $\lnot$ (sem $\leftarrow$ e sem $\mathit{false}$).
+        \item Descreva em linguagem natural o que essa restrição está dizendo sobre o mundo.
+    \end{enumerate}
+
+    \item Considere a base de conhecimento $KB_1$:
+    \begin{align*}
+        &\mathit{false} \leftarrow a \land b.\\
+        &a \leftarrow c.\\
+        &b \leftarrow c.
+    \end{align*}
+    \begin{enumerate}[label=(\alph*)]
+        \item Mostre que não existe modelo de $KB_1$ em que $c$ seja verdadeiro.
+        \item Conclua explicitamente qual fórmula da forma $\lnot p$ é implicada por $KB_1$ (isto é, $KB_1 \models \lnot \cdot$).
+    \end{enumerate}
+
+    \item (Disjunções de negações -- médio) Considere a base de conhecimento $KB_2$:
+    \begin{align*}
+        &\mathit{false} \leftarrow a \land b.\\
+        &a \leftarrow c.\\
+        &b \leftarrow d.\\
+        &b \leftarrow e.
+    \end{align*}
+    \begin{enumerate}[label=(\alph*)]
+        \item Mostre que em todo modelo de $KB_2$, vale $\lnot c \lor \lnot d$.
+        \item Mostre que em todo modelo de $KB_2$, vale também $\lnot c \lor \lnot e$.
+        \item Interprete essas duas fórmulas em linguagem natural.
+    \end{enumerate}
+
+    \item Analise o conjunto de cláusulas
+    \[
+       \{a,\; \mathit{false} \leftarrow a\}.
+    \]
+    \begin{enumerate}[label=(\alph*)]
+        \item Existe algum modelo que satisfaça as duas cláusulas simultaneamente? Justifique.
+        \item Explique por que esse conjunto é um exemplo de base de Horn clauses insatisfatível.
+    \end{enumerate}
+
+\end{enumerate}
+
+% ==================================================
+\section{Assumíveis, conflitos e diagnóstico por consistência}
+% ==================================================
+
+\begin{enumerate}[label=\textbf{4.\arabic*})]
+
+    \item Explique, em poucas linhas:
+    \begin{enumerate}[label=(\alph*)]
+        \item O que é um \emph{assumível} em uma base de Horn clauses?
+        \item O que é um \emph{conflito} associado a um conjunto de assumíveis?
+        \item O que é um \emph{conflito mínimo}?
+    \end{enumerate}
+
+    \item Considere novamente $KB_2$:
+    \begin{align*}
+        &\mathit{false} \leftarrow a \land b.\\
+        &a \leftarrow c.\\
+        &b \leftarrow d.\\
+        &b \leftarrow e.
+    \end{align*}
+    Suponha que o conjunto de assumíveis seja
+    \[
+      A = \{c, d, e, f, g, h\}.
+    \]
+    \begin{enumerate}[label=(\alph*)]
+        \item Mostre que $\{c, d\}$ é um conflito de $KB_2$ em relação a $A$.
+        \item Mostre que $\{c, e\}$ também é um conflito.
+        \item Explique por que $\{c, d, e, h\}$ é um conflito, mas não é um conflito mínimo.
+    \end{enumerate}
+
+    \item Em poucas linhas, discuta:
+    \begin{enumerate}[label=(\alph*)]
+        \item Por que dizer que $KB \models \lnot c_1 \lor \dots \lor \lnot c_r$ é equivalente a dizer que $\{c_1,\dots,c_r\}$ é um conflito?
+        \item De que forma essa visão (como disjunção de negações) ajuda a interpretar conflitos em aplicações de diagnóstico?
+    \end{enumerate}
+
+    \item Considere o exemplo do circuito elétrico com dois conflitos mínimos:
+    \[
+       C_1 = \{\mathit{ok\_cb1}, \mathit{ok\_s1}, \mathit{ok\_s2}, \mathit{ok\_l1}\},
+       \quad
+       C_2 = \{\mathit{ok\_cb1}, \mathit{ok\_s3}, \mathit{ok\_l2}\}.
+    \]
+    \begin{enumerate}[label=(\alph*)]
+        \item Dê dois exemplos de \emph{diagnósticos} (conjuntos de assumíveis) que intersectam ambos os conflitos.
+        \item Dê um exemplo de diagnóstico que seja \emph{mínimo} e outro que não seja.
+        \item Explique em linguagem natural o que significa dizer que um diagnóstico é mínimo.
+    \end{enumerate}
+
+    \item Modele, de forma proposicional, um pequeno sistema de diagnóstico para um computador que não liga. Defina:
+    \begin{itemize}
+        \item alguns átomos para componentes (por exemplo, $\mathit{ok\_psu}$, $\mathit{ok\_motherboard}$, $\mathit{ok\_power\_button}$);
+        \item algumas regras explicando quando o computador liga (por exemplo, $\mathit{turns\_on}$);
+        \item pelo menos uma restrição de integridade;
+        \item um conjunto de assumíveis de normalidade.
+    \end{itemize}
+    Proponha uma observação (por exemplo, ``computador não liga'') e descreva qualitativamente como conflitos e diagnósticos poderiam ser obtidos.
+
+\end{enumerate}
+
+% ==================================================
+\section{Abdução e explicações}
+% ==================================================
+
+\begin{enumerate}[label=\textbf{5.\arabic*})]
+
+    \item  Explique, em poucas linhas:
+    \begin{enumerate}[label=(\alph*)]
+        \item A diferença entre dedução, indução e abdução.
+        \item O que é um \emph{cenário} $\langle KB, A \rangle$.
+        \item O que é uma \emph{explicação} de uma proposição $g$ a partir de $\langle KB, A \rangle$.
+        \item O que é uma explicação \emph{mínima}.
+    \end{enumerate}
+
+    \item Considere o exemplo médico:
+    \begin{align*}
+        \mathit{bronchitis} &\leftarrow \mathit{influenza}.\\
+        \mathit{bronchitis} &\leftarrow \mathit{smokes}.\\
+        \mathit{coughing} &\leftarrow \mathit{bronchitis}.\\
+        \mathit{wheezing} &\leftarrow \mathit{bronchitis}.\\
+        \mathit{fever} &\leftarrow \mathit{influenza}.\\
+        \mathit{fever} &\leftarrow \mathit{infection}.\\
+        \mathit{sore\_throat} &\leftarrow \mathit{influenza}.\\
+        \mathit{false} &\leftarrow \mathit{smokes} \land \mathit{nonsmoker}.
+    \end{align*}
+    Assumíveis:
+    \[
+       A = \{\mathit{smokes}, \mathit{nonsmoker}, \mathit{influenza}, \mathit{infection}\}.
+    \]
+    Para cada observação abaixo, liste pelo menos uma explicação mínima:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\mathit{wheezing}$.
+        \item $\mathit{wheezing} \land \mathit{fever}$.
+        \item $\mathit{wheezing} \land \mathit{nonsmoker}$.
+    \end{enumerate}
+    Justifique brevemente por que as explicações são mínimas.
+
+    \item  Considere:
+    \begin{align*}
+        \mathit{alarm} &\leftarrow \mathit{tampering}.\\
+        \mathit{alarm} &\leftarrow \mathit{fire}.\\
+        \mathit{smoke} &\leftarrow \mathit{fire}.
+    \end{align*}
+    Assuma que os assumíveis são $\{\mathit{tampering}, \mathit{fire}\}$.
+    \begin{enumerate}[label=(\alph*)]
+        \item Dê todas as explicações mínimas para a observação $\mathit{alarm}$.
+        \item Dê todas as explicações mínimas para a observação $\mathit{alarm} \land \mathit{smoke}$.
+        \item Em linguagem natural, explique por que $\mathit{smoke}$ ``explica'' o alarme neste caso.
+    \end{enumerate}
+
+    \item Em poucas linhas, discuta:
+    \begin{enumerate}[label=(\alph*)]
+        \item Duas diferenças importantes entre diagnóstico por consistência (CBD) e abdução.
+        \item Uma vantagem da abdução em relação ao CBD.
+        \item Uma desvantagem (ou dificuldade) da abdução em relação ao CBD.
+    \end{enumerate}
+
+    \item  Modele um pequeno domínio abductivo para um sistema de \emph{login}:
+    \begin{itemize}
+        \item Defina átomos para hipóteses como $\mathit{wrong\_password}$, $\mathit{server\_down}$, $\mathit{user\_blocked}$, etc.
+        \item Defina átomos observáveis como $\mathit{login\_failed}$, $\mathit{timeout}$, $\mathit{error\_message}$.
+        \item Escreva regras (Horn clauses) que relacionam hipóteses a observações (por exemplo, $\mathit{login\_failed} \leftarrow \mathit{wrong\_password}$).
+        \item Considere uma observação concreta (por exemplo, ``login falhou com mensagem de usuário bloqueado'') e indique possíveis explicações mínimas.
+    \end{itemize}
+    Não é necessário listar \emph{todas} as explicações; dê pelo menos duas alternativas razoáveis e explique por que são cenários consistentes.
+
+\end{enumerate}
+
+\end{document}
