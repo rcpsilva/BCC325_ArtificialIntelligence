@@ -1,0 +1,411 @@
+\documentclass[9pt,a4paper]{extarticle}
+
+% ======================
+% Codificação, idioma e layout
+% ======================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=2cm}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{amsthm}
+\newtheorem{definition}{Definição}
+
+% ======================
+% Matemática e símbolos
+% ======================
+\usepackage{amsmath, amssymb, amsthm, bm}
+
+% ======================
+% Listas
+% ======================
+\usepackage{enumitem}
+\setlist{nosep}
+
+% ======================
+% Documento
+% ======================
+\begin{document}
+
+\section*{Cláusulas Definidas Proposicionais e Procedimentos de Prova}
+
+\section{Cláusulas definidas proposicionais}
+
+\subsection{Motivação e sintaxe básica (15 min)}
+
+\paragraph{Exposição.}
+\begin{itemize}
+    \item Relembrar: na lógica proposicional geral podemos combinar átomos com $\land,\lor,\neg,\rightarrow$ livremente.
+    \item Destacar o problema: raciocínio geral é caro; vamos restringir a linguagem para obter \emph{procedimentos eficientes}.
+    \item Definir:
+    \begin{itemize}
+        \item Um \textbf{átomo} (ou proposição atômica) é como na lógica proposicional: $p, q, r,\dots$.
+        \item Uma \textbf{cláusula definida} é uma fórmula da forma
+        \[
+           h \leftarrow a_1 \land \dots \land a_m
+        \]
+        em que $h$ é um átomo (a \textbf{cabeça}) e cada $a_i$ é um átomo (o \textbf{corpo}).
+    \end{itemize}
+    \item Leitura: ``$h$ se $a_1$ e \dots e $a_m$''.
+    \item Caso $m>0$: chamamos de \textbf{regra}. Caso $m=0$: \textbf{fato} (ou \textbf{cláusula atômica}); escrevemos apenas $h.$
+    \item Uma \textbf{base de conhecimento} (KB) é um conjunto de cláusulas definidas.
+\end{itemize}
+
+\paragraph{Atividade rápida (em plenário).}
+\begin{itemize}
+    \item Apresentar na lousa algumas fórmulas e pedir para a turma classificar se são ou não cláusulas definidas:
+    \begin{align*}
+        &\text{(i)}\quad \mathit{apple\_is\_eaten}.\\
+        &\text{(ii)}\quad \mathit{apple\_is\_eaten} \leftarrow \mathit{bird\_eats\_apple}.\\
+        &\text{(iii)}\quad \neg \mathit{apple\_is\_eaten}.\\
+        &\text{(iv)}\quad \mathit{happy} \lor \mathit{sad} \lor \neg \mathit{alive}.\\
+        &\text{(v)}\quad \mathit{sam\_is\_in\_room} \land \mathit{night\_time} \leftarrow \mathit{switch\_1\_is\_up}.
+    \end{align*}
+    \item Discutir por que (iii), (iv) e (v) \textbf{não} são cláusulas definidas.
+\end{itemize}
+
+\subsection{Semântica e relação com cláusulas gerais (5 min)}
+
+\paragraph{Exposição.}
+\begin{itemize}
+    \item Definir: uma cláusula definida
+    \[
+        h \leftarrow a_1 \land \dots \land a_m
+    \]
+    é \textbf{falsa} em uma interpretação $I$ se todos $a_1,\dots,a_m$ são verdadeiros em $I$ e $h$ é falso em $I$; caso contrário, a cláusula é verdadeira em $I$.
+    \item Mostrar a equivalência com cláusulas disjuntivas:
+    \[
+        h \leftarrow b \land c \land d
+        \quad\equiv\quad
+        h \lor \neg b \lor \neg c \lor \neg d.
+    \]
+    \item Ressaltar a restrição: em uma cláusula definida há \textbf{exatamente um literal positivo}. Não podemos representar $a \lor b$ nem $\neg c \lor \neg d$ como cláusulas definidas.
+\end{itemize}
+
+\paragraph{Discussão guiada.}
+\begin{itemize}
+    \item Perguntar: qual a vantagem de restringir a linguagem? (ganho de estrutura e de eficiência nos procedimentos de prova).
+\end{itemize}
+
+\section{Exemplo: ambiente elétrico com cláusulas definidas (20 min)}
+
+\subsection{Escolha do nível de abstração}
+
+\paragraph{Exposição.}
+\begin{itemize}
+    \item Contexto: ambiente elétrico com fios, disjuntores, interruptores e lâmpadas.
+    \item Decisão de modelagem: ignorar voltagem exata, cor dos fios, detalhes físicos. Focar em:
+    \begin{itemize}
+        \item fios vivos: $\mathit{live\_w1}$,
+        \item lâmpadas ligadas: $\mathit{lit\_l1}$,
+        \item interruptores para cima/baixo: $\mathit{up\_s2}$, $\mathit{down\_s1}$,
+        \item componentes funcionando: $\mathit{ok\_l1}$, $\mathit{ok\_cb1}$, etc.
+    \end{itemize}
+    \item Reforçar que o computador \textbf{não entende} o significado dos nomes; só manipula símbolos.
+\end{itemize}
+
+\subsection{Fatos e regras da base de conhecimento}
+
+\paragraph{Exposição com exemplos.}
+\begin{itemize}
+    \item Exemplo de fatos (cláusulas atômicas):
+    \begin{align*}
+        &\mathit{light\_l1}. \\
+        &\mathit{light\_l2}. \\
+        &\mathit{ok\_l1}. \\
+        &\mathit{ok\_l2}. \\
+        &\mathit{ok\_cb1}. \\
+        &\mathit{ok\_cb2}. \\
+        &\mathit{live\_outside}. 
+    \end{align*}
+    \item Exemplo de regras:
+    \begin{align*}
+        &\mathit{live\_l1} \leftarrow \mathit{live\_w0}.\\
+        &\mathit{live\_p1} \leftarrow \mathit{live\_w3}.\\
+        &\mathit{live\_w0} \leftarrow \mathit{live\_w1} \land \mathit{up\_s2}.\\
+        &\mathit{live\_w3} \leftarrow \mathit{live\_w5} \land \mathit{ok\_cb1}.\\
+        &\mathit{live\_w0} \leftarrow \mathit{live\_w2} \land \mathit{down\_s2}.\\
+        &\mathit{live\_p2} \leftarrow \mathit{live\_w6}.\\
+        &\mathit{live\_w1} \leftarrow \mathit{live\_w3} \land \mathit{up\_s1}.\\
+        &\mathit{live\_w6} \leftarrow \mathit{live\_w5} \land \mathit{ok\_cb2}.\\
+        &\mathit{live\_w2} \leftarrow \mathit{live\_w3} \land \mathit{down\_s1}.\\
+        &\mathit{live\_w5} \leftarrow \mathit{live\_outside}.\\
+        &\mathit{live\_l2} \leftarrow \mathit{live\_w4}.\\
+        &\mathit{lit\_l1} \leftarrow \mathit{light\_l1} \land \mathit{live\_l1} \land \mathit{ok\_l1}.\\
+        &\mathit{live\_w4} \leftarrow \mathit{live\_w3} \land \mathit{up\_s3}.\\
+        &\mathit{lit\_l2} \leftarrow \mathit{light\_l2} \land \mathit{live\_l2} \land \mathit{ok\_l2}.
+    \end{align*}
+    \item Observações do usuário (situação atual do mundo):
+    \[
+      \mathit{down\_s1}.\quad
+      \mathit{up\_s2}.\quad
+      \mathit{up\_s3}.
+    \]
+\end{itemize}
+
+\paragraph{Atividade guiada.}
+\begin{itemize}
+    \item Em duplas, pedir que os alunos escrevam em forma de cláusula definida a ideia:
+    
+    ``A lâmpada $l_2$ acende quando é uma lâmpada, está viva e está funcionando.''
+    
+    \item Esperado:
+    \[
+        \mathit{lit\_l2} \leftarrow \mathit{light\_l2} \land \mathit{live\_l2} \land \mathit{ok\_l2}.
+    \]
+\end{itemize}
+
+\section{Consultas e respostas (\texttt{ask}) (15 min)}
+
+\subsection{Definição de consulta}
+
+\paragraph{Exposição.}
+\begin{itemize}
+    \item Uma \textbf{consulta} tem a forma:
+    \[
+        \mathsf{ask}\; b.
+    \]
+    onde $b$ é um átomo ou uma conjunção de átomos (como o corpo de uma regra).
+    \item Semântica:
+    \begin{itemize}
+        \item Resposta \textbf{yes}: o corpo é consequência lógica da base de conhecimento ($KB \models b$).
+        \item Resposta \textbf{no}: não é possível concluir $b$ a partir do que foi fornecido na $KB$.
+    \end{itemize}
+    \item Enfatizar: resposta \textbf{no} \underline{não} significa necessariamente que $b$ é falso no mundo; apenas que não pode ser \emph{derivado} da $KB$.
+\end{itemize}
+
+\subsection{Exemplos do ambiente elétrico}
+
+\paragraph{Exposição.}
+\begin{itemize}
+    \item Exemplos:
+    \begin{align*}
+        &\mathsf{ask}\; \mathit{light\_l1}.\quad \text{resposta: yes.}\\
+        &\mathsf{ask}\; \mathit{light\_l6}.\quad \text{resposta: no.}\\
+        &\mathsf{ask}\; \mathit{lit\_l2}.\quad \text{resposta: yes (em todos os modelos da KB).}
+    \end{align*}
+    \item Discutir como o usuário que conhece o domínio interpreta essas respostas.
+\end{itemize}
+
+\paragraph{Atividade curta.}
+\begin{itemize}
+    \item Pedir aos alunos: dado o conjunto de fatos e regras já visto, que consultas seriam interessantes para saber se o sistema está funcionando? (por exemplo, se uma chave quebrada pode explicar uma lâmpada apagada).
+\end{itemize}
+
+\section{Provas, correção e completude (5 min)}
+
+\paragraph{Exposição.}
+\begin{itemize}
+    \item Definições:
+    \begin{itemize}
+        \item \textbf{Prova}: demonstração mecanicamente derivável de que uma proposição decorre logicamente de uma base de conhecimento.
+        \item \textbf{Teorema}: proposição que admite uma prova.
+        \item \textbf{Procedimento de prova}: algoritmo (possivelmente não determinístico) para derivar consequências de uma base de conhecimento.
+    \end{itemize}
+    \item Notação: $KB \vdash g$ significa ``$g$ pode ser provado a partir de $KB$''.
+    \item \textbf{Correção (soundness)}: se $KB \vdash g$ então $KB \models g$.
+    \item \textbf{Completude}: se $KB \models g$ então $KB \vdash g$.
+\end{itemize}
+
+\section{Procedimento de prova bottom-up (encadeamento para frente) (20 min)}
+
+\subsection{Conceitos}
+
+\begin{definition}[Interpretação]
+Uma \emph{interpretação} $I$ para uma linguagem proposicional é uma função
+\[
+I : \mathcal{A} \to \{\text{verdadeiro},\text{falso}\},
+\]
+que associa a cada átomo $p \in \mathcal{A}$ um valor de verdade.  
+O valor de verdade de fórmulas compostas é definido recursivamente a partir dos conectivos lógicos.
+\end{definition}
+
+\begin{definition}[Modelo]
+Uma interpretação $I$ é um \emph{modelo} de uma fórmula $\varphi$ (ou de uma base de conhecimento $KB$) se $\varphi$ é verdadeira em $I$.  
+Denotamos:
+\[
+I \models \varphi
+\qquad\text{ou}\qquad
+I \models KB,
+\]
+quando todas as fórmulas de $KB$ são verdadeiras sob $I$.  
+Neste caso, dizemos que $I$ \emph{satisfaz} $\varphi$ (ou $KB$).
+\end{definition}
+
+
+\subsection{Ideia e algoritmo}
+
+\paragraph{Exposição.}
+\begin{itemize}
+    \item Intuição: começar do que já é conhecido (fatos) e ir \emph{empilhando} novas consequências, usando um modus ponens generalizado:
+    \begin{quote}
+        Se $h \leftarrow a_1 \land \dots \land a_m$ está em $KB$ e todos $a_i$ já foram derivados, então podemos derivar $h$.
+    \end{quote}
+    \item Manter um conjunto $C$ de átomos já derivados (consequências atuais).
+    \item Esboço do algoritmo:
+    \begin{enumerate}
+        \item Inicializar $C := \emptyset$.
+        \item Repetir:
+        \begin{itemize}
+            \item Escolher uma cláusula $h \leftarrow a_1 \land \dots \land a_m$ em $KB$ tal que todos $a_i \in C$ e $h \not\in C$.
+            \item Adicionar $h$ a $C$.
+        \end{itemize}
+        \item Até não ser possível selecionar mais nenhuma cláusula.
+        \item Resultado: $C$ é o conjunto de todos os átomos que são consequências lógicas de $KB$.
+    \end{enumerate}
+\end{itemize}
+
+\subsection{Exemplo trabalhado}
+
+\paragraph{Exposição guiada.}
+Considere a base de conhecimento:
+\begin{align*}
+    &a \leftarrow b \land c.\\
+    &d.\\
+    &b \leftarrow d \land e.\\
+    &e.\\
+    &b \leftarrow g \land e.\\
+    &f \leftarrow a \land g.\\
+    &c \leftarrow e.
+\end{align*}
+
+\begin{itemize}
+    \item Construir, passo a passo, a sequência de conjuntos $C$:
+    \[
+    \{\} \;\to\; \{d\} \;\to\; \{d,e\} \;\to\; \{d,e,c\} \;\to\; \{d,e,c,b\} \;\to\; \{d,e,c,b,a\}.
+    \]
+    \item Mostrar que o algoritmo termina com $C = \{a,b,c,d,e\}$ e não deriva $f$ nem $g$.
+    \item Discutir: existe um modelo de $KB$ onde $f$ e $g$ são falsos? (sim; portanto não devem ser derivados).
+\end{itemize}
+
+\subsection{Propriedades}
+
+\paragraph{Exposição curta.}
+\begin{itemize}
+    \item \textbf{Correção}: todo átomo em $C$ é consequência lógica de $KB$.
+    \item \textbf{Complexidade}: cada cláusula é usada no máximo uma vez $\Rightarrow$ tempo linear no tamanho da base (assumindo indexação eficiente).
+    \item \textbf{Ponto fixo}: o conjunto final $C$ é um \emph{ponto fixo} do operador de derivação (aplicar a regra não muda mais $C$).
+    \item \textbf{Menor modelo (minimal model)}: a interpretação que torna verdadeiros exatamente os átomos em $C$ é o modelo minimal de $KB$.
+\end{itemize}
+
+\section{Procedimento de prova top-down (SLD resolution) (20 min)}
+
+\subsection{Ideia geral}
+
+\paragraph{Exposição.}
+\begin{itemize}
+    \item Agora partimos da \textbf{consulta} e tentamos ``explicá-la'' usando as regras disponíveis.
+    \item Introduzimos uma cláusula-resposta:
+    \[
+        \mathit{yes} \leftarrow a_1 \land \dots \land a_m
+    \]
+    em que $a_1 \land \dots \land a_m$ é a consulta (corpo de uma regra).
+    \item Em cada passo:
+    \begin{itemize}
+        \item Selecionamos um átomo do corpo (subobjetivo).
+        \item Escolhemos uma cláusula em $KB$ cuja cabeça seja esse átomo.
+        \item Substituímos o átomo pelo corpo da cláusula escolhida (resolução).
+    \end{itemize}
+    \item Quando o corpo fica vazio ($\mathit{yes} \leftarrow$), temos uma prova de \textbf{sucesso}.
+\end{itemize}
+
+\subsection{Algoritmo em termos de subobjetivos}
+
+\paragraph{Exposição em linguagem natural.}
+\begin{itemize}
+    \item Mantemos um conjunto (ou lista) $G$ de subobjetivos a provar.
+    \item Inicialmente, $G$ contém os átomos da consulta.
+    \item Repetimos:
+    \begin{enumerate}
+        \item Selecionar um átomo $a \in G$ (por exemplo, o da esquerda).
+        \item Escolher em $KB$ uma cláusula $a \leftarrow B$.
+        \item Atualizar $G := (G \setminus \{a\}) \cup B$.
+    \end{enumerate}
+    \item Se, em algum momento, $G = \emptyset$, retornamos \textit{yes}.
+    \item Se para um átomo selecionado $a$ não há nenhuma cláusula em $KB$ com cabeça $a$, esse ramo de prova \textbf{falha}.
+\end{itemize}
+
+\subsection{Exemplo de derivação bem-sucedida e falha}
+
+\paragraph{Exposição.}
+Usando novamente:
+\begin{align*}
+    &a \leftarrow b \land c.\\
+    &d.\\
+    &b \leftarrow d \land e.\\
+    &e.\\
+    &b \leftarrow g \land e.\\
+    &f \leftarrow a \land g.\\
+    &c \leftarrow e.
+\end{align*}
+
+\begin{itemize}
+    \item Consulta: $\mathsf{ask}\; a.$
+    \item Derivação bem-sucedida (selecionando sempre o átomo mais à esquerda):
+    \begin{align*}
+        &\mathit{yes} \leftarrow a &&\text{(consulta)}\\
+        &\mathit{yes} \leftarrow b \land c &&(a \leftarrow b \land c)\\
+        &\mathit{yes} \leftarrow d \land e \land c &&(b \leftarrow d \land e)\\
+        &\mathit{yes} \leftarrow e \land c &&(d.)\\
+        &\mathit{yes} \leftarrow c &&(e.)\\
+        &\mathit{yes} \leftarrow e &&(c \leftarrow e)\\
+        &\mathit{yes} \leftarrow &&(e.)
+    \end{align*}
+    \item Derivação que falha (escolhendo a outra regra para $b$):
+    \begin{align*}
+        &\mathit{yes} \leftarrow a\\
+        &\mathit{yes} \leftarrow b \land c\\
+        &\mathit{yes} \leftarrow g \land e \land c &&(b \leftarrow g \land e)\\
+        &\dots && \text{se $g$ é selecionado, não há cláusula com cabeça $g$ $\Rightarrow$ falha.}
+    \end{align*}
+\end{itemize}
+
+\subsection{Grafo de busca e loops}
+
+\paragraph{Exposição.}
+\begin{itemize}
+    \item A cada escolha de cláusula, criamos um novo nó em um \textbf{grafo de busca} de respostas.
+    \item Um nó representa uma cláusula-resposta (ou o conjunto $G$ de subobjetivos atuais).
+    \item Vizinhos: todas as possíveis resoluções do átomo selecionado com as cláusulas de $KB$ que têm essa cabeça.
+    \item Nós objetivo: cláusulas da forma $\mathit{yes} \leftarrow$ (corpo vazio).
+    \item Exemplo de loop (sem poda de ciclos):
+    \[
+      g \leftarrow a.\quad a \leftarrow b.\quad g \leftarrow c.\quad b \leftarrow a.\quad c.
+    \]
+    \item Bottom-up nesse exemplo alcança o ponto fixo $\{c,g\}$ e termina; top-down com busca em profundidade pode ficar ciclando.
+\end{itemize}
+
+\section{Comparação bottom-up vs top-down e fechamento (5 min)}
+
+\paragraph{Discussão final.}
+\begin{itemize}
+    \item \textbf{Bottom-up}:
+    \begin{itemize}
+        \item Prova todos os átomos que são consequências lógicas (conjunto $C$ completo).
+        \item Cada átomo é provado no máximo uma vez.
+        \item Não depende da consulta; pode ser caro se só queremos responder poucas perguntas.
+        \item Termina (com KB finita) e produz o modelo minimal.
+    \end{itemize}
+    \item \textbf{Top-down (SLD)}:
+    \begin{itemize}
+        \item Focado na consulta: só prova o que é relevante para responder a pergunta.
+        \item Pode reprovar o mesmo átomo várias vezes (sem memorização).
+        \item Pode entrar em laço infinito sem poda.
+        \item Base de linguagens como Prolog (com busca em profundidade e ordem dos átomos definida pelo programador).
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Sugestão de tarefa para casa.}
+\begin{itemize}
+    \item Pedir que os alunos:
+    \begin{enumerate}
+        \item Modelem um mini-domínio (por exemplo, pré-requisitos de disciplinas ou hierarquia de cargos em uma empresa) usando cláusulas definidas proposicionais.
+        \item Escrevam algumas consultas de interesse.
+        \item Façam, no papel, pelo menos uma derivação bottom-up e uma derivação top-down para uma consulta não trivial.
+    \end{enumerate}
+\end{itemize}
+
+\end{document}
