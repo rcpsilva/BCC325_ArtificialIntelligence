@@ -1,0 +1,187 @@
+\documentclass[9pt,a4paper]{extarticle}
+
+% ======================
+% Codificação, idioma e layout
+% ======================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=2cm}
+\usepackage{parskip}
+\usepackage{microtype}
+
+% ======================
+% Matemática e teoremas
+% ======================
+\usepackage{amsmath, amssymb, amsthm}
+\newtheorem{definition}{Definição}
+
+% ======================
+% Listas
+% ======================
+\usepackage{enumitem}
+\setlist{nosep}
+
+% ======================
+% Documento
+% ======================
+\begin{document}
+
+\title{\vspace{-1em}Prova 3\\
+Cláusulas Definidas Proposicionais, Horn Clauses, Diagnóstico por Consistência e Abdução}
+\date{}
+\maketitle
+
+\vspace{-2cm}
+
+\section*{Instruções gerais}
+\begin{itemize}
+    \item Indique claramente quaisquer suposições adicionais que você fizer.
+    \item Quando for pedido para ``simular o algoritmo'', apresente os conjuntos intermediários (\emph{estados}) usados na execução (por exemplo, os conjuntos $C$ ou $G$).
+    \item Nos exercícios conceituais, responda em poucas linhas, com foco na precisão.
+\end{itemize}
+
+% ==================================================
+\section*{Questões}
+% ==================================================
+
+\begin{enumerate}[label=\textbf{\arabic*)}, itemsep=1.8em]
+
+% --------------------------------------------------
+\item Para cada fórmula abaixo, indique se é:
+(i) uma cláusula definida (fato ou regra) \textbf{proposicional}, ou (ii) \textbf{não} é uma cláusula definida proposicional.
+Justifique brevemente.
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\mathit{ok\_sensor}.$
+    \item $\mathit{alarm} \leftarrow \mathit{smoke} \land \mathit{heat}.$
+    \item $\lnot \mathit{alarm}.$
+    \item $\mathit{p} \lor \mathit{q} \lor \lnot \mathit{r}.$
+    \item $\mathit{a} \land \mathit{b} \leftarrow \mathit{c}.$
+    \item $\mathit{works} \leftarrow (\mathit{plugged} \lor \mathit{battery\_ok}).$
+\end{enumerate}
+
+% --------------------------------------------------
+\item Converta cada cláusula definida abaixo para uma fórmula equivalente usando apenas $\lor$ e $\lnot$ (sem $\leftarrow$).
+
+\begin{enumerate}[label=(\alph*)]
+    \item $h \leftarrow a \land b.$
+    \item $p \leftarrow q \land r \land s.$
+    \item $t.$
+\end{enumerate}
+
+% --------------------------------------------------
+\item Considere a cláusula:
+\[
+\mathit{safe} \leftarrow \mathit{locked} \land \mathit{alarm\_on}.
+\]
+Dê um exemplo de interpretação $I$ em que a cláusula é:
+\begin{enumerate}[label=(\alph*)]
+    \item verdadeira em $I$;
+    \item falsa em $I$.
+\end{enumerate}
+Explique por que em cada caso.
+
+% --------------------------------------------------
+\item Considere a base de conhecimento $KB$:
+\begin{align*}
+    &a \leftarrow b \land c.\\
+    &b \leftarrow d.\\
+    &c \leftarrow e.\\
+    &d.\\
+    &e.\\
+    &x \leftarrow a \land y.\\
+    &y \leftarrow z.
+\end{align*}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Usando o procedimento bottom-up, construa a sequência de conjuntos $C$ até atingir ponto fixo, ou seja, um ponto em que aplicar a regra de prova não produz novos átomos.
+    \item Liste os átomos derivados ao final.
+    \item Justifique por que $\mathit{x}$ e $\mathit{y}$ não são derivados (se de fato não forem).
+\end{enumerate}
+
+% --------------------------------------------------
+\item Usando a mesma $KB$ do exercício anterior, construa uma derivação top-down para a consulta:
+\[
+\mathsf{ask}\; a.
+\]
+
+% --------------------------------------------------
+\item Ainda com a mesma $KB$, construa uma derivação top-down para a consulta $\mathsf{ask}\; x$ que:
+\begin{itemize}
+    \item em algum momento tente provar $\mathit{y}$ a partir de $\mathit{y} \leftarrow z$.
+\end{itemize}
+Mostre o ramo de prova e explique \textbf{explicitamente} por que ele falha.
+
+% --------------------------------------------------
+\item Considere a restrição de integridade:
+\[
+\mathit{false} \leftarrow \mathit{alarm} \land \mathit{quiet}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Escreva uma fórmula equivalente usando apenas $\lor$ e $\lnot$ (sem $\leftarrow$ e sem $\mathit{false}$).
+    \item Interprete em linguagem natural o que a restrição impõe sobre o mundo.
+\end{enumerate}
+
+% --------------------------------------------------
+\item Considere a base $KB_2$:
+\begin{align*}
+    &\mathit{false} \leftarrow a \land b.\\
+    &a \leftarrow c.\\
+    &b \leftarrow d.\\
+    &b \leftarrow e.
+\end{align*}
+Assuma o conjunto de assumíveis:
+\[
+A=\{c,d,e,f\}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Mostre que $\{c,d\}$ é um conflito.
+    \item Mostre que $\{c,e\}$ é um conflito.
+    \item Dê um exemplo de conflito que não seja mínimo e explique por que não é mínimo.
+\end{enumerate}
+
+% --------------------------------------------------
+\item No diagnóstico por consistência, considere um conjunto de \emph{assumíveis} $A$.
+Um \emph{diagnóstico} é um subconjunto $D \subseteq A$ de assumíveis supostos falhos tal que, ao desconsiderar os elementos de $D$, a inconsistência do sistema é eliminada.
+Equivalentemente, um diagnóstico deve \emph{intersectar todo conflito mínimo} (isto é, ser um \emph{hitting set} dos conflitos mínimos).
+
+Suponha que, para um sistema, os conflitos mínimos (sobre assumíveis) são:
+\[
+C_1=\{p,q,r\}, \qquad C_2=\{q,s\}.
+\]
+
+\begin{enumerate}[label=(\alph*)]
+    \item Dê dois exemplos de diagnósticos (conjuntos de assumíveis) que intersectam ambos os conflitos.
+    \item Dê um diagnóstico mínimo e um que não seja mínimo.
+    \item Em linguagem natural, explique o que significa ``diagnóstico mínimo'' neste contexto.
+\end{enumerate}
+
+
+% --------------------------------------------------
+\item Considere o domínio:
+\begin{align*}
+    \mathit{bronchitis} &\leftarrow \mathit{influenza}.\\
+    \mathit{bronchitis} &\leftarrow \mathit{smokes}.\\
+    \mathit{coughing} &\leftarrow \mathit{bronchitis}.\\
+    \mathit{fever} &\leftarrow \mathit{influenza}.\\
+    \mathit{fever} &\leftarrow \mathit{infection}.\\
+    \mathit{false} &\leftarrow \mathit{smokes} \land \mathit{nonsmoker}.
+\end{align*}
+Assumíveis:
+\[
+A=\{\mathit{smokes},\mathit{nonsmoker},\mathit{influenza},\mathit{infection}\}.
+\]
+Para cada observação abaixo, liste \textbf{pelo menos uma} explicação mínima (conjunto de assumíveis) e justifique a minimalidade.
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\mathit{coughing}$.
+    \item $\mathit{coughing} \land \mathit{fever}$.
+    \item $\mathit{fever} \land \mathit{nonsmoker}$.
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
