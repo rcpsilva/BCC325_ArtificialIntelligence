@@ -1,0 +1,108 @@
+\documentclass[9pt,a4paper]{extarticle}
+
+% ======================
+% Codificação, idioma e layout
+% ======================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=2cm}
+\usepackage{parskip}
+\usepackage{microtype}
+
+\usepackage{amsmath, amssymb, amsfonts, bm}
+\usepackage{booktabs}
+\usepackage{geometry}
+
+% ======================
+% Matemática e teoremas
+% ======================
+\usepackage{amsmath, amssymb, amsthm}
+\newtheorem{definition}{Definição}
+
+% ======================
+% Listas
+% ======================
+\usepackage{enumitem}
+\setlist{nosep}
+
+% ======================
+% Documento
+% ======================
+\begin{document}
+
+\title{\vspace{-1em}Lista de Exercícios\\
+Regressão Linear}
+\date{}
+\maketitle
+
+\vspace{-1cm}
+
+
+% ==================================================
+\begin{enumerate}[itemsep=0.6em]
+    \item Regressão Linear por Mínimos Quadrados
+
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+\(i\) & \(x_{1i}\) & \(x_{2i}\) & \(y_i\)\\
+\midrule
+1 & 0 & 0 & 1\\
+2 & 1 & 0 & 2\\
+3 & 0 & 1 & 2\\
+4 & 1 & 1 & 3\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+  \item Monte \(X\) (com coluna de 1’s) e \(\bm y\).
+  \item Calcule \(X^{\!\top}X\) e \(X^{\!\top}\bm y\).
+  \item Inverta \(X^{\!\top}X\) via \textbf{Gauss--Jordan}. Documente cada operação de linha.
+  \item Inverta novamente pelo \textbf{método da adjunta}: cofatores, adjunta e determinante.
+  \item Obtenha os pesos \(\hat{\bm w}\) multiplicando a inversa por \(X^{\!\top}\bm y\).
+  \item Calcule o erro quadrático do modelo com os pesos calculados.
+\end{enumerate}
+
+\item Dados \((x_1,x_2,y)\in\{(0,0,2), (2,0,3), (0,2,3), (2,2,6)\}\), repita os itens~1--6 acima e verifique se os dois métodos de inversão produzem o mesmo \(\hat{\bm w}\).
+
+\item{Regressão linear com descida do gradiente}
+
+\begin{enumerate}
+  \item Derive o gradiente de \(J(\bm w)=\tfrac12\lVert X\bm w-\bm y\rVert^{2}\) e execute três iterações manuais de descida do gradiente com \(\alpha=0.1\) no primeiro conjunto daquestão anterior.
+  \item Para cada iteração, calcule o erro quadrado total e compare com o erro quadrado do método analítico. Comente a taxa de convergência.
+\end{enumerate}
+
+    \item Formule o problema de regressão linear por mínimos quadrados como um problema de otimização. Explique o significado geométrico da solução obtida.
+
+    \item Derive as equações normais associadas ao problema
+    \[
+        \min_{\bm w}\; \lVert X\bm w - \bm y \rVert^2
+    \]
+    e explique sob quais condições elas admitem uma solução única.
+
+    \item Mostre que a matriz \(X^{\!\top}X\) é sempre simétrica e semidefinida positiva. Em que situação ela é definida positiva?
+
+    \item Explique a interpretação geométrica do vetor de resíduos
+    \[
+        \bm r = \bm y - X\hat{\bm w}
+    \]
+    e sua relação com o espaço coluna de \(X\).
+
+    \item Explique por que a função custo
+    \[
+        J(\bm w) = \tfrac12 \lVert X\bm w - \bm y \rVert^2
+    \]
+    é convexa. Qual é a consequência dessa propriedade para a otimização por descida do gradiente?
+
+    \item Compare conceitualmente a solução analítica por mínimos quadrados com a solução obtida por descida do gradiente, discutindo vantagens e limitações de cada abordagem.
+
+    \item Discuta a influência do passo de aprendizado \(\alpha\) na convergência da descida do gradiente. O que pode ocorrer se \(\alpha\) for muito grande ou muito pequeno?
+\end{enumerate}
+
+
+
+\end{document}
