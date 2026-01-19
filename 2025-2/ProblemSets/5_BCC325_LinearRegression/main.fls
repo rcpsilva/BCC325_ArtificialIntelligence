@@ -1,8 +1,8 @@
-PWD c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/ProblemSets/4_BCC325_LinearRegression
+PWD c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/ProblemSets/5_BCC325_LinearRegression
 INPUT c:/texlive/2024/texmf.cnf
 INPUT c:/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/ProblemSets/4_BCC325_LinearRegression/main.tex
+INPUT c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/ProblemSets/5_BCC325_LinearRegression/main.tex
 OUTPUT main.log
 INPUT c:/texlive/2024/texmf-dist/tex/latex/extsizes/extarticle.cls
 INPUT c:/texlive/2024/texmf-dist/tex/latex/extsizes/extarticle.cls

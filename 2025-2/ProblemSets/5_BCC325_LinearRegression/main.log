@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.30)  14 JAN 2026 11:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.30)  19 JAN 2026 13:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/ProblemSets/4_BCC325_LinearRegression/main.tex
-(c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/ProblemSets/4_BCC325_LinearRegression/main.tex
+**c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/ProblemSets/5_BCC325_LinearRegression/main.tex
+(c:/Users/rcpsi/OneDrive/Documents/GitHub/BCC325_ArtificialIntelligence/2025-2/ProblemSets/5_BCC325_LinearRegression/main.tex
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-10-09>
 (c:/texlive/2024/texmf-dist/tex/latex/extsizes/extarticle.cls
@@ -392,15 +392,15 @@ L3 programming layer <2024-10-09>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7033 strings out of 473577
- 115011 string characters out of 5732224
- 560022 words of memory out of 5000000
+ 7031 strings out of 473577
+ 114993 string characters out of 5732224
+ 557022 words of memory out of 5000000
  29771 multiletter control sequences out of 15000+600000
- 611993 words of font info for 114 fonts, out of 8000000 for 9000
+ 611904 words of font info for 113 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,8n,65p,1117b,356s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmib10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmib7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy9.pfb>
-Output written on main.pdf (1 page, 128895 bytes).
+Output written on main.pdf (1 page, 126963 bytes).
 PDF statistics:
  65 PDF objects out of 1000 (max. 8388607)
  40 compressed objects within 1 object stream
