@@ -1,0 +1,172 @@
+\documentclass[9pt,a4paper]{extarticle}
+
+% ======================
+% Codificação, idioma e layout
+% ======================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=2cm}
+\usepackage{parskip}
+\usepackage{microtype}
+
+\usepackage{amsmath, amssymb, amsfonts, bm}
+\usepackage{booktabs}
+
+% ======================
+% Matemática
+% ======================
+\usepackage{amsthm}
+
+% ======================
+% Listas
+% ======================
+\usepackage{enumitem}
+\setlist{nosep}
+
+% ======================
+% Macros
+% ======================
+\newcommand{\sigmoid}{\sigma}
+\newcommand{\bw}{\bm w}
+\newcommand{\bx}{\bm x}
+\newcommand{\by}{\bm y}
+
+% ======================
+% Documento
+% ======================
+\begin{document}
+
+\title{\vspace{-1em}Lista de Exercícios\\
+Regressão Logística}
+\date{}
+\maketitle
+
+\vspace{-1cm}
+
+\begin{enumerate}[itemsep=0.6em]
+
+% ==================================================
+\item Considere o conjunto de dados abaixo, com duas variáveis explicativas e uma variável resposta binária:
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+\(i\) & \(x_{1i}\) & \(x_{2i}\) & \(y_i\)\\
+\midrule
+1 & 0 & 0 & 0\\
+2 & 1 & 0 & 0\\
+3 & 0 & 1 & 0\\
+4 & 1 & 1 & 1\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Considere o modelo com intercepto:
+\[
+p_i = \mathbb{P}(y_i=1\mid \bx_i)
+= \sigmoid(\bw^\top \tilde{\bx}_i),
+\qquad
+\sigmoid(z)=\frac{1}{1+e^{-z}},
+\]
+onde \(\tilde{\bx}_i=(1,x_{1i},x_{2i})^\top\).
+
+\begin{enumerate}
+  \item Monte a matriz \(X\) (com coluna de 1's) e o vetor \(\by\).
+  \item Escreva a função custo (log-verossimilhança negativa):
+  \[
+    J(\bw)= -\sum_{i=1}^n
+    \Big(y_i\log p_i + (1-y_i)\log(1-p_i)\Big).
+  \]
+  \item Mostre que o gradiente de \(J(\bw)\) pode ser escrito como
+  \[
+    \nabla J(\bw)=X^\top(\bm p-\by),
+  \]
+  onde \(\bm p=(p_1,\dots,p_n)^\top\).
+  \item Considere \(\bw^{(0)}=\bm 0\). Calcule explicitamente os valores \(p_i\), o gradiente \(\nabla J(\bw^{(0)})\) e o custo \(J(\bw^{(0)})\).
+  \item Execute \textbf{duas iterações manuais} de descida do gradiente:
+  \[
+    \bw^{(t+1)}=\bw^{(t)}-\alpha\nabla J(\bw^{(t)}),
+  \]
+  usando passo de aprendizado \(\alpha=0.5\).
+  \item Para cada iteração, calcule \(J(\bw^{(t)})\) e verifique se o custo diminui.
+\end{enumerate}
+
+% ==================================================
+\item Considere agora o conjunto de dados
+\[
+(x_1,x_2,y)\in\{(0,0,0),(2,0,0),(0,2,0),(2,2,1)\}.
+\]
+
+\begin{enumerate}
+  \item Repita os itens (a)--(f) da questão anterior, usando o mesmo passo \(\alpha\).
+  \item Compare o comportamento da descida do gradiente nos dois conjuntos de dados.
+  \item Explique a influência da escala das variáveis explicativas na convergência do método.
+\end{enumerate}
+
+% ==================================================
+\item Formule o ajuste da regressão logística como um problema de otimização irrestrita.
+Explique por que a solução não admite forma fechada, ao contrário do caso de mínimos quadrados.
+
+% ==================================================
+\item Mostre que a Hessiana da função custo pode ser escrita como
+\[
+\nabla^2 J(\bw)=X^\top W X,
+\qquad
+W=\mathrm{diag}\big(p_i(1-p_i)\big).
+\]
+
+\begin{enumerate}
+  \item Mostre que \(W\) é semidefinida positiva.
+  \item Conclua que \(J(\bw)\) é uma função convexa.
+  \item Explique a consequência dessa propriedade para a convergência da descida do gradiente.
+\end{enumerate}
+
+% ==================================================
+\item Sob quais condições a solução do problema de regressão logística é única?
+Discuta o papel do posto da matriz \(X\) e do comportamento dos termos \(p_i(1-p_i)\).
+
+% ==================================================
+\item Explique o conceito de separação perfeita em regressão logística.
+Mostre, conceitualmente, por que nesse caso a função custo não possui minimizador finito.
+Relacione esse fenômeno com o comportamento da descida do gradiente.
+
+% ==================================================
+\item Considere o problema regularizado:
+\[
+\min_{\bw}\; J(\bw)+\frac{\lambda}{2}\lVert \bw\rVert^2.
+\]
+
+\begin{enumerate}
+  \item Derive o gradiente da função custo regularizada.
+  \item Explique como a regularização afeta a convergência da descida do gradiente.
+  \item Discuta o papel da regularização na presença de separação perfeita.
+\end{enumerate}
+
+% ==================================================
+\item Mostre que
+\[
+\log\frac{p(\bx)}{1-p(\bx)}=\bw^\top\tilde{\bx}.
+\]
+
+Explique a interpretação dos coeficientes do modelo em termos de:
+\begin{enumerate}
+  \item log-odds;
+  \item odds ratio.
+\end{enumerate}
+
+% ==================================================
+\item Defina o vetor \(\bm r=\by-\bm p\).
+
+\begin{enumerate}
+  \item Mostre como \(\bm r\) aparece na expressão do gradiente.
+  \item Compare a interpretação desse resíduo com o resíduo da regressão linear por mínimos quadrados.
+  \item Explique por que não existe, no caso logístico, uma interpretação direta em termos de projeção ortogonal.
+\end{enumerate}
+
+% ==================================================
+
+\end{enumerate}
+
+\end{document}
