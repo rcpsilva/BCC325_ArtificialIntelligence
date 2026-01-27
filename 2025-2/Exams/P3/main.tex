@@ -50,27 +50,27 @@ Cláusulas Definidas Proposicionais, Horn Clauses, Diagnóstico por Consistênci
 \begin{enumerate}[label=\textbf{\arabic*)}, itemsep=1.8em]
 
 % --------------------------------------------------
-\item Para cada fórmula abaixo, indique se é:
-(i) uma cláusula definida (fato ou regra) \textbf{proposicional}, ou (ii) \textbf{não} é uma cláusula definida proposicional.
-Justifique brevemente.
+%/item Para cada fórmula abaixo, indique se é:
+%(i) uma cláusula definida (fato ou regra) \textbf{proposicional}, ou (ii) \textbf{não} é uma cláusula definida proposicional.
+%Justifique brevemente.
 
-\begin{enumerate}[label=(\alph*)]
-    \item $\mathit{ok\_sensor}.$
-    \item $\mathit{alarm} \leftarrow \mathit{smoke} \land \mathit{heat}.$
-    \item $\lnot \mathit{alarm}.$
-    \item $\mathit{p} \lor \mathit{q} \lor \lnot \mathit{r}.$
-    \item $\mathit{a} \land \mathit{b} \leftarrow \mathit{c}.$
-    \item $\mathit{works} \leftarrow (\mathit{plugged} \lor \mathit{battery\_ok}).$
-\end{enumerate}
+%\begin{enumerate}[label=(\alph*)]
+%    \item $\mathit{ok\_sensor}.$
+%    \item $\mathit{alarm} \leftarrow \mathit{smoke} \land \mathit{heat}.$
+%    \item $\lnot \mathit{alarm}.$
+%    \item $\mathit{p} \lor \mathit{q} \lor \lnot \mathit{r}.$
+%    \item $\mathit{a} \land \mathit{b} \leftarrow \mathit{c}.$
+%    \item $\mathit{works} \leftarrow (\mathit{plugged} \lor \mathit{battery\_ok}).$
+%\end{enumerate}
 
 % --------------------------------------------------
-\item Converta cada cláusula definida abaixo para uma fórmula equivalente usando apenas $\lor$ e $\lnot$ (sem $\leftarrow$).
+%\item Converta cada cláusula definida abaixo para uma fórmula equivalente usando apenas $\lor$ e $\lnot$ (sem $\leftarrow$).
 
-\begin{enumerate}[label=(\alph*)]
-    \item $h \leftarrow a \land b.$
-    \item $p \leftarrow q \land r \land s.$
-    \item $t.$
-\end{enumerate}
+%\begin{enumerate}[label=(\alph*)]
+%    \item $h \leftarrow a \land b.$
+%    \item $p \leftarrow q \land r \land s.$
+%    \item $t.$
+%\end{enumerate}
 
 % --------------------------------------------------
 \item Considere a cláusula:
@@ -85,35 +85,49 @@ Dê um exemplo de interpretação $I$ em que a cláusula é:
 Explique por que em cada caso.
 
 % --------------------------------------------------
-\item Considere a base de conhecimento $KB$:
+\item Considere a base de conhecimento $KB''$:
 \begin{align*}
-    &a \leftarrow b \land c.\\
-    &b \leftarrow d.\\
-    &c \leftarrow e.\\
-    &d.\\
-    &e.\\
-    &x \leftarrow a \land y.\\
-    &y \leftarrow z.
+    &m \leftarrow n.\\
+    &n \leftarrow o.\\
+    &o.\\
+    &k \leftarrow m \land \ell.\\
+    &\ell \leftarrow k.\\
+    &z \leftarrow y. 
 \end{align*}
 
 \begin{enumerate}[label=(\alph*)]
     \item Usando o procedimento bottom-up, construa a sequência de conjuntos $C$ até atingir ponto fixo, ou seja, um ponto em que aplicar a regra de prova não produz novos átomos.
     \item Liste os átomos derivados ao final.
-    \item Justifique por que $\mathit{x}$ e $\mathit{y}$ não são derivados (se de fato não forem).
+    \item Justifique por que $\mathit{k}$ e $\mathit{\ell}$ não são derivados (se de fato não forem).
 \end{enumerate}
 
 % --------------------------------------------------
 \item Usando a mesma $KB$ do exercício anterior, construa uma derivação top-down para a consulta:
 \[
-\mathsf{ask}\; a.
+\mathsf{ask}\; k.
 \]
 
+%--------------------------------------------------- 
+
+\item Considere a base de conhecimento $KB'$:
+\begin{align*}
+    &p \leftarrow q \land r.\\
+    &q \leftarrow s.\\
+    &r \leftarrow t.\\
+    &s.\\
+    &t.\\
+    &u \leftarrow p \land v.\\
+    &v \leftarrow w.
+\end{align*}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Usando o procedimento bottom-up, construa a sequência de conjuntos $C$ até atingir ponto fixo, ou seja, um ponto em que aplicar a regra de prova não produz novos átomos.
+    \item Liste os átomos derivados ao final.
+    \item Justifique por que $\mathit{u}$ e $\mathit{v}$ não são derivados (se de fato não forem).
+\end{enumerate}
+
 % --------------------------------------------------
-\item Ainda com a mesma $KB$, construa uma derivação top-down para a consulta $\mathsf{ask}\; x$ que:
-\begin{itemize}
-    \item em algum momento tente provar $\mathit{y}$ a partir de $\mathit{y} \leftarrow z$.
-\end{itemize}
-Mostre o ramo de prova e explique \textbf{explicitamente} por que ele falha.
+\item Ainda com a mesma $KB$, construa uma derivação top-down para a consulta $\mathsf{ask}\; u$. Mostre o ramo de prova e explique \textbf{explicitamente} por que ele falha.
 
 % --------------------------------------------------
 \item Considere a restrição de integridade:
@@ -142,6 +156,26 @@ A=\{c,d,e,f\}.
     \item Mostre que $\{c,e\}$ é um conflito.
     \item Dê um exemplo de conflito que não seja mínimo e explique por que não é mínimo.
 \end{enumerate}
+% ---------------------------------------------------
+% --------------------------------------------------
+\item Considere a base $KB_2''$:
+\begin{align*}
+    &\mathit{false} \leftarrow x.\\
+    &x \leftarrow a \land b.\\
+    &a \leftarrow c.\\
+    &a \leftarrow d.\\
+    &b \leftarrow e.
+\end{align*}
+Assuma o conjunto de assumíveis:
+\[
+A=\{c,d,e,f\}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Mostre que $\{c,e\}$ é um conflito.
+    \item Mostre que $\{d,e\}$ é um conflito.
+    \item Dê um exemplo de conflito que não seja mínimo e explique por que não é mínimo.
+\end{enumerate}
+
 
 % --------------------------------------------------
 \item No diagnóstico por consistência, considere um conjunto de \emph{assumíveis} $A$.
@@ -163,23 +197,23 @@ C_1=\{p,q,r\}, \qquad C_2=\{q,s\}.
 % --------------------------------------------------
 \item Considere o domínio:
 \begin{align*}
-    \mathit{bronchitis} &\leftarrow \mathit{influenza}.\\
-    \mathit{bronchitis} &\leftarrow \mathit{smokes}.\\
-    \mathit{coughing} &\leftarrow \mathit{bronchitis}.\\
-    \mathit{fever} &\leftarrow \mathit{influenza}.\\
-    \mathit{fever} &\leftarrow \mathit{infection}.\\
-    \mathit{false} &\leftarrow \mathit{smokes} \land \mathit{nonsmoker}.
+    q &\leftarrow w.\\
+    q &\leftarrow e.\\
+    u &\leftarrow q.\\
+    t &\leftarrow w.\\
+    t &\leftarrow y.\\
+    \mathit{false} &\leftarrow e \land r.
 \end{align*}
 Assumíveis:
 \[
-A=\{\mathit{smokes},\mathit{nonsmoker},\mathit{influenza},\mathit{infection}\}.
+A=\{e,r,w,y\}.
 \]
 Para cada observação abaixo, liste \textbf{pelo menos uma} explicação mínima (conjunto de assumíveis) e justifique a minimalidade.
 
 \begin{enumerate}[label=(\alph*)]
-    \item $\mathit{coughing}$.
-    \item $\mathit{coughing} \land \mathit{fever}$.
-    \item $\mathit{fever} \land \mathit{nonsmoker}$.
+    \item $u$.
+    \item $u \land t$.
+    \item $t \land r$.
 \end{enumerate}
 
 \end{enumerate}
