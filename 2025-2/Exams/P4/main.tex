@@ -1,0 +1,120 @@
+\documentclass[9pt,a4paper]{extarticle}
+
+% ======================
+% Codificação, idioma e layout
+% ======================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=2cm}
+\usepackage{parskip}
+\usepackage{microtype}
+
+% ======================
+% Matemática e teoremas
+% ======================
+\usepackage{amsmath, amssymb, amsfonts, bm}
+\newtheorem{definition}{Definição}
+
+% ======================
+% Listas
+% ======================
+\usepackage{enumitem}
+\setlist{nosep}
+
+% ======================
+% Macros
+% ======================
+\newcommand{\sigmoid}{\sigma}
+\newcommand{\bw}{\bm w}
+\newcommand{\bx}{\bm x}
+\newcommand{\by}{\bm y}
+
+
+% ======================
+% Documento
+% ======================
+\begin{document}
+
+\title{\vspace{-1em}Prova 4\\
+Aprendizado de Máquina}
+\date{}
+\maketitle
+
+\vspace{-2cm}
+
+\section*{Instruções gerais}
+\begin{enumerate}
+\item Todo o material de consulta deverá ser entregue juntamente com a prova, ao final da avaliação.
+\item O único material impresso permitido são as listas de exercícios disponibilizadas no repositório oficial da disciplina.
+\item Com exceção do material mencionado no item 2, todo o restante do material de consulta deverá ser escrito de próprio punho.
+\item Não será permitido o uso de dispositivos eletrônicos, tais como celulares, tablets, notebooks, smartwatches ou similares, durante a prova.
+\item Não é permitido o compartilhamento de material de consulta entre estudantes durante a realização da prova.
+\end{enumerate}
+
+% ==================================================
+\section*{Questões}
+% ==================================================
+
+\begin{enumerate}[label=\textbf{\arabic*)}, itemsep=1.3em]
+\item Para cada aplicação abaixo indique o tipo de aprendizado de máquina mais adequado (\emph{supervisionado}, \emph{não supervisionado} ou \emph{por reforço}) e justifique a sua indicação:
+
+\begin{enumerate}[label=(\alph*)]
+    \item Uma operadora de telecomunicações deseja identificar automaticamente grupos de clientes com perfis de consumo semelhantes, sem possuir rótulos ou categorias previamente definidos.
+
+    \item Uma empresa de streaming deseja prever a nota que um usuário atribuiria a um filme, com base no histórico de avaliações de usuários para diversos filmes.
+    
+    \item Uma empresa de logística deseja controlar automaticamente a rota de um veículo autônomo em um armazém, de forma a minimizar o tempo de entrega e evitar colisões, aprendendo a partir da interação contínua com o ambiente.
+\end{enumerate}
+
+\item Para cada aplicação abaixo, indique o algoritmo de aprendizado supervisionado mais adequado 
+(\emph{regressão linear}, \emph{regressão logística} ou \emph{redes neurais artificiais}) 
+e justifique a sua escolha. (\textbf{Obs.:} Mais de uma alternativa pode ser considerada adequada em cada aplicação. A avaliação levará em conta a capacidade de justificar tecnicamente a escolha dos algoritmos.):
+
+\begin{enumerate}[label=(\alph*)]
+    \item Uma empresa deseja prever o tempo (em minutos) que um usuário permanecerá em uma plataforma digital, a partir de variáveis como horário de acesso, tipo de dispositivo, histórico recente de uso e perfil do usuário.
+    
+    \item Uma instituição financeira deseja estimar a probabilidade de inadimplência de um cliente, com base em renda, histórico de crédito, número de atrasos anteriores e valor do empréstimo solicitado.
+    
+    \item Um sistema de visão computacional deve identificar se uma imagem contém ou não um determinado objeto, a partir de descritores extraídos automaticamente das imagens.
+\end{enumerate}
+
+
+\item O que é e para o que serve uma função de $Loss$?
+
+\item Qual a relação entre aprendizado de máquina e otimização?
+
+\item Por que estudamos como obter o gradiente das funções de loss? O gradientes são calculados em função de quais variáveis num problema de aprendizagem de máquina?
+
+\item Para cada uma das expressões abaixo, indique:  i) o que elas representam, ii) o que cada variável significa, e iii) como são utilizadas no aprendizado de máquina. 
+\begin{enumerate}[label=(\alph*)]
+    \item \[ \min_{\bm w}\; \lVert X\bm w - \bm y \rVert^2 \]
+    \item \[ J(\bw)= -\sum_{i=1}^n \Big(y_i\log p_i + (1-y_i)\log(1-p_i)\Big) \]
+    \item \[ f(x) = \max(0, x) \]
+
+\end{enumerate}
+
+
+\item Considere os dois cenários a seguir, relacionados ao desenvolvimento e à avaliação de modelos de aprendizado de máquina. Para cada cenário (i) identifique se ocorre o vazamento de dados; (ii) em caso positivo, explique por que esse procedimento compromete a estimativa de desempenho do modelo; e (iii) descreva como o processo deveria ser modificado para evitar o vazamento.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Em um problema de classificação, um pesquisador realiza a seleção de atributos utilizando todo o conjunto de dados disponível (por exemplo, escolhendo as variáveis mais correlacionadas com o rótulo). Em seguida, o conjunto de dados reduzido é dividido em treino e teste, e um classificador é treinado e avaliado.
+
+    \item Em um problema de regressão, os dados são inicialmente normalizados por meio do cálculo da média e do desvio padrão usando todas as amostras. Após esse pré-processamento, o conjunto é dividido em treino e teste, e o modelo é ajustado e avaliado.
+\end{enumerate}
+
+
+\item Compare os papéis dos conjuntos de treinamento, validação e teste em um fluxo adequado de desenvolvimento de modelos preditivos. Quais são as consequências metodológicas de utilizar o conjunto de teste para tomada de decisões de modelagem?
+
+\item Considere um modelo cujo ajuste de hiperparâmetros foi realizado por validação cruzada. Descreva o procedimento correto para obter uma estimativa confiável do desempenho do modelo em dados não observados.
+
+\item Explique como a análise do desempenho de um modelo em função do número de iterações de treinamento pode ser usada para diagnosticar problemas de subajuste (uderfitting) e sobreajuste (overfitting). Descreva os comportamentos típicos esperados nessas situações.
+
+ 
+
+
+\end{enumerate}
+
+\end{document}
